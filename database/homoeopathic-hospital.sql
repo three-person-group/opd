@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Database: `homoeopathic-hospital`
 --
 
-CREATE DATABASE homoeopathic-hospital
+CREATE DATABASE homoeopathic_hospital
 
 -- --------------------------------------------------------
 
