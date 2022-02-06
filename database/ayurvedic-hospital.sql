@@ -21,7 +21,7 @@ SET time_zone = "+00:00";
 -- Database: `ayurvedic-hospital`
 --
 
-CREATE DATABASE ayurvedic-hospital
+CREATE DATABASE ayurvedic_hospital
 
 
 -- --------------------------------------------------------
@@ -63,7 +63,7 @@ CREATE TABLE `dispensary charges` (
 -- Dumping data for table `dressing charges`
 --
 
-INSERT INTO `dressing charges` (`SR NO`, `PERTICULAR`, `CHARGES`) VALUES
+INSERT INTO `dispensary charges` (`SR NO`, `PERTICULAR`, `CHARGES`) VALUES
 (2, '1 WEEK DISPENSARY CHARGES ', 100),
 (3, '2 WEEK DISPENSARY CHARGES ', 200),
 (4, 'CHAYVANPRAS', 135),
