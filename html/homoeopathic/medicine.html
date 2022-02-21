@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <h2>MEDICINE</h2>
+
+</head>
+
+<body>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <form method="post" action="">
+
+      <button href="" name="add_medicine">Add</button>
+
+      <br>
+
+      <label>
+         Medicine Name:
+      </label>
+
+      <input type="text" name="medicine" id="id-medicine-1" placeholder="Medicine Name">
+      <input id="id-charges-1" class="ipt-charges"></input>
+      <br>
+      <br>
+
+
+      <label>
+         Medicine Name:
+      </label>
+
+      <input type="text" name="medicine" id="id-medicine-2" placeholder="Medicine Name">
+      <input id="id-charges-2" class="ipt-charges"></input>
+      <br>
+      <br>
+
+      <label>
+         Medicine Name:
+      </label>
+
+      <input type="text" name="medicine" id="id-medicine-3" placeholder="Medicine Name">
+      <input id="id-charges-3" class="ipt-charges"></input>
+      <br>
+
+      <button type="submit" name="Submit">Submit</button>
+
+   </form>
+
+   <script>
+
+      $(document).ready(function () {
+
+         // for id 1
+
+
+         $(document).on("focus", "#id-charges-1", function () {
+
+
+            $("#id-charges-1").html("");
+
+            var medi_name = $("#id-medicine-1").val();
+            var obj = { SPERTICULAR: medi_name };
+            var jsonname = JSON.stringify(obj)
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/medicine_api/api-fetch-one.php',
+               type: "POST",
+               data: jsonname,
+               success: function (data) {
+
+                  var db = (JSON.parse(data));
+                  // console.log(db);
+
+
+                  if (data.status == false) {
+                     $("#id-charges-1").val("Cant Fetch");
+                  }
+                  else {
+                     $("#id-charges-1").val(db[0].CHARGES);
+
+                  }
+               }
+            });
+
+
+         });
+
+
+         $(document).on("focus", "#id-charges-2", function () {
+
+
+            $("#id-charges-2").html("");
+
+            var medi_name = $("#id-medicine-2").val();
+            var obj = { SPERTICULAR: medi_name };
+            var jsonname = JSON.stringify(obj)
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/medicine_api/api-fetch-one.php',
+               type: "POST",
+               data: jsonname,
+               success: function (data) {
+
+                  var db = (JSON.parse(data));
+                  // console.log(db);
+
+
+                  if (data.status == false) {
+                     $("#id-charges-2").val("Cant Fetch");
+                  }
+                  else {
+                     $("#id-charges-2").val(db[0].CHARGES);
+
+                  }
+               }
+            });
+
+
+         });
+         $(document).on("focus", "#id-charges-3", function () {
+
+
+            $("#id-charges-3").html("");
+
+            var medi_name = $("#id-medicine-3").val();
+            var obj = { SPERTICULAR: medi_name };
+            var jsonname = JSON.stringify(obj)
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/medicine_api/api-fetch-one.php',
+               type: "POST",
+               data: jsonname,
+               success: function (data) {
+
+                  var db = (JSON.parse(data));
+                  // console.log(db);
+
+
+                  if (data.status == false) {
+                     $("#id-charges-3").val("Cant Fetch");
+                  }
+                  else {
+                     $("#id-charges-3").val(db[0].CHARGES);
+
+                  }
+               }
+            });
+
+
+         });
+
+      });
+
+
+
+   </script>
+
+
+</body>
+
+</html>
