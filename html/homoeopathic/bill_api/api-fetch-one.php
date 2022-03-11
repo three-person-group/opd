@@ -4,9 +4,8 @@
 
    $data=json_decode(file_get_contents("php://input"),true);
 
-   $PERTICULAR=$data['smedicine_name'];
 
-   $sql2="SELECT CHARGES FROM homoeopathic where PERTICULAR='{$PERTICULAR}'";
+   $sql2="SELECT * FROM homoeopathic where SRNO=1";
    if($conn->query($sql2))
    {
       

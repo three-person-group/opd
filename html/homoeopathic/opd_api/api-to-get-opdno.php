@@ -4,9 +4,18 @@
 
    $data=json_decode(file_get_contents("php://input"),true);
 
-   $PERTICULAR=$data['smedicine_name'];
+   
+   $sql2="SELECT  opdno FROM `existing_patients` ORDER BY `existing_patients`.`opdno` DESC LIMIT 1;";
+   
 
-   $sql2="SELECT CHARGES FROM homoeopathic where PERTICULAR='{$PERTICULAR}'";
+
+   //for 0 row 
+   //    $sql2="SELECT  *FROM `inventory_medicine_ayurvedic` ORDER BY `OPD/ID` DESC LIMIT 1;";
+
+
+//    SELECT max(opdno) FROM `existing_patients`;";
+
+//    SELECT CHARGES FROM homoeopathic where SRNO=1";
    if($conn->query($sql2))
    {
       

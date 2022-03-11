@@ -2,16 +2,16 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+   <!-- Bootstrap CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
-    <!-- <style>
+   <title>Hello, world!</title>
+   <!-- <style>
         td,
         tr,
         table {
@@ -35,195 +35,399 @@
 <body>
 
 
-    <!-- Optional JavaScript; choose one of the two! -->
+   <!-- Optional JavaScript; choose one of the two! -->
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+   <!-- Option 1: Bootstrap Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
+   <!-- Option 2: Separate Popper and Bootstrap JS -->
+   <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 -->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <h2>OPD REGISTRATION</h2>
-    <form method="post" action="">
+   <h2>OPD REGISTRATION</h2>
+   <form method="post" id="form-body" action="">
 
-        <table>
-            <tr>
-                <td>
-                    <label>
-                        Date:
-                    </label>
+      <table>
+         <tr>
+            <td>
+               <label>
+                  Date:
+               </label>
 
-                </td>
-                <td>
+            </td>
+            <td>
 
-                    <input type="date" name="date" placeholder="">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
-        
-        <table>
-            <tr>
-                <td>
+               <input type="text" name="sdate" id="id-date" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table>
 
-
-                    <label>OPD/ID:</label>
-                </td>
-                <td>
-                    <input type="text" id="id-opdid" name="opd" placeholder="">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td>
-                    <label class="txt">Name:</label>
-
-                </td>
-                <td>
-
-                    <input type="text" name="name" placeholder="Enter FullName">
-
-                    <br><br>
-                </td>
-            </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td>
-                    <label for="">
-                        Age:
-
-                    </label>
-                </td>
-                <td>
-                    <input type="text" name="age" placeholder="Enter Your Age">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
+      <table>
+         <tr>
+            <td>
 
 
-        <table>
-            <tr>
-                <td>
-                    <label class="txt">Address:</label>
-                </td>
-                <td>
+               <label>OPD/ID:</label>
+            </td>
+            <td>
+               <input type="text" id="id-opdid" name="sopdno" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table>
 
-                    <input type="textarea" name="address">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
+      <table>
+         <tr>
+            <td>
+               <label class="txt">Name:</label>
 
-        <table>
-            <tr>
-                <td>
-                    <label class="txt">City:</label>
-                </td>
-                <td>
-                    <input type="text"  name="city">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
+            </td>
+            <td>
 
-        <table>
-            <tr>
-                <td>
-                    <label for="">
-                        ContactNo:
+               <input type="text" name="spname" placeholder="Enter FullName">
 
-                    </label>
-                </td>
-                <td>
-                    <input type="text" name="contact_no" placeholder="Enter 10 Digit Number.">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
+               <br><br>
+            </td>
+         </tr>
+      </table>
 
-        <table>
-            <tr>
-                <td>
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  Age:
 
-                    <label class="txt">Email:</label>
+               </label>
+            </td>
+            <td>
+               <input type="text" name="sage" placeholder="Enter Your Age">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  Gender:
 
-                </td>
-                <td>
-                    <input type="text" name="email" placeholder="Enter Email address">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
-
-        <table>
-            <tr>
-                <td>
-
-                    <label for="">
-                        Registration Charges:
-
-                    </label>
-                </td>
-                <td>
-
-                    <input type="text" id="id-registrationCharges" name="charges" placeholder="">
-                    <br><br>
-                </td>
-            </tr>
-        </table>
+               </label>
+            </td>
+            <td>
+               <input type="text" name="sgender" placeholder="Enter Your Gender">
+               <br><br>
+            </td>
+         </tr>
+      </table>
 
 
+      <table>
+         <tr>
+            <td>
+               <label class="txt">Address:</label>
+            </td>
+            <td>
+
+               <input type="textarea" name="saddress">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label class="txt">City:</label>
+            </td>
+            <td>
+               <input type="text" name="scity">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  ContactNo:
+
+               </label>
+            </td>
+            <td>
+               <input type="text" name="scontact_no" placeholder="Enter 10 Digit Number.">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+
+               <label class="txt">Email:</label>
+
+            </td>
+            <td>
+               <input type="text" name="semail" placeholder="Enter Email address">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+
+               <label for="">
+                  Registration Charges:
+
+               </label>
+            </td>
+            <td>
+
+               <input type="text" id="id-registrationCharges" name="scharges" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table>
 
 
 
 
-        <button type="submit" name="submit">Submit</button>
 
-    </form>
-    <script>
-        //fetch reg data
 
-        $(document).ready(function () {
-            $("#id-opdid").html(" ");
+      <button type="submit" id="id-btnsub" name="submit">Submit</button>
 
+
+   </form>
+   <script>
+
+      $(document).ready(function () {
+
+         //DATE CREATION
+         var today = new Date();
+         var dd = String(today.getDate()).padStart(2, '0');
+         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+         var yyyy = today.getFullYear();
+
+         today = yyyy + '-' + mm + '-' + dd;
+         // document.write(today);
+         $("#id-date").val(today)
+
+
+     
+         //fetch reg data
+
+         $("#id-opdid").html("");
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/opd_api/api-fetch-one.php',
+            type: "GET",
+            success: function (data) {
+               console.log(data);
+               var db = (JSON.parse(data));
+               console.log(db);
+
+
+               if (data.status == false) {
+                  $("#id-registrationCharges").val(20);
+               }
+               else {
+                  $("#id-registrationCharges").val(db[0].CHARGES);
+
+               }
+            }
+
+
+         });
+     
+         //fetch opdno data
+
+         $("#id-opdid").html("");
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/opd_api/api-to-get-opdno.php',
+            type: "GET",
+            success: function (data) {
+               console.log(data);
+               var db = (JSON.parse(data));
+               console.log(db);
+
+console.log(data.status)
+               if (db.status == "false") {
+                  // $("#id-registrationCharges").val(20);
+                  $("#id-opdid").val(1);
+               }
+               else {
+                  var opdno=db[0].opdno;
+                  console.log(typeof(opdno))
+                  opdno=parseInt(opdno) + 1;
+                  $("#id-opdid").val(opdno);
+
+               }
+            }
+
+
+         });
+
+
+         // on click on sub button
+         $("#id-btnsub").on("click", btnclick())
+
+         // insert data
+         function btnclick() {
+
+            $(document).on("click","#id-btnsub", function (e) {
+               e.preventDefault();
+
+
+               var arr = $("#form-body").serializeArray();
+
+               var objArr = {};
+
+               for (let i = 0; i < arr.length; i++) {
+                  if (arr[i].value == "") {
+                     alert("fill all filed");
+                     return false;
+                  }
+                  objArr[arr[i].name] = arr[i].value;
+               }
+
+               var jsonInsertData = JSON.stringify(objArr);  //send to existing_patient ,patient_register and bill
+               console.log(jsonInsertData);
+
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-existing-papatient.php',
+                  type: "post",
+                  data: jsonInsertData,
+                  success: function (data) {
+                     if (data.status == true) {
+                        alert(data.message)
+                        // pageload()
+                        console.log("working");
+                     }
+                     else {
+                        console.log("notworking");
+                        alert(data.message);
+
+                     }
+                  }
+               })
+//for patient_register
             $.ajax({
-                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-fetch-one.php',
-                type: "GET",
-                success: function (data) {
-                    var db = (JSON.parse(data));
-                    console.log(db);
+               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-papatient_reg.php',
+               type: "post",
+               data: jsonInsertData,
+               success: function (data) {
+                  if (data.status == true) {
+                     alert(data.message)
+                     // pageload()
+                     console.log("working");
+                  }
+                  else {
+                     console.log("notworking");
+                     alert(data.message);
+
+                  }
+               }
+            })
+
+//for homoeopathic_bill
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-bill.php',
+               type: "post",
+               data: jsonInsertData,
+               success: function (data) {
+                  if (data.status == true) {
+                     alert(data.message)
+                     // pageload()
+                     console.log("working");
+                  }
+                  else {
+                     console.log("notworking");
+                     alert(data.message);
+
+                  }
+               }
+            })
+
+//for inventory_homoeopathic
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-medicine.php',
+               type: "post",
+               data: jsonInsertData,
+               success: function (data) {
+                  if (data.status == true) {
+                     alert(data.message)
+                     // pageload()
+                     console.log("working");
+                  }
+                  else {
+                     console.log("notworking");
+                     alert(data.message);
+
+                  }
+               }
+            })
+
+//for inventory_homoeopathic_lab
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-lab.php',
+               type: "post",
+               data: jsonInsertData,
+               success: function (data) {
+                  if (data.status == true) {
+                     alert(data.message)
+                     // pageload()
+                     console.log("working");
+                  }
+                  else {
+                     console.log("notworking");
+                     alert(data.message);
+
+                  }
+               }
+            })
 
 
-                    if (data.status == false) {
-                        $("#id-registrationCharges").val(20);
-                    }
-                    else {
-                        $("#id-registrationCharges").val(db[0].CHARGES);
 
-                    }
-                }
+            location.href='http://localhost:3000/html/homoeopathic/patient_process.html'
+//click event
+         })
 
-
-            });
-        });
+            //function end
+         }
 
 
 
-    </script>
+
+         //ready end
+      });
+
+
+
+   </script>
 
 </body>
 
 </html>
+
+<!-- 
+ {'sdate': '02/28/2022'
+'sopdno': 'kjhkj'
+'spname': 'hkjh'
+'sage': 'kjh'
+'sgender': 'kjh'
+'saddress': 'kj'
+'scity': 'hkj'
+'scontact_no': 'hkj'
+'semail': 'hkjhkj'
+'scharges': '20'} -->

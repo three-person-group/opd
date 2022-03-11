@@ -4,9 +4,11 @@
 
    $data=json_decode(file_get_contents("php://input"),true);
 
-   $PERTICULAR=$data['smedicine_name'];
+   $opdno=$data['sopdno'];
+   $date=$data['sdate'];
 
-   $sql2="SELECT CHARGES FROM homoeopathic where PERTICULAR='{$PERTICULAR}'";
+   $sql2="SELECT medicine_name,medicine_qty,
+   medicine_charges FROM homoeopathic_bill where opdno='{$opdno}' and date='{$date}'";
    if($conn->query($sql2))
    {
       

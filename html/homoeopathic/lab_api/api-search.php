@@ -8,31 +8,30 @@ include 'config.php';
 
 // $lab_name=$data['slab_name'];
 
-$lab_name=$post['TESTNAME'];
+// $lab_name=$post['TESTNAME'];
 
-// $srno = isset($_GET['ssrno']) ? $_GET['ssrno'] : die();
+$lab_name = isset($_GET['slab_name']) ? $_GET['slab_name'] : die();
 
-$sql11="SELECT TESTNAME FROM homoeopathic_lab WHERE TESTNAME LIKE '%{$lab_name}%';";
+$sql11="SELECT TESTNAME FROM homoeopathic_lab WHERE TESTNAME LIKE '%{$lab_name}%' LIMIT 3;";
 
 
 $result=$conn->query($sql11);
-$output="<ul>";
+
 if($result->num_rows >0)
 {
-   while($row=mysqli_fetch_assoc($result))
-   {
-      $output.="<li>{$row['TESTNAME']}<li>";
-   }
-// $output=mysqli_fetch_all($result,MYSQLI_ASSOC);
-// echo json_encode($output);
+   $output=mysqli_fetch_all($result,MYSQLI_ASSOC);
+   echo json_encode($output);
 
 }
 else{
-   $output.="<li>city not found<li>";
    
-   // echo json_encode(array("message"=>"data not searched","status"=>false));
+   echo json_encode(array("message"=>"data not searched","status"=>false));
 }
-$output.="<ul>";
+// $output.="<li>{$row['TESTNAME']}<li>";
+   // $output.="<li>city not found<li>";
+   
 
-echo $output;
+// $output.="<ul>";
+
+// echo $output;
 ?>
