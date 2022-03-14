@@ -27,8 +27,8 @@ $sql3 = "insert into existing_patients (opdno,pname,gender,age,address,city,mobi
     values('{$opdno}','{$pname}','{$gender}','{$age}','{$address}','{$city}','{$mobileno}','{$email}');";
 
 if ($conn->query($sql3)) {
-    echo json_encode(array("message" => "data inserted", "status" => true));
+    echo json_encode(array("message" => "data inserted in existing patient table", "status" => true));
 } else {
-    echo json_encode(array("message" => "data not inserted", "status" => false));
+    echo json_encode(array("message" => "data not inserted in existing patient table", "status" => false));
 
 }

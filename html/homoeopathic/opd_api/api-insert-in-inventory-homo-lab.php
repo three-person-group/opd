@@ -24,8 +24,8 @@ $sql3 = "insert into inventory_homoeopathic_lab (date,opdno)
     values('{$date}','{$opdno}');";
 
 if ($conn->query($sql3)) {
-    echo json_encode(array("message" => "data inserted", "status" => true));
+    echo json_encode(array("message" => "data inserted in Inventory homyo lab", "status" => true));
 } else {
-    echo json_encode(array("message" => "data not inserted", "status" => false));
+    echo json_encode(array("message" => "data not inserted in Inventory homyo lab", "status" => false));
 
 }
