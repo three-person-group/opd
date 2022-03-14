@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <h2>lab</h2>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <style>
+      select {
+         appearance: none;
+      }
+
+
+      #autocomplete {
+         width: 250px;
+         float: left;
+         position: relative;
+      }
+
+      .testname {
+         width: 100%;
+         height: 36px;
+         font-size: 18px;
+         padding: 3px 10px;
+         border-radius: 4px;
+         border: 1px solid #e58940;
+         outline: 0;
+         box-sizing: border-box;
+      }
+
+      .list {
+         width: 100%;
+         position: absolute;
+         border: 1px solid #4d6e87;
+         display: none;
+         background-color: #4d6e87;
+      }
+
+      .list ul {
+         list-style: none;
+         background: #fff;
+         margin: 0;
+         padding: 0;
+         text-align: left;
+
+      }
+
+      .list ul li {
+         padding: 2px 10px;
+         cursor: pointer;
+      }
+
+      .list ul li:hover {
+         background: #d0e4f4;
+      }
+   </style>
+
+</head>
+
+<body>
+
+   <form method="post" action="">
+
+      <button href="" name="add_lab">Add</button>
+      <br>
+
+      <div>
+         <label>
+            lab Name:
+         </label>
+         <div id="autocomplete">
+            <input type="text" name="stestname1" id="id-lab-1" class="testname" placeholder="lab Name" autocomplete="false">
+            <div id="testlist" class="list"></div>
+         </div>
+
+
+
+         <input id="id-charges-1" class="ipt-charges"></input>
+         <br>
+         <br>
+
+         <br>
+         <br><br>
+
+      </div>
+      <div>
+         <label>
+            lab Name:
+         </label>
+         <div id="autocomplete">
+            <input type="text" name="stestname2" id="id-lab-2" class="testname" placeholder="lab Name" autocomplete="false">
+            <div id="testlist2" class="list"></div>
+         </div>
+
+         <input id="id-charges-2" class="ipt-charges"></input>
+         <br>
+         <br>
+
+      </div>
+      <br><br><br><br><br><br>
+      <div>
+         <label>
+            lab Name:
+         </label>
+         <div id="autocomplete">
+            <input type="text" name="stestname3" id="id-lab-3" class="testname" placeholder="lab Name" autocomplete="false">
+            <div id="testlist3" class="list"></div>
+         </div>
+
+         <input id="id-charges-3" class="ipt-charges"></input>
+         <br>
+         <br>
+
+      </div>
+
+      <button type="submit" name="Submit">Submit</button>
+
+   </form>
+
+   <script>
+
+      $(document).ready(function () {
+
+
+         // for id1 lab name auto seach click and blur event
+         $("#id-lab-1").on("keyup", testname1)
+
+
+         // for id2 lab name auto seach click and blur event
+         $("#id-lab-2").on("keyup", testname2);
+
+         // for id3 lab name auto seach click and blur event
+         $("#id-lab-3").on("keyup", testname3);
+
+         // when focus on charges class
+         $(document).on("focus", "#id-charges-1", charge1)
+         $(document).on("focus", "#id-charges-2", charge2)
+         $(document).on("focus", "#id-charges-3", charge3);
+
+
+
+
+         function charge1() {
+            $("#id-charges-1").html("");
+
+            var lab_name = $("#id-lab-1").val();
+            var obj = { slab_name: lab_name };
+            var jsonname = JSON.stringify(obj)
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/lab_api/api-fetch-one.php',
+               type: "POST",
+               data: jsonname,
+               success: function (data) {
+
+                  var db = (JSON.parse(data));
+                  // console.log(db);
+
+
+                  if (data.status == false) {
+                     $("#id-charges-1").val("Cant Fetch");
+                  }
+                  else {
+                     $("#id-charges-1").val(db[0].CHARGES);
+
+                  }
+               }
+            });
+
+         }
+
+         function charge2() {
+            $("#id-charges-2").html("");
+
+            var lab_name = $("#id-lab-2").val();
+            var obj = { slab_name: lab_name };
+            var jsonname = JSON.stringify(obj)
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/lab_api/api-fetch-one.php',
+               type: "POST",
+               data: jsonname,
+               success: function (data) {
+
+                  var db = (JSON.parse(data));
+                  // console.log(db);
+
+
+                  if (data.status == false) {
+                     $("#id-charges-2").val("Cant Fetch");
+                  }
+                  else {
+                     $("#id-charges-2").val(db[0].CHARGES);
+
+                  }
+               }
+            });
+         }
+
+         function charge3() {
+            $("#id-charges-3").html("");
+
+            var lab_name = $("#id-lab-3").val();
+            var obj = { slab_name: lab_name };
+            var jsonname = JSON.stringify(obj)
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/lab_api/api-fetch-one.php',
+               type: "POST",
+               data: jsonname,
+               success: function (data) {
+
+                  var db = (JSON.parse(data));
+                  // console.log(db);
+
+
+                  if (data.status == false) {
+                     $("#id-charges-3").val("Cant Fetch");
+                  }
+                  else {
+                     $("#id-charges-3").val(db[0].CHARGES);
+
+                  }
+               }
+            });
+
+         }
+
+
+
+         function testname1() {
+            $("#testlist").html("");               //empty search list
+            var lab_name = $(this).val();
+
+
+            if (lab_name != "") {
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/lab_api/api-search.php?slab_name=' + lab_name,
+                  type: "GET",
+                  dataType: "json",
+                  success: function (data) {
+                     console.log(data)
+
+                     if (data.status == false) {
+                        $("#table-id").fadeIn("fast").append("<ul>" +
+                           "<li>" + "NOT FOUND" + "</li>" + "</ul>")
+                     }
+                     else {
+
+                        //dropdown  type search
+                        $.each(data, function (key, value) {
+                           $("#testlist").fadeIn("fast").append("<ul>" +
+                              "<li>" + value.TESTNAME + "</li>" + "</ul>");
+                        });
+                     }
+                  }
+               });
+               $("#id-lab-1").focusout(("#testlist").fadeOut);
+            }
+            else {
+               $("#testlist").fadeOut();
+
+            }
+         }
+         $(document).on("click", "#testlist li", function () {
+            $("#id-lab-1").val($(this).text());
+            $("#testlist").fadeOut();
+            charge1()
+         });
+         $(document).on("blur", "#id-lab-1", function () {
+            $("#testlist").fadeOut();
+         });
+
+
+
+         function testname2() {
+            $("#testlist2").html("");               //empty search list
+            var lab_name = $(this).val();
+
+
+            if (lab_name != "") {
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/lab_api/api-search.php?slab_name=' + lab_name,
+                  type: "GET",
+                  dataType: "json",
+                  success: function (data) {
+                     console.log(data)
+
+                     if (data.status == false) {
+                        $("#table-id").fadeIn("fast").append("<ul>" +
+                           "<li>" + "NOT FOUND" + "</li>" + "</ul>")
+                     }
+                     else {
+
+                        //dropdown  type search
+                        $.each(data, function (key, value) {
+                           $("#testlist2").fadeIn("fast").append("<ul>" +
+                              "<li>" + value.TESTNAME + "</li>" + "</ul>");
+                        });
+                     }
+                  }
+               });
+               $("#id-lab-2").focusout(("#testlist").fadeOut);
+            }
+            else {
+               $("#testlist2").fadeOut();
+
+            }
+         }
+         $(document).on("click", "#testlist2 li", function () {
+            $("#id-lab-2").val($(this).text());
+            $("#testlist2").fadeOut();
+            charge2()
+         });
+         $(document).on("blur", "#id-lab-2", function () {
+            $("#testlist2").fadeOut();
+         });
+
+
+
+         function testname3() {
+            $("#testlist3").html("");               //empty search list
+            var lab_name = $(this).val();
+
+
+            if (lab_name != "") {
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/lab_api/api-search.php?slab_name=' + lab_name,
+                  type: "GET",
+                  dataType: "json",
+                  success: function (data) {
+                     console.log(data)
+
+                     if (data.status == false) {
+                        $("#table-id").fadeIn("fast").append("<ul>" +
+                           "<li>" + "NOT FOUND" + "</li>" + "</ul>")
+                     }
+                     else {
+
+                        //dropdown  type search
+                        $.each(data, function (key, value) {
+                           $("#testlist3").fadeIn("fast").append("<ul>" +
+                              "<li>" + value.TESTNAME + "</li>" + "</ul>");
+                        });
+                     }
+                  }
+               });
+               $("#id-lab-3").focusout(("#testlist").fadeOut);
+            }
+            else {
+               $("#testlist3").fadeOut();
+
+            }
+         }
+         $(document).on("click", "#testlist3 li", function () {
+            $("#id-lab-3").val($(this).text());
+            $("#testlist3").fadeOut();
+            charge3();
+         });
+         $(document).on("blur", "#id-lab-3", function () {
+            $("#testlist3").fadeOut();
+
+         });
+
+
+
+         $("#id-btnsub").on("click", btnclick())
+      // insert data1
+      function btnclick() {
+
+         $("#id-btnsub").on("click", function (e) {
+            e.preventDefault();
+
+
+            var arr = $(".testname").serializeArray();
+
+            var objArr = {};
+
+            for (let i = 0; i < arr.length; i++) {
+               if (arr[i].value == '') {
+                  // alert("fill all filed");
+                  // return false;
+                  // arr[i].name = "";
+                  delete arr[i];
+                  arr.length=arr.length-1;
+               }else{
+               objArr[arr[i].name] = arr[i].value;
+               }
+            }
+
+            var jsonInsertData = JSON.stringify(objArr);
+            console.log(jsonInsertData);
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/lab_api/api-insert.php',
+               type: "post",
+               data: jsonInsertData,
+               success: function (data) {
+                  if (data.status == true) {
+                     alert(data.message)
+                     // pageload()
+                     console.log("working");
+                  }
+                  else {
+                     console.log("notworking");
+                     alert(data.message);
+
+                  }
+               }
+            })
+
+         })
+
+      }
+
+
+      });
+
+
+   </script>
+
+</body>
+
+</html>

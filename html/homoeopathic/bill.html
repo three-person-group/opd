@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <style>
+      table,
+      td,
+      tr {
+         border: 4px solid black;
+      }
+   </style>
+</head>
+
+<body>
+
+   date:
+   <span for="" id="date"></span>
+   Opdno:
+   <span for="" id="opdno"></span>
+   Name:
+   <span for="" id="name">name</span>
+
+
+   <table id="id-table">
+      <tr>
+         <td>
+            PERTICULAR
+         </td>
+         <td>
+            Qty
+         </td>
+         <td>
+            price
+         </td>
+      </tr>
+
+
+   </table>
+
+
+
+
+
+   total
+
+   <script>
+      $(document).ready(function () {
+
+         //for opdno and date
+         var opdno = localStorage.getItem('opdno')  //"107"
+         opdno = parseInt(opdno)
+         var date1 = localStorage.getItem('date')    //"2022-03-04"
+         var name1 = localStorage.getItem('name')    //"2022-03-04"
+
+
+         $("#date").text(date1);
+         $("#opdno").text(opdno);
+         $("#name").text(name1);
+
+
+         //fetch reg data
+
+         $("#id-opdid").html("");
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-fetch-one.php',
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+               console.log(data);
+               // var db = (JSON.parse(data));
+               // console.log(db);
+
+
+               if (data.status == false) {
+                  $("#id-registrationCharges").val(20);
+               }
+               else {
+                  console.log(data);
+                  $.each(data, function (key, value) {
+
+                     $("#id-table").append("<tr>" +
+                        "<td>" + value.PERTICULAR + "</td>" +
+                        "<td>" + value.SRNO + "</td>" +
+                        "<td>" + value.CHARGES + "</td>" +
+                        "</tr>");
+                  });
+
+
+               }
+            }
+
+         });
+
+
+         var obj1 = { sopdno: opdno, sdate: date1 };
+         console.log(obj1);
+         var JSONobj1 = JSON.stringify(obj1)
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-fetch-medicine-list.php',
+            type: "post",
+            dataType: "json",
+            data: JSONobj1,
+            success: function (data) {
+               console.log(data);
+               // var db = (JSON.parse(data));
+               // console.log(db);
+
+
+               if (data.status == false) {
+                  $("#id-registrationCharges").val(20);
+               }
+               else {
+                  // console.log(data);
+                  $.each(data, function (key, value) {
+
+                     var jsonMedicine = JSON.parse(value.medicine_name)
+                     var jsonQty = JSON.parse(value.medicine_qty)
+                     var jsonCharges = JSON.parse(value.medicine_charges)
+
+
+                     var arrayOne = jsonMedicine;
+                     var arrayTwo = jsonQty;
+                     var arrayThree = jsonCharges;
+
+                     var maxSize = Math.max(arrayOne.length, arrayTwo.length, arrayThree.length);
+
+                     for (let i = 0; i < maxSize; i++) {
+                        let row = $('<tr>');
+                        row.append($('<td>').html(arrayOne[i]));
+                        row.append($('<td>').html(arrayTwo[i]));
+                        row.append($('<td>').html(arrayThree[i]));
+                        $('#id-table').append(row);
+                     }
+                  });
+
+               }
+            }
+
+         });
+
+
+
+
+      });
+
+   </script>
+</body>
+
+</html>
