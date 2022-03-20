@@ -84,7 +84,7 @@ include '';
                                     "<td><button class='btn-medicine' id='" + value.opdno + "' type='" + value.date + "'>Medicine</button></td>" +
                                     "<td><button class='btn-lab' id='" + value.opdno + "' type='" + value.date + "'>Lab</button></td>" +
                                     "<td><button class='btn-bill'  id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>Bill</button></td>" +
-                                    "<td><button class='btn-x' data-x='" + value.opdno + "''>X</button></td>" +
+                                    "<td><button class='btn-x' id='" + value.opdno + "'' type='" + value.date + "'>X</button></td>" +
                                     "</tr>");
 
                             });
@@ -167,7 +167,45 @@ include '';
 
             });
 
+            // on close btn click clear opdno and date ,name from local storage  
+            $(document).on("click", ".btn-x", function () {
 
+
+                localStorage.clear()
+
+                var opdno = $(this).attr("id");
+                var date1 = $(this).attr("type");
+                // var name1 = $(this).attr("name");
+                var row = this
+                // console.log(priceInArr);
+                var ObjOpdnoDate = { sopdno: opdno, sdate: date1 };
+                var ObjOpdnoDateJson = JSON.stringify(ObjOpdnoDate)
+
+                $.ajax({
+                    url: 'http://localhost:3000/html/homoeopathic/activePatient_api/api-change-status.php',
+                    type: "POST",
+                    data: ObjOpdnoDateJson,
+                    success: function (data) {
+                        console.log(data)
+                        if (data.status != false) {
+                            $(row).closest("tr").fadeOut();
+                            alert(data.message)
+                            pageload();
+
+                        }
+                        else {
+                            console.log("notworking");
+                            alert(data.message);
+
+                        }
+                    }
+
+                })
+
+
+
+
+            });
         });
     </script>
 </body>

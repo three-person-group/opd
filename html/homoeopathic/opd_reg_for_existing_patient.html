@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+   <h2>OPD REGISTRATION</h2>
+   <form method="post" id="form-body" action="">
+
+      <table>
+         <tr>
+            <td>
+               <label>
+                  Date:
+               </label>
+
+            </td>
+            <td>
+
+               <input type="text" name="sdate" id="id-date" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+
+
+               <label>OPD/ID:</label>
+            </td>
+            <td>
+               <input type="text" id="id-opdid" name="sopdno" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label class="txt">Name:</label>
+
+            </td>
+            <td>
+
+               <input type="text" name="spname" placeholder="Enter FullName" id="id-pname">
+
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  Age:
+
+               </label>
+            </td>
+            <td>
+               <input type="text" name="sage" placeholder="Enter Your Age" id="id-age">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  Gender:
+
+               </label>
+            </td>
+            <td>
+               <input type="text" name="sgender" placeholder="Enter Your Gender" id="id-gender">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+
+      <table>
+         <tr>
+            <td>
+               <label class="txt">Address:</label>
+            </td>
+            <td>
+
+               <input type="textarea" name="saddress" id="id-address">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label class="txt">City:</label>
+            </td>
+            <td>
+               <input type="text" name="scity" id="id-city">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  ContactNo:
+
+               </label>
+            </td>
+            <td>
+               <input type="text" name="scontact_no" placeholder="Enter 10 Digit Number." id="id-contact_no">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+
+               <label class="txt">Email:</label>
+
+            </td>
+            <td>
+               <input type="text" name="semail" placeholder="Enter Email address" id="id-email">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+
+               <label for="">
+                  Registration Charges:
+
+               </label>
+            </td>
+            <td>
+
+               <input type="text" id="id-registrationCharges" name="scharges" placeholder="" id="id-charges">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+
+
+
+
+
+      <button type="submit" id="id-btnsub" name="submit">Submit</button>
+
+
+   </form>
+
+   <script>
+      $(document).ready(function () {
+
+         //DATE CREATION
+         var today = new Date();
+         var dd = String(today.getDate()).padStart(2, '0');
+         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+         var yyyy = today.getFullYear();
+
+         today = yyyy + '-' + mm + '-' + dd;
+         // document.write(today);
+         $("#id-date").val(today)
+
+         
+         //fetch reg chg data
+
+         $("#id-opdid").html("");
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/opd_api/api-fetch-one.php',
+            type: "GET",
+            success: function (data) {
+               console.log(data);
+               var db = (JSON.parse(data));
+               console.log(db);
+
+
+               if (data.status == false) {
+                  $("#id-registrationCharges").val(20);
+               }
+               else {
+                  $("#id-registrationCharges").val(db[0].CHARGES);
+
+               }
+            }
+
+
+         });
+     
+
+
+         var opdno = localStorage.getItem('opdno')
+         opdno = parseInt(opdno);
+
+         var obj1 = { sopdno: opdno };
+         console.log(obj1);
+
+         var jsonnameOpdno = JSON.stringify(obj1)
+
+         // insert opdno into existing patients in anventory and get patient in form
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/existing_patient_api/api-patient-all-data.php',
+            type: "POST",
+            data: jsonnameOpdno,
+            success: function (data) {
+               console.log(data)
+               if (data.status != false) {
+                  // var db = (JSON.parse(data));
+                  // console.log(db);
+
+                  $.each(data, function (key, value) {
+
+                     $("#id-opdid").val(value.opdno);
+                     $("#id-pname").val(value.pname);
+                     $("#id-age").val(value.age);
+                     $("#id-gender").val(value.gender);
+                     $("#id-address").val(value.address);
+                     $("#id-city").val(value.city);
+                     $("#id-contact_no").val(value.mobileno);
+                     $("#id-email").val(value.email);
+                     alert("dataInserted")
+                  });
+
+
+               }
+               else {
+                  console.log("notworking");
+                  alert(data.message);
+
+               }
+            }
+         })
+
+
+      });
+   </script>
+</body>
+
+</html>

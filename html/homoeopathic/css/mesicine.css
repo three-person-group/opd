@@ -1,0 +1,48 @@
+/*color Variable*/
+
+*,
+*::before
+*::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    background-color: #79ceff;
+    background-image: linear-gradient(315deg,#79ceff 0%, #dcb5ff 67%, #ffb8 100%);
+    height: 0vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    color: #425a65;
+}
+
+.form{
+    width: 38rem;
+    padding: 3rem;
+    border-radius: 1rem;
+    background-color: white;
+
+
+        title{
+            margin-bottom: 0.5rem;
+        }
+
+        group{
+            position: relative;
+            height: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+
+
+
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown).form-input:not(:focus) ~ .form-label{
+    top: -0.5rem;
+    left: 0.8rem;
+    font-size: 0.8rem;
+}

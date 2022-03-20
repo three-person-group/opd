@@ -6,20 +6,21 @@ header("access-control-allow-method:post");
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-$pricearr = $data['spricearr'];
+$testarr = $data['stestarr'];
 $opdno=$data['sopdno'];
 $date=$data['sdate'];
 
 
-$sql3 = "UPDATE homoeopathic_bill SET medicine_charges='{$pricearr}' WHERE opdno='{$opdno}' AND date='{$date}';";
+$sql3 = "UPDATE homoeopathic_bill SET test_name='{$testarr}' WHERE opdno='{$opdno}' AND date='{$date}';";
 
-// insert into homoeopathic_bill (medicine_charges)
-//     values('{$pricearr}');";
+
+
+// $sql3 = "insert into homoeopathic_bill (test_name)
+//     values('{$testarr}');";
 
 if ($conn->query($sql3)) {
-    echo json_encode(array("message" => "data inserted", "status" => true));
+    echo json_encode(array("message" => "data inserted in test name column in bill", "status" => true));
 } else {
     echo json_encode(array("message" => "data not inserted", "status" => false));
 
 }
-?>
