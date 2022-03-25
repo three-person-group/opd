@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <title>Consulting</title>
+
+</head>
+
+<body>
+
+   Consulting Charges:
+   <input type="text" id="id-Consulting" name="scharges" placeholder="">
+
+   <button type="submit" id="id-btnsub" name="submit">Submit</button>
+
+
+</body>
+
+<script>
+   //fetch reg chg data
+
+   $("#id-opdid").html("");
+
+   $.ajax({
+      url: 'http://localhost:3000/html/homoeopathic/opd_api/api-fetch-one.php',
+      type: "GET",
+      success: function (data) {
+         console.log(data);
+         var db = (JSON.parse(data));
+         console.log(db);
+
+
+         if (data.status == false) {
+            $("#id-Consulting").val(20);
+         }
+         else {
+            $("#id-Consulting").val(db[0].CHARGES);
+
+         }
+      }
+
+
+   });
+
+
+   // on click on sub button
+   $("#id-btnsub").on("click", btnclick);
+
+   // insert data
+   function btnclick() {
+
+      //for opdno and date
+      var opdno = localStorage.getItem('opdno')  //"107"
+      opdno = parseInt(opdno)
+      var date1 = localStorage.getItem('date')    //"2022-03-04"
+
+      // var obj1 = { sopdno: opdno, sdate: date1 };
+      // console.log(obj1);
+
+      // var finalResult = Object.assign(objArr, qtyobjArr, obj1);
+      // console.log(finalResult)
+      // var jsonname2 = JSON.stringify(finalResult)
+
+
+      var Consulting = $("#id-Consulting").val();
+      var objConsulting = { sconsulting: Consulting, sopdno: opdno, sdate: date1 };
+      jsonConsulting = JSON.stringify(objConsulting);
+
+
+      //insert into Consulting
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-Consulting-inventory-reg.php',
+         type: 'post',
+         data: jsonConsulting,
+         success: function (data) {
+            console.log(data)
+            if (data.status != false) {
+               alert(data.message);
+            }
+            else {
+               alert(data.message);
+
+            }
+         }
+      })
+
+
+      //insert into bill
+
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-Consulting-inventory-bill.php',
+         type: 'post',
+         data: jsonConsulting,
+         success: function (data) {
+            console.log(data)
+            if (data.status != false) {
+               alert(data.message);
+            }
+            else {
+               alert(data.message);
+
+            }
+         }
+      })
+
+
+      location.href = 'http://localhost:3000/html/homoeopathic/patient_process.html';
+   }
+
+</script>
+
+</html>

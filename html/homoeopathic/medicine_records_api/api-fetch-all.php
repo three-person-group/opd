@@ -7,7 +7,7 @@
    // $name=$data['sname'];
 
    $sql="SELECT *
-   FROM inventory_homoeopathic;";
+   FROM inventory_homoeopathic_dispcharge;";
 
    $result=$conn->query($sql);
 

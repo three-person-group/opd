@@ -7,7 +7,7 @@
    $opdno=$data['sopdno'];
    $date=$data['sdate'];
 
-   $sql2="SELECT reg_charge,medicine_total,test_total FROM homoeopathic_bill where opdno='{$opdno}' AND date='{$date}'";
+   $sql2="SELECT reg_charge,medicine_total,test_total,other_total FROM homoeopathic_bill where opdno='{$opdno}' AND date='{$date}'";
 
    if($conn->query($sql2))
    {

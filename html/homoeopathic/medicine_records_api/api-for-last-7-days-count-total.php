@@ -5,21 +5,14 @@
    // $data=json_decode(file_get_contents("php://input"),true);
 
    // $name=$data['sname'];
-
    $sql='SELECT COUNT(OPDNO) AS no,
    sum(`1 WEEK DISPENSARY CHARGES`) AS a,
 sum(`2 WEEK DISPENSARY CHARGES`) AS b,
 sum(`BIO CHEMIC 1 WEEK`) AS c,
 sum(`BIO CHEMIC 2 WEEK`) AS d,
 sum(`MOTHER TINCHER 1 WEEK`) AS e,
-sum(`MOTHER TINCHER 2 WEEK`) AS f,
-sum(`MINOR DRESSING`) AS g,
-sum(`MAJOR DRESSING(DEPENDS ON DRESSING)`) AS h,
-sum(`STICHES(1ST STITCH)`) AS i,
-sum(`OTHER STITCH`) AS j,
-sum(`INJECTION`) AS k,
-sum(`ECG`) AS l
-   FROM inventory_homoeopathic where date > now() - INTERVAL 7 day;';
+sum(`MOTHER TINCHER 2 WEEK`) AS f
+   FROM inventory_homoeopathic_dispcharge where date > now() - INTERVAL 7 day;';
    
   
 

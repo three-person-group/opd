@@ -7,7 +7,7 @@
    $opdno1=$data['sopdno'];
    $date1=$data['sdate'];
 
-   $sql2="UPDATE `patient_register` SET `in_progress(pending/done)`='done' WHERE opdno='{$opdno1}' AND date='{ $date1}';";
+   $sql2="UPDATE `patient_register` SET `in_progress(pending/done)`='done' WHERE opdno='{$opdno1}' AND date='{$date1}';";
 
 //    UPDATE patient_register SET `in_progress(pending/done)`='done' WHERE opdno=115 AND date='2022-03-08';
 
@@ -29,7 +29,7 @@
    }
    else
    {
-      echo json_encode(array("message"=>"data updated","status"=>"true"));
+      echo json_encode(array("message"=>"data updated","status"=>"false"));
    }
 
 

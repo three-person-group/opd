@@ -82,11 +82,11 @@
                      "<td>" + value.date + "<td>" +
                      "<td class='date'>" + value.opdno + "<td>" +
                      "<td class='opdno'>" + value.pname + "<td>" +
-                     "<td>" + parseInt(value.medicine_total) + "</td>" +
+                     "<td class='opdno'>" + value.reg_charge + "<td>" +
+                     "<td>" + value.medicine_total + "</td>" +
                      "<td>" + value.test_total + "</td>" +
+                     "<td>" + value.other_total + "</td>" +
                      "<td>" + value.total_charges + "</td>" +
-                     // "<td><button class='btn-lab' id='" + value.opdno + "' type='" + value.date + "'>update</button></td>" +
-                     // "<td><button class='btn-bill'  id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>delete</button></td>" +
                      "</tr>");
 
                });
@@ -149,11 +149,11 @@
                      "<td>" + value.date + "<td>" +
                      "<td class='date'>" + value.opdno + "<td>" +
                      "<td class='opdno'>" + value.pname + "<td>" +
-                     "<td>" + parseInt(value.medicine_total) + "</td>" +
+                     "<td class='opdno'>" + value.reg_charge + "<td>" +
+                     "<td>" + value.medicine_total + "</td>" +
                      "<td>" + value.test_total + "</td>" +
+                     "<td>" + value.other_total + "</td>" +
                      "<td>" + value.total_charges + "</td>" +
-                     // "<td><button class='btn-lab' id='" + value.opdno + "' type='" + value.date + "'>update</button></td>" +
-                     // "<td><button class='btn-bill'  id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>delete</button></td>" +
                      "</tr>");
 
                });
@@ -215,11 +215,11 @@
                      "<td>" + value.date + "<td>" +
                      "<td class='date'>" + value.opdno + "<td>" +
                      "<td class='opdno'>" + value.pname + "<td>" +
-                     "<td>" + parseInt(value.medicine_total) + "</td>" +
+                     "<td class='opdno'>" + value.reg_charge + "<td>" +
+                     "<td>" + value.medicine_total + "</td>" +
                      "<td>" + value.test_total + "</td>" +
+                     "<td>" + value.other_total + "</td>" +
                      "<td>" + value.total_charges + "</td>" +
-                     // "<td><button class='btn-lab' id='" + value.opdno + "' type='" + value.date + "'>update</button></td>" +
-                     // "<td><button class='btn-bill'  id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>delete</button></td>" +
                      "</tr>");
 
                });
@@ -281,11 +281,11 @@
                      "<td>" + value.date + "<td>" +
                      "<td class='date'>" + value.opdno + "<td>" +
                      "<td class='opdno'>" + value.pname + "<td>" +
-                     "<td>" + parseInt(value.medicine_total) + "</td>" +
+                     "<td class='opdno'>" + value.reg_charge + "<td>" +
+                     "<td>" + value.medicine_total + "</td>" +
                      "<td>" + value.test_total + "</td>" +
+                     "<td>" + value.other_total + "</td>" +
                      "<td>" + value.total_charges + "</td>" +
-                     // "<td><button class='btn-lab' id='" + value.opdno + "' type='" + value.date + "'>update</button></td>" +
-                     // "<td><button class='btn-bill'  id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>delete</button></td>" +
                      "</tr>");
 
                });
@@ -355,9 +355,11 @@
                   <td></td>
                   <td>NAME</td>
                   <td></td>
-                  <td>REGISTRATION <br>CHARGES</td>
+                  <td>CONSULTATION <br>CHARGES</td>
+                  <td></td>
                   <td>MEDICINE<br>CHARGES</td>
                   <td>LAB<br>CHARGES</td>
+                  <td>OTHER<br>CHARGES</td>
                   <td>Total</td>
                   <!-- <td>X</td> -->
                </tr>

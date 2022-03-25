@@ -12,7 +12,7 @@
          width: 250px;
          float: left;
          position: relative;
-         
+
       }
 
       .medicinename {
@@ -33,7 +33,7 @@
          border: 1px solid #4d6e87;
          display: none;
          background-color: #4d6e87;
-         
+
       }
 
       .list ul {
@@ -53,16 +53,19 @@
       .list ul li:hover {
          background: #d0e4f4;
       }
+
+
+
+   
+      
    </style>
 
 </head>
 
 <body>
 
-   <form method="post" action="">
+   <form class="form" method="post" action="">
 
-      <button href="" name="add_medicine">Add</button>
-      <br>
 
       <div>
          <medicineel>
@@ -70,12 +73,12 @@
          </medicineel>
          <div id="autocomplete">
             <input type="text" id="id-medicine-1" class="medicinename" name="smedicinename1" placeholder="medicine Name"
-               autocomplete="false" >
+               autocomplete="false">
             <div id="medicinelist1" class="list" style="z-index: 1;"></div>
          </div>
 
          <input type="number" placeholder="Qty" id="id-qty-1" class="qty" name="sqty1">
-         
+
          <input id="id-charges-1" class="ipt-charges" placeholder="Price" name="scharges1"></input>
          <br>
          <br>
@@ -108,7 +111,7 @@
          </medicineel>
          <div id="autocomplete">
             <input type="text" id="id-medicine-3" class="medicinename" name="smedicinename3" placeholder="medicine Name"
-               autocomplete="false" >
+               autocomplete="false">
             <div id="medicinelist3" class="list" style="z-index: 1"></div>
          </div>
 
@@ -145,9 +148,9 @@
 
 
          // when focus on charges class
-         $(document).on("blur", "#id-medicine-1", charge1)
-         $(document).on("blur", "#id-medicine-2", charge2)
-         $(document).on("blur", "#id-medicine-3", charge3);
+         // $(document).on("blur", "#id-medicine-1", charge1)
+         // $(document).on("blur", "#id-medicine-2", charge2)
+         // $(document).on("blur", "#id-medicine-3", charge3);
 
 
 
@@ -174,6 +177,8 @@
                   }
                   else {
                      $("#id-charges-1").val(db[0].CHARGES);
+                     totalCharges();
+
                   }
                }
             });
@@ -202,6 +207,8 @@
                   }
                   else {
                      $("#id-charges-2").val(db[0].CHARGES);
+                     totalCharges();
+
 
                   }
                }
@@ -230,6 +237,8 @@
                   }
                   else {
                      $("#id-charges-3").val(db[0].CHARGES);
+                     totalCharges();
+
 
                   }
                }
@@ -290,17 +299,19 @@
             // $("#medicinelist1 ul:first li:nth-child(1)").text("")
             // var c=$("#medicinelist1 ul:first li:nth-child(1)").val($(this).text());
             // var c=$("#medicinelist1 ul:first li:nth-child(1)").css("color","green");
-            
+
             console.log(c)
             $("#medicinelist1").fadeOut();
-            charge1()
+            charge1();
+            // totalCharges();
          });
 
          //  click to get li value in field
          $(document).on("click", "#medicinelist1 li", function () {
             $("#id-medicine-1").val($(this).text());
             $("#medicinelist1").fadeOut();
-            charge1()
+            charge1();
+            // totalCharges();
          });
          // fadeOut search list
          $(document).on("blur", "#id-medicine-1", function () {
@@ -360,20 +371,23 @@
          }
          $(document).on("blur", "#id-medicine-2", function () {
             let c = $("#medicinelist2 ul:first li:nth-child(1)").text();
-            
+
             if (c != "") {
-            $("#id-medicine-2").val(c);
+               $("#id-medicine-2").val(c);
             }
 
             console.log(c)
             $("#medicinelist2").fadeOut();
-            charge2()
+            charge2();
+            // totalCharges();
          });
 
          $(document).on("click", "#medicinelist2 li", function () {
             $("#id-medicine-2").val($(this).text());
             $("#medicinelist2").fadeOut();
-            charge2()
+            charge2();
+            // totalCharges();
+
          });
          $(document).on("blur", "#id-medicine-2", function () {
             $("#medicinelist2").fadeOut();
@@ -427,18 +441,21 @@
          }
          $(document).on("blur", "#id-medicine-3", function () {
             let c = $("#medicinelist3 ul:first li:nth-child(1)").text();
-            
+
             if (c != "") {
-            $("#id-medicine-3").val(c);
+               $("#id-medicine-3").val(c);
             }
             console.log(c)
             $("#medicinelist3").fadeOut();
-            charge3()
+            charge3();
+            // totalCharges();
          });
          $(document).on("click", "#medicinelist3 li", function () {
             $("#id-medicine-3").val($(this).text());
             $("#medicinelist3").fadeOut();
             charge3();
+            // totalCharges();
+
          });
          $(document).on("blur", "#id-medicine-3", function () {
             $("#medicinelist3").fadeOut();
@@ -459,7 +476,25 @@
          })
 
          //for total medicne
-         $(".ipt-charges").on("blur", function () {
+         function totalCharges(){
+            var ch1 = $("#id-charges-1").val()
+            var ch2 = $("#id-charges-2").val()
+            var ch3 = $("#id-charges-3").val()
+            if (ch1 != "") { ch1 = parseInt(ch1); }
+            if (ch2 != "") { ch2 = parseInt(ch2); }
+            if (ch3 != "") { ch3 = parseInt(ch3); }
+            console.log(ch1)
+            console.log(ch2)
+
+            var total1 = ch1 + ch2 + ch3;
+            // console.log(total)
+            // console.log(typeof(total))
+            $("#total").text(total1)
+            // console.log($(".total").text())
+         
+      }
+
+      $(".ipt-charges").change(function () {
             var ch1 = $("#id-charges-1").val()
             var ch2 = $("#id-charges-2").val()
             var ch3 = $("#id-charges-3").val()
@@ -695,7 +730,7 @@
             location.href = 'http://localhost:3000/html/homoeopathic/patient_process.html';
 
 
-            
+
          })
 
          // }

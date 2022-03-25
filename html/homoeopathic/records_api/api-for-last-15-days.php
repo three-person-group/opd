@@ -6,7 +6,7 @@
 
    // $name=$data['sname'];
 
-   $sql='SELECT homoeopathic_bill.date,homoeopathic_bill.opdno,existing_patients.pname,homoeopathic_bill.medicine_total,homoeopathic_bill.test_total,homoeopathic_bill.total_charges
+   $sql='SELECT homoeopathic_bill.date,homoeopathic_bill.opdno,existing_patients.pname,homoeopathic_bill.reg_charge,homoeopathic_bill.medicine_total,homoeopathic_bill.test_total,homoeopathic_bill.other_total,homoeopathic_bill.total_charges
    FROM existing_patients   
    RIGHT JOIN homoeopathic_bill 
    ON existing_patients.opdno = homoeopathic_bill.opdno where date > now() - INTERVAL 15 day;';

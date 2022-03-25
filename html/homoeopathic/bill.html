@@ -5,8 +5,8 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-   <link rel="stylesheet" href="bill.lab.css">
+   <title>Bill</title>
+   <link rel="stylesheet" href="medicine.css">
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -76,29 +76,33 @@
 
          //fetch reg data
 
-         $("#id-opdid").html("");
-
          $.ajax({
-            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-fetch-one.php',
-            type: "GET",
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-consulting-paid-or-not.php',
+            type: "post",
             dataType: "json",
+            data: JSONobj1,
             success: function (data) {
                console.log(data);
                // var db = (JSON.parse(data));
                // console.log(db);
 
 
-               if (data.status == false) {
-                  $("#id-registrationCharges").val(20);
+               if (data.status == 'false') {
+                  // $("#id-table").append("<tr>" +
+                  //    "<td>" + 'REGISTRATION CHARGE' + "</td>" +
+                  //    "<td>" + '' + "</td>" +
+                  //    "<td>" + "0" + "</td>" +
+                  //    "</tr>");
                }
                else {
+                  // $("#id-table").html("");
                   console.log(data);
                   $.each(data, function (key, value) {
 
                      $("#id-table").append("<tr>" +
-                        "<td>" + value.PERTICULAR + "</td>" +
-                        "<td>" + value.SRNO + "</td>" +
-                        "<td>" + value.CHARGES + "</td>" +
+                        "<td>" + 'REGISTRATION CHARGE' + "</td>" +
+                        "<td>" + '' + "</td>" +
+                        "<td>" + value.REG_CHARGE + "</td>" +
                         "</tr>");
                   });
 
@@ -107,6 +111,7 @@
             }
 
          });
+
 
 
          //for madicine list in html table
@@ -198,6 +203,51 @@
 
          });
 
+         //for other list in html table
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-fetch-other-list.php',
+            type: "post",
+            dataType: "json",
+            data: JSONobj1,
+            success: function (data) {
+               console.log(data);
+               // var db = (JSON.parse(data));
+               // console.log(db);
+
+
+               if (data.status == false) {
+                  // $("#id-registrationCharges").val(20);
+               }
+               else {
+                  // console.log(data);
+                  $.each(data, function (key, value) {
+
+                     var jsonMedicine = JSON.parse(value.other_name)
+                     var jsonQty = JSON.parse(value.other_qty)
+                     var jsonCharges = JSON.parse(value.other_charges)
+
+
+                     var arrayOne = jsonMedicine;
+                     var arrayTwo = jsonQty;
+                     var arrayThree = jsonCharges;
+
+                     var maxSize = Math.max(arrayOne.length, arrayTwo.length, arrayThree.length);
+
+                     for (let i = 0; i < maxSize; i++) {
+                        let row = $('<tr>');
+                        row.append($('<td>').html(arrayOne[i]));
+                        row.append($('<td>').html(arrayTwo[i]));
+                        row.append($('<td>').html(arrayThree[i]));
+                        $('#id-table').append(row);
+                     }
+                  });
+
+               }
+            }
+
+         });
+
          // opdno = localStorage.getItem('opdno')  //"107"
          // opdno = parseInt(opdno)
          // date1 = localStorage.getItem('date')    //"2022-03-04"
@@ -226,13 +276,14 @@
                   var reg_charge = parseInt(db[0].reg_charge);
                   var medicine_total = parseInt(db[0].medicine_total);
                   var test_total = parseInt(db[0].test_total);
+                  var other_total = parseInt(db[0].other_total);
 
-                  console.log(reg_charge + medicine_total + test_total);
+                  console.log(reg_charge + medicine_total + test_total + other_total);
 
                   $("#id-total").text("abc");
 
 
-                  let totalOfAll = reg_charge + medicine_total + test_total;
+                  let totalOfAll = reg_charge + medicine_total + test_total + other_total;
 
                   $("#id-total").text(totalOfAll);
                   pushTotal();

@@ -10,7 +10,7 @@ include 'config.php';
 
 $medicine_name = isset($_GET['smedicine_name']) ? $_GET['smedicine_name'] : die();
 
-$sql11="SELECT PERTICULAR FROM homoeopathic WHERE PERTICULAR LIKE '%{$medicine_name}%' LIMIT 3;";
+$sql11="SELECT PERTICULAR FROM homoeopathic_dispcharge WHERE PERTICULAR LIKE '%{$medicine_name}%' LIMIT 3;";
 
 
 $result=$conn->query($sql11);

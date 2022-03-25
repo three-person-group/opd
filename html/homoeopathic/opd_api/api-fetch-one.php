@@ -5,7 +5,7 @@
    $data=json_decode(file_get_contents("php://input"),true);
 
 
-   $sql2="SELECT CHARGES FROM homoeopathic where SRNO=1";
+   $sql2="SELECT CHARGES FROM homoeopathic_regcharge where SRNO=1";
    if($conn->query($sql2))
    {
       

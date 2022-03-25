@@ -6,7 +6,7 @@
 
    $PERTICULAR=$data['smedicine_name'];
 
-   $sql2="SELECT CHARGES FROM homoeopathic where PERTICULAR='{$PERTICULAR}'";
+   $sql2="SELECT CHARGES FROM homoeopathic_dispcharge where PERTICULAR='{$PERTICULAR}'";
    if($conn->query($sql2))
    {
       

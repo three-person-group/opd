@@ -142,26 +142,6 @@
          </tr>
       </table>
 
-      <table>
-         <tr>
-            <td>
-
-               <label for="">
-                  Registration Charges:
-
-               </label>
-            </td>
-            <td>
-
-               <input type="text" id="id-registrationCharges" name="scharges" placeholder="" id="id-charges">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-
-
-
 
 
       <button type="submit" id="id-btnsub" name="submit">Submit</button>
@@ -182,33 +162,7 @@
          // document.write(today);
          $("#id-date").val(today)
 
-         
-         //fetch reg chg data
-
-         $("#id-opdid").html("");
-
-         $.ajax({
-            url: 'http://localhost:3000/html/homoeopathic/opd_api/api-fetch-one.php',
-            type: "GET",
-            success: function (data) {
-               console.log(data);
-               var db = (JSON.parse(data));
-               console.log(db);
-
-
-               if (data.status == false) {
-                  $("#id-registrationCharges").val(20);
-               }
-               else {
-                  $("#id-registrationCharges").val(db[0].CHARGES);
-
-               }
-            }
-
-
-         });
-     
-
+        
 
          var opdno = localStorage.getItem('opdno')
          opdno = parseInt(opdno);
@@ -239,7 +193,7 @@
                      $("#id-city").val(value.city);
                      $("#id-contact_no").val(value.mobileno);
                      $("#id-email").val(value.email);
-                     alert("dataInserted")
+                     // alert("dataInserted")
                   });
 
 

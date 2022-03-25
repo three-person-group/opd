@@ -7,7 +7,7 @@
    // $name=$data['sname'];
 
    $sql='SELECT *
-   FROM inventory_homoeopathic where date > now() - INTERVAL 7 day;';
+   FROM inventory_homoeopathic_dispcharge where date > now() - INTERVAL 7 day;';
 
    $result=$conn->query($sql);
 

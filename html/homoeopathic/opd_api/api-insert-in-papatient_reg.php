@@ -17,10 +17,10 @@ $email = $data['semail'];
 $date = $data['sdate'];              
 $opdno = $data['sopdno'];
 $pname = $data['spname'];
-$reg_charge = $data['scharges'];     
+     
 
-$sql3 = "insert into patient_register (date,opdno,pname,reg_charge,`in_progress(pending/done)`)
-    values('{$date}','{$opdno}','{$pname}','{$reg_charge}','pending');";
+$sql3 = "insert into patient_register (date,opdno,pname,`in_progress(pending/done)`)
+    values('{$date}','{$opdno}','{$pname}','pending');";
 
 if ($conn->query($sql3)) {
     echo json_encode(array("message" => "data inserted", "status" => true));

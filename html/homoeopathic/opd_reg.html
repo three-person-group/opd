@@ -182,7 +182,7 @@
          </tr>
       </table>
 
-      <table>
+      <!-- <table>
          <tr>
             <td>
 
@@ -197,7 +197,7 @@
                <br><br>
             </td>
          </tr>
-      </table>
+      </table> -->
 
 
 
@@ -224,32 +224,35 @@
 
 
      
-         //fetch reg chg data
+         // //fetch reg chg data
 
-         $("#id-opdid").html("");
+         // $("#id-opdid").html("");
 
-         $.ajax({
-            url: 'http://localhost:3000/html/homoeopathic/opd_api/api-fetch-one.php',
-            type: "GET",
-            success: function (data) {
-               console.log(data);
-               var db = (JSON.parse(data));
-               console.log(db);
-
-
-               if (data.status == false) {
-                  $("#id-registrationCharges").val(20);
-               }
-               else {
-                  $("#id-registrationCharges").val(db[0].CHARGES);
-
-               }
-            }
+         // $.ajax({
+         //    url: 'http://localhost:3000/html/homoeopathic/opd_api/api-fetch-one.php',
+         //    type: "GET",
+         //    success: function (data) {
+         //       console.log(data);
+         //       var db = (JSON.parse(data));
+         //       console.log(db);
 
 
-         });
+         //       if (data.status == false) {
+         //          $("#id-registrationCharges").val(20);
+         //       }
+         //       else {
+         //          $("#id-registrationCharges").val(db[0].CHARGES);
+
+         //       }
+         //    }
+
+
+         // });
+
+
+
      
-         //fetch opdno data
+   //fetch opdno data
 
          $("#id-opdid").html("");
 
@@ -359,43 +362,43 @@ console.log(data.status)
                }
             })
 
-//for inventory_homoeopathic
-            $.ajax({
-               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-medicine.php',
-               type: "post",
-               data: jsonInsertData,
-               success: function (data) {
-                  if (data.status == true) {
-                     alert(data.message)
-                     // pageload()
-                     console.log("working");
-                  }
-                  else {
-                     console.log("notworking");
-                     alert(data.message);
+// //for inventory_homoeopathic
+//             $.ajax({
+//                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-medicine.php',
+//                type: "post",
+//                data: jsonInsertData,
+//                success: function (data) {
+//                   if (data.status == true) {
+//                      alert(data.message)
+//                      // pageload()
+//                      console.log("working");
+//                   }
+//                   else {
+//                      console.log("notworking");
+//                      alert(data.message);
 
-                  }
-               }
-            })
+//                   }
+//                }
+//             })
 
-//for inventory_homoeopathic_lab
-            $.ajax({
-               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-lab.php',
-               type: "post",
-               data: jsonInsertData,
-               success: function (data) {
-                  if (data.status == true) {
-                     alert(data.message)
-                     // pageload()
-                     console.log("working");
-                  }
-                  else {
-                     console.log("notworking");
-                     alert(data.message);
+// //for inventory_homoeopathic_lab
+//             $.ajax({
+//                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-lab.php',
+//                type: "post",
+//                data: jsonInsertData,
+//                success: function (data) {
+//                   if (data.status == true) {
+//                      alert(data.message)
+//                      // pageload()
+//                      console.log("working");
+//                   }
+//                   else {
+//                      console.log("notworking");
+//                      alert(data.message);
 
-                  }
-               }
-            })
+//                   }
+//                }
+//             })
 
 
 
