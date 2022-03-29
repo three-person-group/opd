@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<title>Hello, world!</title>
+</head>
+
+<body>
+	<!-- <h1>Hello, world!</h1> -->
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Reg_ch_details</title>
+
+</head>
+
+<body>
+
+	<!-- <br> -->
+
+
+	<section class="container-fluid select-data">
+		<div class="container">
+			<h2 class="text-center">Lab charges</h2>
+			<table class="table text-center" id="">
+				<thead class="text-center">
+					<tr>
+						<th scope="col">SRNO</th>
+						<th></th>
+						<th scope="col">PERTICULAR</th>
+						<th scope="col">CHARGES</th>
+						<th scope="col">update</th>
+						<th scope="col" id="delete-id">delete</th>
+					</tr>
+				<tbody id="id-table" class="text-center"></tbody>
+				</thead>
+				</thead>
+				<tbody>
+
+
+			</table>
+		</div>
+	</section>
+
+	
+
+	<div id="error-message" class="messages"></div>
+	<div id="success-message" class="messages"></div>
+
+
+	<!-- Modal -->
+	<div class="modal-class" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true" style="display:none;">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true" class="close2">&times;</span>
+					</button>
+				</div>
+				<form id="modal-body">
+
+
+					SRNO
+					<input type="text" class="form-control" id="SRNO" name="ssrno" aria-describedby="emailHelp"
+						placeholder="Enter name">
+
+					PERTICULAR
+					<input type="phno" class="form-control" id="PERTICULAR" name="sperticular" placeholder="phno">
+
+					CHARGES
+					<input type="text" class="form-control" id="CHARGES" name="scharges" placeholder="email">
+
+
+					<input type="submit" class="btn btn-primary" id="btn-sub-modal">Submit</input>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary" id="btn-sub">Add</button>
+
+
+
+
+
+			<script>
+				$(document).ready(function () {
+					// $("#modal").hide();
+
+					//page load fetch all data
+					pageload();
+
+					function pageload() {
+
+						$("#id-table").html("");
+						$.ajax({
+							url: 'http://localhost:3000/html/homoeopathic/lab_details_api/fetch-all-api.php',
+							type: "GET",
+							dataType: "json",
+							success: function (data) {
+
+								if (data.status == false) {
+									// $("#table-id").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+								}
+								else {
+									// console.log(data);
+									$.each(data, function (key, value) {
+
+										$("#id-table").append("<tr>" +
+											"<td>" + value.SRNO + "<td>" +
+											"<td>" + value.TESTNAME + "</td>" +
+											"<td>" + value.CHARGES + "</td>" +
+											"<td><button class='update'  id='" + value.SRNO + "'>update</button></td>" +
+									"<td><button class='delete'  id='" + value.SRNO + "'>delete</button></td>" +
+											"</tr>");
+
+									});
+								}
+
+							}
+						});
+					}
+
+					function message(message, status) {
+				if (status == true) {
+					$("#success-message").html(message).slideDown();
+					$("#error-message").slideUp();
+					setTimeout(function () {
+						$("#success-message").slideUp();
+					}, 4000);
+
+				} else if (status == false) {
+					$("#error-message").html(message).slideDown();
+					$("#success-message").slideUp();
+					setTimeout(function () {
+						$("#error-message").slideUp();
+					}, 4000);
+				}
+			}
+
+			// insert data
+
+			$(document).on("click", "#btn-sub", function () {
+				$("#modal").show()
+				$("#btn-sub-modal").on("click", function (e) {
+					e.preventDefault();
+
+					var arr = $("#modal-body").serializeArray();
+
+					var objArr = {};
+
+					for (let i = 0; i < arr.length; i++) {
+						if (arr[i].value == "") {
+							alert("fil all filed");
+							return false;
+						}
+						objArr[arr[i].name] = arr[i].value;
+					}
+
+					var jsonInsertData = JSON.stringify(objArr);
+					console.log(jsonInsertData);
+
+					$.ajax({
+						url: 'http://localhost:3000/html/homoeopathic/lab_details_api/api-insert.php',
+						type: "post",
+						data: jsonInsertData,
+						success: function (data) {
+							if (data.status == true) {
+								alert(data.message)
+								$("#id-table").html("");
+								pageload()
+							}
+						}
+					})
+
+				})
+
+			});
+
+			//close modal
+			$(document).on("click", ".close", function () {
+				$("#modal").hide();
+			})
+
+			// delete button
+			$(document).on("click", ".delete", function () {
+				if (confirm("do you really want to delete")) {
+
+					var srno = $(this).attr("id");
+
+					console.log(srno)
+					// console.log(date)
+					localStorage.clear()
+
+					localStorage.setItem("srno", srno)
+					console.log(localStorage)
+
+					var obj = { ssrno: srno };
+					var jsonDelete = JSON.stringify(obj)
+
+					var row = this
+					$.ajax({
+						url: 'http://localhost:3000/html/homoeopathic/lab_details_api/api-delete.php',
+						type: 'DELETE',
+						data: jsonDelete,
+						success: function (data) {
+
+							alert("data.message");
+
+							if (data.status == true) {
+								row.closest("tr").fadeOut();
+								alert("data.message");
+							}
+							else {
+								alert("data.message");
+
+							}
+						}
+					})
+					pageload()
+				}
+			});
+
+			function jsonData(targetForm) {
+				var arr = $(targetForm).serializeArray();
+
+				var obj = {};
+				for (var a = 0; a < arr.length; a++) {
+					if (arr[a].value == "") {
+						return false;
+					}
+					obj[arr[a].name] = arr[a].value;Z
+				}
+
+				var json_string = JSON.stringify(obj);
+
+				return json_string;
+
+			}
+
+			//Fetch Single Record : Show in Modal Box
+			$(document).on("click", ".update", function () {
+				$("#modal").show();
+				// var studentId = $(this).data("eid");
+				// var obj = { sid: studentId };
+				// var myJSON = JSON.stringify(obj);
+
+				var srno = $(this).attr("id");
+
+				console.log(srno)
+				// console.log(date)
+				localStorage.clear()
+
+				localStorage.setItem("srno", srno)
+				console.log(localStorage)
+
+				var obj = { ssrno: srno };
+				var myJSON = JSON.stringify(obj)
+
+				$.ajax({
+					url: 'http://localhost:3000/html/homoeopathic/lab_details_api/api-fetch-single.php',
+					type: "POST",
+					data: myJSON,
+					success: function (data) {
+
+						$("#SRNO").val(data[0].SRNO);
+						$("#PERTICULAR").val(data[0].TESTNAME);
+						$("#CHARGES").val(data[0].CHARGES);
+					}
+				});
+			});
+
+
+
+			//Update Record
+			$(document).on("click", ".update", function (e) {
+				e.preventDefault();
+
+				// var jsonObj = jsonData("#modal-body");
+
+				$("#btn-sub-modal").on("click", function (e) {
+					e.preventDefault();
+
+					var arr = $("#modal-body").serializeArray();
+
+					var objArr = {};
+
+					for (let i = 0; i < arr.length; i++) {
+						if (arr[i].value == "") {
+							alert("fil all filed");
+							return false;
+						}
+						objArr[arr[i].name] = arr[i].value;
+					}
+
+					var jsonInsertData = JSON.stringify(objArr);
+					console.log(jsonInsertData);
+
+					
+						$.ajax({
+							url: 'http://localhost:3000/html/homoeopathic/lab_details_api/api-update.php',
+							type: "POST",
+							data: jsonInsertData,
+							success: function (data) {
+								message(data.message, data.status);
+
+								if (data.status != false) {
+									$("#modal").hide();
+									// $("#id-table").html("");
+									pageload();
+								}
+
+
+							}
+						});
+					
+
+
+				});
+
+
+
+			});
+
+
+				});
+			</script>
+</body>

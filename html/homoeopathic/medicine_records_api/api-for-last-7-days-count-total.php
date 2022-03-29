@@ -11,7 +11,8 @@ sum(`2 WEEK DISPENSARY CHARGES`) AS b,
 sum(`BIO CHEMIC 1 WEEK`) AS c,
 sum(`BIO CHEMIC 2 WEEK`) AS d,
 sum(`MOTHER TINCHER 1 WEEK`) AS e,
-sum(`MOTHER TINCHER 2 WEEK`) AS f
+sum(`MOTHER TINCHER 2 WEEK`) AS f,
+sum(`total`) AS total
    FROM inventory_homoeopathic_dispcharge where date > now() - INTERVAL 7 day;';
    
   

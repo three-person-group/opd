@@ -5,22 +5,27 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
    <title>Bill</title>
-   <link rel="stylesheet" href="medicine.css">
+   <link rel="stylesheet" href="bill.lab.css">
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-   <style>
+   <!-- <style>
       table,
       td,
       tr {
          border: 4px solid black;
       }
-   </style>
+   </style> -->
 </head>
 
 <body>
-
+   <div class="container">
+      <div class="form"> 
+   <div class="text-area" style="text-align: left;">
    date:
    <span for="" id="date"></span>
    Opdno:
@@ -28,28 +33,35 @@
    Name:
    <span for="" id="name">name</span>
 
-
-   <table id="id-table">
+</div>
+<table class="table  table-hover  text-nowrap table table-bordered border-success">
+   <thead class="table-info">
       <tr>
-         <td>
+         <th>
             PERTICULAR
-         </td>
-         <td>
+         </th>
+         <th>
             Qty
-         </td>
-         <td>
+         </th>
+         <th>
             price
-         </td>
+         </th>
       </tr>
-
+      <thead>
+         <tbody id="id-table">
+</tbody>   
 
    </table>
 
+   No:  <span id="id-totalNoOfAll"></span>
+   Qty:  <span id="id-totalQtyOfAll"></span>
+   total: <span id="id-total"></span>
+</div>
+
+</div>
 
 
 
-
-   total <span id="id-total"></span>
 
 
    <script>
@@ -101,7 +113,7 @@
 
                      $("#id-table").append("<tr>" +
                         "<td>" + 'REGISTRATION CHARGE' + "</td>" +
-                        "<td>" + '' + "</td>" +
+                        "<td>" + '1' + "</td>" +
                         "<td>" + value.REG_CHARGE + "</td>" +
                         "</tr>");
                   });
@@ -248,14 +260,6 @@
 
          });
 
-         // opdno = localStorage.getItem('opdno')  //"107"
-         // opdno = parseInt(opdno)
-         // date1 = localStorage.getItem('date')    //"2022-03-04"
-         // name1 = localStorage.getItem('name')
-
-         // obj = { sopdno: opdno, sdate: date1 };
-         // console.log(obj);
-         // var obj2Json2 = JSON.stringify(obj);
 
 
          //for total get from sum of medicine total and lab
@@ -278,6 +282,31 @@
                   var test_total = parseInt(db[0].test_total);
                   var other_total = parseInt(db[0].other_total);
 
+                  if (reg_charge != "") {
+                     var no_of_reg_charge = 1;
+                     var qty_of_reg_charge = 1;
+                  }
+                  else
+                  {
+                     var no_of_reg_charge = 0;
+                     var qty_of_reg_charge = 0;
+
+                  }
+
+                  var no_of_medicine = parseInt(db[0].no_of_medicine);
+                  var no_of_test = parseInt(db[0].no_of_test);
+                  var no_of_other = parseInt(db[0].no_of_other);
+
+                  let totalNoOfAll = no_of_reg_charge + no_of_medicine + no_of_test + no_of_other;
+
+
+                  var qty_of_medicine = parseInt(db[0].qty_of_medicine);
+                  var qty_of_test = parseInt(db[0].qty_of_test);
+                  var qty_of_other = parseInt(db[0].qty_of_other);
+
+
+                  let totalQtyOfAll = qty_of_reg_charge + qty_of_medicine + qty_of_test + qty_of_other
+
                   console.log(reg_charge + medicine_total + test_total + other_total);
 
                   $("#id-total").text("abc");
@@ -285,6 +314,8 @@
 
                   let totalOfAll = reg_charge + medicine_total + test_total + other_total;
 
+                  $("#id-totalNoOfAll").text(totalNoOfAll);
+                  $("#id-totalQtyOfAll").text(totalQtyOfAll);
                   $("#id-total").text(totalOfAll);
                   pushTotal();
                }
@@ -296,9 +327,11 @@
 
          function pushTotal() {
 
+            var totalNoAll = $("#id-totalNoOfAll").text();
+            var totalQtyAll = $("#id-totalQtyOfAll").text();
             var totalOfAllCharges = $("#id-total").text();
 
-            var total = { stotal: totalOfAllCharges };
+            var total = { stotal: totalOfAllCharges, sNoTotal: totalNoAll, sQtyTotal: totalQtyAll };
             console.log(obj1);
 
             var finalResultObj = Object.assign(total, obj1);
@@ -312,13 +345,13 @@
                data: finalResultmedicineJson,
                success: function (data) {
                   console.log(data)
-                  lert("data.message");
+                  // alert("data.message");
 
                   if (data.status == true) {
-                     alert("data.message");
+                     // alert(data.message);
                   }
                   else {
-                     alert("data.message");
+                     alert(data.message);
 
                   }
 

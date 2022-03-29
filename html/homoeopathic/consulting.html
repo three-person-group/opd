@@ -13,6 +13,15 @@
 
 <body>
 
+
+   Date:
+   <span for="" id="date"></span>
+   Opdno:
+   <span for="" id="opdno"></span>
+   Name:
+   <span for="" id="name">name</span>
+   <br><br>
+
    Consulting Charges:
    <input type="text" id="id-Consulting" name="scharges" placeholder="">
 
@@ -23,6 +32,16 @@
 
 <script>
    //fetch reg chg data
+   //for opdno and date
+   var opdno = localStorage.getItem('opdno')  //"107"
+   opdno = parseInt(opdno)
+   var date1 = localStorage.getItem('date')    //"2022-03-04"
+   var name1 = localStorage.getItem('name')    //"2022-03-04"
+
+
+   $("#date").text(date1);
+   $("#opdno").text(opdno);
+   $("#name").text(name1);
 
    $("#id-opdid").html("");
 

@@ -3,7 +3,7 @@
 <html>
 
 <head>
-   <h2>medicine</h2>
+   <h2>Medicine</h2>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <link rel="stylesheet" href="medicine.css">
 
@@ -54,10 +54,9 @@
          background: #d0e4f4;
       }
 
-
-
-   
-      
+      .c {
+         overflow-y: auto;
+      }
    </style>
 
 </head>
@@ -65,68 +64,89 @@
 <body>
 
    <form class="form" method="post" action="">
-
-
-      <div>
-         <medicineel>
-            <!-- Medicine Name: -->
-         </medicineel>
-         <div id="autocomplete">
-            <input type="text" id="id-medicine-1" class="medicinename" name="smedicinename1" placeholder="medicine Name"
-               autocomplete="false">
-            <div id="medicinelist1" class="list" style="z-index: 1;"></div>
-         </div>
-
-         <input type="number" placeholder="Qty" id="id-qty-1" class="qty" name="sqty1">
-
-         <input id="id-charges-1" class="ipt-charges" placeholder="Price" name="scharges1"></input>
-         <br>
-         <br>
-      </div>
-
-      <!-- <br><br><br><br>
-      <br><br><br><br> -->
-      <div>
-         <medicineel>
-            <!-- Medicine Name: -->
-         </medicineel>
-         <div id="autocomplete">
-            <input type="text" id="id-medicine-2" class="medicinename" name="smedicinename2" placeholder="medicine Name"
-               autocomplete="false" style=" z-index: 2;">
-            <div id="medicinelist2" class="list" style="z-index: 1"></div>
-         </div>
-
-
-         <input type="number" placeholder="Qty" id="id-qty-2" class="qty" name="sqty2">
-
-         <input id="id-charges-2" class="ipt-charges" placeholder="Price" name="scharges2"></input>
-         <br>
-         <br>
-
-      </div>
-      <!-- <br><br><br><br><br><br> -->
-      <div>
-         <medicineel>
-            <!-- Medicine Name: -->
-         </medicineel>
-         <div id="autocomplete">
-            <input type="text" id="id-medicine-3" class="medicinename" name="smedicinename3" placeholder="medicine Name"
-               autocomplete="false">
-            <div id="medicinelist3" class="list" style="z-index: 1"></div>
-         </div>
-
-
-         <input type="number" placeholder="Qty" id="id-qty-3" class="qty" name="sqty3">
-
-         <input id="id-charges-3" class="ipt-charges" placeholder="Price" name="scharges3"></input>
-         <br>
-         <br>
-
-      </div>
-      <span id="" style="padding-left: 430px;">Total=</span>
-      <span id="total">0</span>
+      
+      Date:
+      <span for="" id="date"></span>
+      Opdno:
+      <span for="" id="opdno"></span>
+      Name:
+      <span for="" id="name">name</span>
       <br><br>
 
+      <div class="c">
+         <div>
+            <medicineel>
+               <!-- Medicine Name: -->
+            </medicineel>
+            <div id="autocomplete">
+               <input type="text" id="id-medicine-1" class="medicinename" name="smedicinename1"
+                  placeholder="medicine Name" autocomplete="false">
+               <div id="medicinelist1" class="list" style="z-index: 1;"></div>
+            </div>
+
+            <input type="number" placeholder="Qty" id="id-qty-1" class="qty" name="sqty1">
+
+            <input id="id-charges-1" class="ipt-charges" placeholder="Price" name="scharges1"></input>
+            <br>
+            <br>
+         </div>
+
+         <!-- <br><br><br><br>
+         <br><br><br><br> -->
+         <div>
+            <medicineel>
+               <!-- Medicine Name: -->
+            </medicineel>
+            <div id="autocomplete">
+               <input type="text" id="id-medicine-2" class="medicinename" name="smedicinename2"
+                  placeholder="medicine Name" autocomplete="false" style=" z-index: 2;">
+               <div id="medicinelist2" class="list" style="z-index: 1"></div>
+            </div>
+
+
+            <input type="number" placeholder="Qty" id="id-qty-2" class="qty" name="sqty2">
+
+            <input id="id-charges-2" class="ipt-charges" placeholder="Price" name="scharges2"></input>
+            <br>
+            <br>
+
+         </div>
+         <!-- <br><br><br><br><br><br> -->
+         <div>
+            <medicineel>
+               <!-- Medicine Name: -->
+            </medicineel>
+            <div id="autocomplete">
+               <input type="text" id="id-medicine-3" class="medicinename" name="smedicinename3"
+                  placeholder="medicine Name" autocomplete="false">
+               <div id="medicinelist3" class="list" style="z-index: 1"></div>
+            </div>
+
+
+            <input type="number" placeholder="Qty" id="id-qty-3" class="qty" name="sqty3">
+
+            <input id="id-charges-3" class="ipt-charges" placeholder="Price" name="scharges3"></input>
+            <br>
+            <br>
+
+         </div>
+
+      </div>
+
+      <div>
+         <span id="">no:
+         </span>
+         <input id="totalno" value="0"></input>
+         <!-- <br> -->
+         <span id="" style="padding-left: 50px;">qty:
+         </span>
+         <input id="totalqty" value="0"></input>
+         <!-- <br> -->
+         <span id="">Total:
+         </span>
+         <input id="total" value="0"></input>
+         <br><br>
+      </div>
       <button type="submit" id="id-btnsub" name="Submit">Submit</button>
 
    </form>
@@ -135,6 +155,17 @@
 
       $(document).ready(function () {
 
+
+         //for opdno and date
+         var opdno = localStorage.getItem('opdno')  //"107"
+         opdno = parseInt(opdno)
+         var date1 = localStorage.getItem('date')    //"2022-03-04"
+         var name1 = localStorage.getItem('name')    //"2022-03-04"
+
+
+         $("#date").text(date1);
+         $("#opdno").text(opdno);
+         $("#name").text(name1);
 
          // for id1 medicine name auto seach click and blur event
          $("#id-medicine-1").on("keyup", medicinename1)
@@ -177,6 +208,8 @@
                   }
                   else {
                      $("#id-charges-1").val(db[0].CHARGES);
+                     no();
+                     qty();
                      totalCharges();
 
                   }
@@ -207,6 +240,8 @@
                   }
                   else {
                      $("#id-charges-2").val(db[0].CHARGES);
+                     no();
+                     qty();
                      totalCharges();
 
 
@@ -237,6 +272,8 @@
                   }
                   else {
                      $("#id-charges-3").val(db[0].CHARGES);
+                     no();
+                     qty();
                      totalCharges();
 
 
@@ -321,7 +358,7 @@
          $("#id-medicine-1").change(function () {
             $("#id-qty-1").val(1)
          });
-         //idea onfocus chages  qty*chages
+         // onfocus chages  qty*chages
          $("#id-charges-1").on("focus", function () {
             var qty = $("#id-qty-1").val()
             console.log(qty)
@@ -332,6 +369,7 @@
                $("#id-charges-1").val(t)
             }
          })
+
 
 
 
@@ -403,7 +441,10 @@
                $("#id-charges-2").val(t)
             }
          })
-
+         $("#id-charges-2").on("blur", function () {
+            // no();
+            qty();
+         });
 
          function medicinename3() {
             $("#medicinelist3").html("");               //empty search list
@@ -474,9 +515,13 @@
                $("#id-charges-3").val(t)
             }
          })
+         $("#id-charges-3").on("blur", function () {
+            // no();
+            qty();
+         });
 
          //for total medicne
-         function totalCharges(){
+         function totalCharges() {
             var ch1 = $("#id-charges-1").val()
             var ch2 = $("#id-charges-2").val()
             var ch3 = $("#id-charges-3").val()
@@ -489,12 +534,13 @@
             var total1 = ch1 + ch2 + ch3;
             // console.log(total)
             // console.log(typeof(total))
-            $("#total").text(total1)
+            $("#total").val(total1)
             // console.log($(".total").text())
-         
-      }
 
-      $(".ipt-charges").change(function () {
+         }
+
+         //change from change to blur event
+         $(".ipt-charges").on("blur", function () {
             var ch1 = $("#id-charges-1").val()
             var ch2 = $("#id-charges-2").val()
             var ch3 = $("#id-charges-3").val()
@@ -507,9 +553,67 @@
             var total1 = ch1 + ch2 + ch3;
             // console.log(total)
             // console.log(typeof(total))
-            $("#total").text(total1)
+            $("#total").val(total1)
             // console.log($(".total").text())
          });
+
+         $(".medicinename").on("blur", function () {
+            no();
+         })
+
+         function no() {
+            var totalno = 0;
+            $('.medicinename').each(function (index, value) {
+               console.log(`${this.value}`);
+               var medi = this.value;
+               if (medi != "") {
+                  totalno = totalno + 1
+               }
+
+            });
+            console.log(totalno)
+            $("#totalno").val(totalno)
+
+         }
+
+         $(".qty").on("blur", function () {
+            qty();
+         })
+
+         function qty() {
+            var totalqty = 0;
+            $('.qty').each(function (index, value) {
+               console.log(`${this.value}`);
+               var qtyno = this.value;
+               if (qtyno != "") {
+                  totalqty = totalqty + parseInt(qtyno)
+               }
+
+            });
+            console.log(totalqty)
+            $("#totalqty").val(totalqty)
+
+         }
+
+
+         // $(".ipt-charges").on("blur", function () {
+
+         //    function no() {
+         //       var totalno = 0;
+         //       $('.medicinename').each(function (index, value) {
+         //          console.log(`${this.value}`);
+         //          var medi = this.value;
+         //          if (medi != "") {
+         //             totalno = totalno + 1
+         //          }
+
+         //       });
+         //       console.log(totalno)
+         //       $("#totalno").val(totalno)
+
+         //    }
+         // });
+
 
 
          // $("#id-btnsub").on("click", btnclick())
@@ -701,14 +805,35 @@
             })
 
 
-            var totalinsert = $("#total").text();
-            var objtotal = { stotal: totalinsert };
+            var totalnoinsert = $("#totalno").val();
+            var totalqtyinsert = $("#totalqty").val();
+            var totalinsert = $("#total").val();
+            var objtotal = { stotal: totalinsert, stotalqty: totalqtyinsert, stotalno: totalnoinsert };
             console.log(obj1);
             var finaltotal = Object.assign(objtotal, obj1);
             finaltotal = JSON.stringify(finaltotal)
 
+            // inserting noOfMedicine qtyOfMedicine totalOfMedicine
             $.ajax({
                url: 'http://localhost:3000/html/homoeopathic/medicine_api/api-insert-total-medicine-price.php',
+               type: "POST",
+               data: finaltotal,
+               success: function (data) {
+                  console.log(data)
+                  if (data.status == true) {
+                     alert(data.message)
+                  }
+                  else {
+                     console.log("notworking");
+                     alert(data.message);
+
+                  }
+               }
+            })
+
+            ////inserting total into inv to total med/// also in other
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/medicine_api/api-insert-total-medicine-price-in-inventory.php',
                type: "POST",
                data: finaltotal,
                success: function (data) {

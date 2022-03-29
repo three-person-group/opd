@@ -12,7 +12,8 @@ sum(`MAJOR DRESSING(DEPENDS ON DRESSING)`) AS h,
 sum(`STICHES(1ST STITCH)`) AS i,
 sum(`OTHER STITCH`) AS j,
 sum(`INJECTION`) AS k,
-sum(`ECG`) AS l
+sum(`ECG`) AS l,
+sum(`total`) AS total
    FROM inventory_homoeopathic_othercharge where date > now() - INTERVAL 7 day;';
    
   

@@ -6,8 +6,8 @@
 
    // $name=$data['sname'];
 
-   $sql="SELECT COUNT(homoeopathic_bill.opdno) AS no,sum(homoeopathic_bill.medicine_total) AS total_medicine,sum(homoeopathic_bill.test_total) AS total_lab,sum(homoeopathic_bill.total_charges) AS total 
-   FROM existing_patients   
+   $sql="SELECT COUNT(homoeopathic_bill.opdno) AS no,sum(homoeopathic_bill.reg_charge) AS total_reg_ch,sum(homoeopathic_bill.medicine_total) AS total_medicine,sum(homoeopathic_bill.test_total) AS total_lab,sum(homoeopathic_bill.other_total) AS total_other,sum(homoeopathic_bill.total_charges) AS total
+   FROM existing_patients
    RIGHT JOIN homoeopathic_bill 
    ON existing_patients.opdno = homoeopathic_bill.opdno;";
 

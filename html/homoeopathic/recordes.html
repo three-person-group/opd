@@ -28,12 +28,12 @@
 </head>
 
 <script>
-   function tableToExcel(){
-   $("#id-fullTable").table2excel({
-      filename:"excel.xls",
-      name:"worksheet"
-   })
-}
+   function tableToExcel() {
+      $("#id-fullTable").table2excel({
+         filename: "excel.xls",
+         name: "worksheet"
+      })
+   }
 
    $(document).ready(function () {
       pageload();
@@ -97,7 +97,48 @@
 
    }
 
+
+   // //page load fetch all count sum of data for last all Days Pageload
+   // function pageloadCountSum() {
+
+   //    // $("#id-table").html("");
+   //    $.ajax({
+   //       url: 'http://localhost:3000/html/homoeopathic/medicine_records_api/api-fetch-all-count-total.php',
+   //       type: "GET",
+   //       dataType: "json",
+   //       success: function (data) {
+
+   //          if (data.status == false) {
+   //             $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+   //          }
+   //          else {
+   //             // console.log(data);
+   //             $.each(data, function (key, value) {
+
+   //                $("#id-table").append("<tr>" +
+   //                   "<td>" + "Total" + "<td>" +
+   //                   "<td class='date'>" + value.no + "<td>" +
+   //                   "<td>" + value.value.total_medicine + "</td>" +
+   //                   "<td>" + value.total_lab + "</td>" +
+   //                   "<td>" + value.total + "</td>" +
+   //                   "<td>" + value.d + "</td>" +
+   //                   "<td>" + value.e + "</td>" +
+   //                   "<td>" + value.f + "</td>" +
+
+   //                   "</tr>");
+
+   //             });
+
+   //          }
+
+   //       }
+   //    });
+   // }
+
+
    //page load fetch all count sum of data for last all Days Pageload
+
+
    function pageloadCountSum() {
 
       $("#id-table").html("");
@@ -114,11 +155,19 @@
                // console.log(data);
                $.each(data, function (key, value) {
 
-                  $("#id-noOfpatient").text(value.no);
-                  $("#id-noOfmedicne").text(value.total_medicine);
-                  $("#id-noOflab").text(value.total_lab);
-                  $("#id-noOftotal").text(value.total);
-
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + value.total_reg_ch + "</td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + value.total_medicine + "</td>" +
+                     "<td>" + value.total_lab + "</td>" +
+                     "<td>" + value.total_other + "</td>" +
+                     "<td>" + value.total + "</td>" +
+                     "</tr>"
+                  );
                });
             }
 
@@ -180,11 +229,19 @@
                // console.log(data);
                $.each(data, function (key, value) {
 
-                  $("#id-noOfpatient").text(value.no);
-                  $("#id-noOfmedicne").text(value.total_medicine);
-                  $("#id-noOflab").text(value.total_lab);
-                  $("#id-noOftotal").text(value.total);
-
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + value.total_reg_ch + "</td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + value.total_medicine + "</td>" +
+                     "<td>" + value.total_lab + "</td>" +
+                     "<td>" + value.total_other + "</td>" +
+                     "<td>" + value.total + "</td>" +
+                     "</tr>"
+                  );
                });
             }
 
@@ -246,11 +303,19 @@
                // console.log(data);
                $.each(data, function (key, value) {
 
-                  $("#id-noOfpatient").text(value.no);
-                  $("#id-noOfmedicne").text(value.total_medicine);
-                  $("#id-noOflab").text(value.total_lab);
-                  $("#id-noOftotal").text(value.total);
-
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + value.total_reg_ch + "</td>" +
+                     "<td>" + "" + "</td>" +
+                     "<td>" + value.total_medicine + "</td>" +
+                     "<td>" + value.total_lab + "</td>" +
+                     "<td>" + value.total_other + "</td>" +
+                     "<td>" + value.total + "</td>" +
+                     "</tr>"
+                  );
                });
             }
 
@@ -312,11 +377,22 @@
             else {
                // console.log(data);
                $.each(data, function (key, value) {
+                  $.each(data, function (key, value) {
 
-                  $("#id-noOfpatient").text(value.no);
-                  $("#id-noOfmedicne").text(value.total_medicine);
-                  $("#id-noOflab").text(value.total_lab);
-                  $("#id-noOftotal").text(value.total);
+                     $("#id-table").append("<tr>" +
+                        "<td>" + "Total" + "<td>" +
+                        "<td class='date'>" + value.no + "<td>" +
+                        "<td>" + "" + "</td>" +
+                        "<td>" + "" + "</td>" +
+                        "<td>" + value.total_reg_ch + "</td>" +
+                        "<td>" + "" + "</td>" +
+                        "<td>" + value.total_medicine + "</td>" +
+                        "<td>" + value.total_lab + "</td>" +
+                        "<td>" + value.total_other + "</td>" +
+                        "<td>" + value.total + "</td>" +
+                        "</tr>"
+                     );
+                  });
 
                });
             }
@@ -365,14 +441,14 @@
                </tr>
             </thead>
             <tbody id="id-table" class="text-center">
-               
+
             </tbody>
          </table>
 
       </div>
    </section>
 
-   No of patient:
+   <!-- No of patient:
    <span id="id-noOfpatient" value="Count Rows"> </span>
 
    Sum of medicine:
@@ -382,10 +458,12 @@
    <span id="id-noOflab" value="Count Rows"> </span>
 
    Sum of Total:
-   <span id="id-noOftotal" value="Count Rows"> </span>
+   <span id="id-noOftotal" value="Count Rows"> </span> -->
 
+<center>
 
    <button onclick="tableToExcel()">Convert To Excel</button>
+</center>
 
 </body>
 
