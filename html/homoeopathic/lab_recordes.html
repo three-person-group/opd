@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>lab Recordes</title>
+
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+   <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
+   <style>
+      form {
+         margin-left: 1500px;
+      }
+   </style>
+
+</head>
+
+<script>
+  function tableToExcel(){
+   $("#id-fullTable").table2excel({
+      filename:"excel.xls",
+      name:"worksheet"
+   })
+}
+
+   $(document).ready(function () {
+      pageload();
+      pageloadCountSum();
+
+   });
+   function preferedBrowser() {
+      prefer = document.forms[0].browsers.value;
+      // alert("You prefer browsing internet with " + prefer);
+      if (prefer == "last7days") {
+         last7DaysPageload();
+         last7DayCountSum();
+      }
+      else if (prefer == "all") {
+         pageload();
+         pageloadCountSum();
+      }
+      else if (prefer == "last15days") {
+         last15Dayspageload();
+         last15DayCountSum();
+      }
+      else if (prefer == "last28days") {
+         last28Dayspageload();
+         last28DayCountSum();
+      }
+   }
+   //page load fetch all data
+   function pageload() {
+      $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-fetch-all.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+
+               $.each(data, function (key, value) {
+                  $("#id-table").append("<tr>" +
+                     "<td>" + value.date + "<td>" +
+                     "<td class='date'>" + value.opdno + "<td>" +
+                     "<td>" + value["CBC"] + "</td>" +
+                     "<td>" + value["E.S.R"] + "</td>" +
+                     "<td>" + value["MALARIAL PARASITES - MP"] + "</td>" +
+                     "<td>" + value["BLEEDING AND CLOTTING TIME"] + "</td>" +
+                     "<td>" + value["BLOOD GROUP"] + "</td>" +
+                     "<td>" + value["UREA"] + "</td>" +
+                     "<td>" + value["S.CREATININE"] + "</td>" +
+                     "<td>" + value["S.BILIRUBIN"] + "</td>" +
+                     "<td>" + value["TOTAL PROTEIN"] + "</td>" +
+                     "<td>" + value["ALBUMIN"] + "</td>" +
+                     "<td>" + value["S.CALCIUM"] + "</td>" +
+                     "<td>" + value["S.CHOLESTEROL"] + "</td>" +
+                     "<td>" + value["TRIGLYCERIDES"] + "</td>" +
+                     "<td>" + value["HDL CHOLESTEROL"] + "</td>" +
+                     "<td>" + value["S.G.P.T"] + "</td>" +
+                     "<td>" + value["S.G.O.T"] + "</td>" +
+                     "<td>" + value["URIC ACID"] + "</td>" +
+                     "<td>" + value["BLOOD SUGAR RANDOM - RBS"] + "</td>" +
+                     "<td>" + value["FASTING SUGAR - FBS"] + "</td>" +
+                     "<td>" + value["PP2BS"] + "</td>" +
+                     "<td>" + value["LIPID PROFILE"] + "</td>" +
+                     "<td>" + value["C REACTIVE PROTEIN"] + "</td>" +
+                     "<td>" + value["RA"] + "</td>" +
+                     "<td>" + value["WIDAL"] + "</td>" +
+                     "<td>" + value["V.D.R.L"] + "</td>" +
+                     "<td>" + value["DENGUE IGG IGM"] + "</td>" +
+                     "<td>" + value["CHIKUNGUNYA IGM"] + "</td>" +
+                     "<td>" + value["URINE ROUTINE"] + "</td>" +
+                     "<td>" + value["PREGNANCY TEST"] + "</td>" +
+                     "<td>" + value["25 VITAMIN D"] + "</td>" +
+                     "<td>" + value["VITAMIN B12"] + "</td>" +
+                     "<td>" + value["HBA1C"] + "</td>" +
+                     "<td>" + value["T3 T4 TSH"] + "</td>" +
+                     "<td>" + value["TSH"] + "</td>" +
+                     "<td>" + value["FT3"] + "</td>" +
+                     "<td>" + value["FT4"] + "</td>" +
+                     "<td>" + value["HB ELECTROPHORESIS"] + "</td>" +
+                     "<td>" + value["ANA"] + "</td>" +
+                     "<td>" + value["HCG"] + "</td>" +
+                     "<td>" + value["FSH LH PROLACTINE"] + "</td>" +
+                     "<td>" + value["LIPID PROFILE 2"] + "</td>" +
+                     "<td>" + value["LUTEINIZING HORMONE SERUM"] + "</td>" +
+                     "<td>" + value["TORCH IGG IGM ABS - PARAMETER 8"] + "</td>" +
+                     "<td>" + value["FERRITIN"] + "</td>" +
+                     "<td>" + value["HOMOCYSTEINE"] + "</td>" +
+                     "<td>" + value["ANTI CCP"] + "</td>" +
+                     "<td>" + value["CA 125"] + "</td>" +
+                     "<td>" + value["ALIPOPROTEINS"] + "</td>" +
+                     "<td>" + value["CRP"] + "</td>" +
+                     "<td>" + value["PT"] + "</td>" +
+                     "<td>" + value["ELECTROLYTES"] + "</td>" +
+                     "<td>" + value["G6PD"] + "</td>" +
+                     "<td>" + value["CKP TOTAL SERUM"] + "</td>" +
+                     "<td>" + value["LDH"] + "</td>" +
+                     "<td>" + value["CKMB"] + "</td>" +
+                     "<td>" + value["LIPASE SERUM"] + "</td>" +
+                     "<td>" + value["IRON"] + "</td>" +
+                     "<td>" + value["TIBC"] + "</td>" +
+                     "<td>" + value["C3"] + "</td>" +
+                     "<td>" + value["CA 125 2"] + "</td>" +
+                     "<td>" + value["PSA TOTAL PROSTATE SPECIFIC ANTIGEN"] + "</td>" +
+                     "<td>" + value["AMYLASE ENZYMATIC SERUM"] + "</td>" +
+                     "<td>" + value["PHOSPHORUS INORGANIC SERUM"] + "</td>" +
+                     "<td>" + value["CALCIUM TOTAL SERUM"] + "</td>" +
+                     "<td>" + value["ALKALINE PHOSPHATATE ENZYMATIC"] + "</td>" +
+                     "<td>" + value["DENGUE IGG ANTIBODY"] + "</td>" +
+                     "<td>" + value["DENGUE IGM ANTIBODY"] + "</td>" +
+                     "<td>" + value["DENGUE NS1 ANTIGEN"] + "</td>" +
+                     "<td>" + value["TYPHI DOT IGG AND IGM"] + "</td>" +
+                     "<td>" + value["AMMONIA BIOCHEMICAL PLASMA"] + "</td>" +
+                     "<td>" + value["RA RHEUMATOID ARTHRITIS SERUM"] + "</td>" +
+                     "<td>" + value["THYROID ANTIBODIES TPO AND ATG"] + "</td>" +
+                     "<td>" + value["ABSOLUTE EOSINOPHILE COUNT"] + "</td>" +
+                     "<td>" + value["SEMEN ANALYSIS"] + "</td>" +
+                     "<td>" + value["ROUTINE EXAMINATION STOOL"] + "</td>" +
+                     "<td>" + value["HIV"] + "</td>" +
+                     "<td>" + value["HBSAG"] + "</td>" +
+                     "<td>" + value["D DIMER"] + "</td>" +
+                     "<td>" + value["HCV"] + "</td>" +
+                     "</tr>");
+
+
+               });
+
+
+            }
+
+         }
+      });
+
+   }
+
+   //page load fetch all count sum of data for last all Days Pageload
+   function pageloadCountSum() {
+
+      // $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-fetch-all-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+
+                     "<td>" + value.a + "</td>" +
+                     "<td>" + value.b + "</td>" +
+                     "<td>" + value.c + "</td>" +
+                     "<td>" + value.d + "</td>" +
+                     "<td>" + value.e + "</td>" +
+                     "<td>" + value.f + "</td>" +
+                     "<td>" + value.g + "</td>" +
+                     "<td>" + value.h + "</td>" +
+                     "<td>" + value.i + "</td>" +
+                     "<td>" + value.j + "</td>" +
+                     "<td>" + value.k + "</td>" +
+                     "<td>" + value.l + "</td>" +
+                     "<td>" + value.m + "</td>" +
+                     "<td>" + value.n + "</td>" +
+                     "<td>" + value.o + "</td>" +
+                     "<td>" + value.p + "</td>" +
+                     "<td>" + value.q + "</td>" +
+                     "<td>" + value.r + "</td>" +
+                     "<td>" + value.s + "</td>" +
+                     "<td>" + value.t + "</td>" +
+                     "<td>" + value.u + "</td>" +
+                     "<td>" + value.v + "</td>" +
+                     "<td>" + value.w + "</td>" +
+                     "<td>" + value.x + "</td>" +
+                     "<td>" + value.y + "</td>" +
+                     "<td>" + value.z + "</td>" +
+                     "<td>" + value.aa + "</td>" +
+                     "<td>" + value.ab + "</td>" +
+                     "<td>" + value.ac + "</td>" +
+                     "<td>" + value.ad + "</td>" +
+                     "<td>" + value.ae + "</td>" +
+                     "<td>" + value.af + "</td>" +
+                     "<td>" + value.ag + "</td>" +
+                     "<td>" + value.ah + "</td>" +
+                     "<td>" + value.ai + "</td>" +
+                     "<td>" + value.aj + "</td>" +
+                     "<td>" + value.ak + "</td>" +
+                     "<td>" + value.al + "</td>" +
+                     "<td>" + value.am + "</td>" +
+                     "<td>" + value.an + "</td>" +
+                     "<td>" + value.ao + "</td>" +
+                     "<td>" + value.ap + "</td>" +
+                     "<td>" + value.aq + "</td>" +
+                     "<td>" + value.ar + "</td>" +
+                     "<td>" + value.as1 + "</td>" +
+                     "<td>" + value.at1 + "</td>" +
+                     "<td>" + value.au + "</td>" +
+                     "<td>" + value.av + "</td>" +
+                     "<td>" + value.aw + "</td>" +
+                     "<td>" + value.ax + "</td>" +
+                     "<td>" + value.ay + "</td>" +
+                     "<td>" + value.az + "</td>" +
+                     "<td>" + value.ba + "</td>" +
+                     "<td>" + value.bb + "</td>" +
+                     "<td>" + value.bc + "</td>" +
+                     "<td>" + value.bd + "</td>" +
+                     "<td>" + value.be + "</td>" +
+                     "<td>" + value.bf + "</td>" +
+                     "<td>" + value.bg + "</td>" +
+                     "<td>" + value.bh + "</td>" +
+                     "<td>" + value.bi + "</td>" +
+                     "<td>" + value.bj + "</td>" +
+                     "<td>" + value.bk + "</td>" +
+                     "<td>" + value.bl + "</td>" +
+                     "<td>" + value.bm + "</td>" +
+                     "<td>" + value.bn + "</td>" +
+                     "<td>" + value.bo + "</td>" +
+                     "<td>" + value.bp + "</td>" +
+                     "<td>" + value.bq + "</td>" +
+                     "<td>" + value.br + "</td>" +
+                     "<td>" + value.bs + "</td>" +
+                     "<td>" + value.bt + "</td>" +
+                     "<td>" + value.bu + "</td>" +
+                     "<td>" + value.bv + "</td>" +
+                     "<td>" + value.bw + "</td>" +
+                     "<td>" + value.bx + "</td>" +
+                     "</tr>");
+
+               });
+
+
+            }
+
+         }
+      });
+   }
+
+
+
+   //page load fetch all data for last 7 Days Pageload
+   function last7DaysPageload() {
+
+      $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-for-last-7-days.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+
+                  $.each(data, function (key, value) {
+                     $("#id-table").append("<tr>" +
+                        "<td>" + value.date + "<td>" +
+                        "<td class='date'>" + value.opdno + "<td>" +
+                        "<td>" + value["CBC"] + "</td>" +
+                        "<td>" + value["E.S.R"] + "</td>" +
+                        "<td>" + value["MALARIAL PARASITES - MP"] + "</td>" +
+                        "<td>" + value["BLEEDING AND CLOTTING TIME"] + "</td>" +
+                        "<td>" + value["BLOOD GROUP"] + "</td>" +
+                        "<td>" + value["UREA"] + "</td>" +
+                        "<td>" + value["S.CREATININE"] + "</td>" +
+                        "<td>" + value["S.BILIRUBIN"] + "</td>" +
+                        "<td>" + value["TOTAL PROTEIN"] + "</td>" +
+                        "<td>" + value["ALBUMIN"] + "</td>" +
+                        "<td>" + value["S.CALCIUM"] + "</td>" +
+                        "<td>" + value["S.CHOLESTEROL"] + "</td>" +
+                        "<td>" + value["TRIGLYCERIDES"] + "</td>" +
+                        "<td>" + value["HDL CHOLESTEROL"] + "</td>" +
+                        "<td>" + value["S.G.P.T"] + "</td>" +
+                        "<td>" + value["S.G.O.T"] + "</td>" +
+                        "<td>" + value["URIC ACID"] + "</td>" +
+                        "<td>" + value["BLOOD SUGAR RANDOM - RBS"] + "</td>" +
+                        "<td>" + value["FASTING SUGAR - FBS"] + "</td>" +
+                        "<td>" + value["PP2BS"] + "</td>" +
+                        "<td>" + value["LIPID PROFILE"] + "</td>" +
+                        "<td>" + value["C REACTIVE PROTEIN"] + "</td>" +
+                        "<td>" + value["RA"] + "</td>" +
+                        "<td>" + value["WIDAL"] + "</td>" +
+                        "<td>" + value["V.D.R.L"] + "</td>" +
+                        "<td>" + value["DENGUE IGG IGM"] + "</td>" +
+                        "<td>" + value["CHIKUNGUNYA IGM"] + "</td>" +
+                        "<td>" + value["URINE ROUTINE"] + "</td>" +
+                        "<td>" + value["PREGNANCY TEST"] + "</td>" +
+                        "<td>" + value["25 VITAMIN D"] + "</td>" +
+                        "<td>" + value["VITAMIN B12"] + "</td>" +
+                        "<td>" + value["HBA1C"] + "</td>" +
+                        "<td>" + value["T3 T4 TSH"] + "</td>" +
+                        "<td>" + value["TSH"] + "</td>" +
+                        "<td>" + value["FT3"] + "</td>" +
+                        "<td>" + value["FT4"] + "</td>" +
+                        "<td>" + value["HB ELECTROPHORESIS"] + "</td>" +
+                        "<td>" + value["ANA"] + "</td>" +
+                        "<td>" + value["HCG"] + "</td>" +
+                        "<td>" + value["FSH LH PROLACTINE"] + "</td>" +
+                        "<td>" + value["LIPID PROFILE 2"] + "</td>" +
+                        "<td>" + value["LUTEINIZING HORMONE SERUM"] + "</td>" +
+                        "<td>" + value["TORCH IGG IGM ABS - PARAMETER 8"] + "</td>" +
+                        "<td>" + value["FERRITIN"] + "</td>" +
+                        "<td>" + value["HOMOCYSTEINE"] + "</td>" +
+                        "<td>" + value["ANTI CCP"] + "</td>" +
+                        "<td>" + value["CA 125"] + "</td>" +
+                        "<td>" + value["ALIPOPROTEINS"] + "</td>" +
+                        "<td>" + value["CRP"] + "</td>" +
+                        "<td>" + value["PT"] + "</td>" +
+                        "<td>" + value["ELECTROLYTES"] + "</td>" +
+                        "<td>" + value["G6PD"] + "</td>" +
+                        "<td>" + value["CKP TOTAL SERUM"] + "</td>" +
+                        "<td>" + value["LDH"] + "</td>" +
+                        "<td>" + value["CKMB"] + "</td>" +
+                        "<td>" + value["LIPASE SERUM"] + "</td>" +
+                        "<td>" + value["IRON"] + "</td>" +
+                        "<td>" + value["TIBC"] + "</td>" +
+                        "<td>" + value["C3"] + "</td>" +
+                        "<td>" + value["CA 125 2"] + "</td>" +
+                        "<td>" + value["PSA TOTAL PROSTATE SPECIFIC ANTIGEN"] + "</td>" +
+                        "<td>" + value["AMYLASE ENZYMATIC SERUM"] + "</td>" +
+                        "<td>" + value["PHOSPHORUS INORGANIC SERUM"] + "</td>" +
+                        "<td>" + value["CALCIUM TOTAL SERUM"] + "</td>" +
+                        "<td>" + value["ALKALINE PHOSPHATATE ENZYMATIC"] + "</td>" +
+                        "<td>" + value["DENGUE IGG ANTIBODY"] + "</td>" +
+                        "<td>" + value["DENGUE IGM ANTIBODY"] + "</td>" +
+                        "<td>" + value["DENGUE NS1 ANTIGEN"] + "</td>" +
+                        "<td>" + value["TYPHI DOT IGG AND IGM"] + "</td>" +
+                        "<td>" + value["AMMONIA BIOCHEMICAL PLASMA"] + "</td>" +
+                        "<td>" + value["RA RHEUMATOID ARTHRITIS SERUM"] + "</td>" +
+                        "<td>" + value["THYROID ANTIBODIES TPO AND ATG"] + "</td>" +
+                        "<td>" + value["ABSOLUTE EOSINOPHILE COUNT"] + "</td>" +
+                        "<td>" + value["SEMEN ANALYSIS"] + "</td>" +
+                        "<td>" + value["ROUTINE EXAMINATION STOOL"] + "</td>" +
+                        "<td>" + value["HIV"] + "</td>" +
+                        "<td>" + value["HBSAG"] + "</td>" +
+                        "<td>" + value["D DIMER"] + "</td>" +
+                        "<td>" + value["HCV"] + "</td>" +
+                        "</tr>");
+
+
+                  });
+
+
+             
+
+
+            }
+
+         }
+      });
+   }
+
+   //page load fetch all count sum of data for last 7 Days Pageload
+   function last7DayCountSum() {
+      // $("#id-table").html("");
+
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-for-last-7-days-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+
+                     "<td>" + value.a + "</td>" +
+                     "<td>" + value.b + "</td>" +
+                     "<td>" + value.c + "</td>" +
+                     "<td>" + value.d + "</td>" +
+                     "<td>" + value.e + "</td>" +
+                     "<td>" + value.f + "</td>" +
+                     "<td>" + value.g + "</td>" +
+                     "<td>" + value.h + "</td>" +
+                     "<td>" + value.i + "</td>" +
+                     "<td>" + value.j + "</td>" +
+                     "<td>" + value.k + "</td>" +
+                     "<td>" + value.l + "</td>" +
+                     "<td>" + value.m + "</td>" +
+                     "<td>" + value.n + "</td>" +
+                     "<td>" + value.o + "</td>" +
+                     "<td>" + value.p + "</td>" +
+                     "<td>" + value.q + "</td>" +
+                     "<td>" + value.r + "</td>" +
+                     "<td>" + value.s + "</td>" +
+                     "<td>" + value.t + "</td>" +
+                     "<td>" + value.u + "</td>" +
+                     "<td>" + value.v + "</td>" +
+                     "<td>" + value.w + "</td>" +
+                     "<td>" + value.x + "</td>" +
+                     "<td>" + value.y + "</td>" +
+                     "<td>" + value.z + "</td>" +
+                     "<td>" + value.aa + "</td>" +
+                     "<td>" + value.ab + "</td>" +
+                     "<td>" + value.ac + "</td>" +
+                     "<td>" + value.ad + "</td>" +
+                     "<td>" + value.ae + "</td>" +
+                     "<td>" + value.af + "</td>" +
+                     "<td>" + value.ag + "</td>" +
+                     "<td>" + value.ah + "</td>" +
+                     "<td>" + value.ai + "</td>" +
+                     "<td>" + value.aj + "</td>" +
+                     "<td>" + value.ak + "</td>" +
+                     "<td>" + value.al + "</td>" +
+                     "<td>" + value.am + "</td>" +
+                     "<td>" + value.an + "</td>" +
+                     "<td>" + value.ao + "</td>" +
+                     "<td>" + value.ap + "</td>" +
+                     "<td>" + value.aq + "</td>" +
+                     "<td>" + value.ar + "</td>" +
+                     "<td>" + value.as1 + "</td>" +
+                     "<td>" + value.at1 + "</td>" +
+                     "<td>" + value.au + "</td>" +
+                     "<td>" + value.av + "</td>" +
+                     "<td>" + value.aw + "</td>" +
+                     "<td>" + value.ax + "</td>" +
+                     "<td>" + value.ay + "</td>" +
+                     "<td>" + value.az + "</td>" +
+                     "<td>" + value.ba + "</td>" +
+                     "<td>" + value.bb + "</td>" +
+                     "<td>" + value.bc + "</td>" +
+                     "<td>" + value.bd + "</td>" +
+                     "<td>" + value.be + "</td>" +
+                     "<td>" + value.bf + "</td>" +
+                     "<td>" + value.bg + "</td>" +
+                     "<td>" + value.bh + "</td>" +
+                     "<td>" + value.bi + "</td>" +
+                     "<td>" + value.bj + "</td>" +
+                     "<td>" + value.bk + "</td>" +
+                     "<td>" + value.bl + "</td>" +
+                     "<td>" + value.bm + "</td>" +
+                     "<td>" + value.bn + "</td>" +
+                     "<td>" + value.bo + "</td>" +
+                     "<td>" + value.bp + "</td>" +
+                     "<td>" + value.bq + "</td>" +
+                     "<td>" + value.br + "</td>" +
+                     "<td>" + value.bs + "</td>" +
+                     "<td>" + value.bt + "</td>" +
+                     "<td>" + value.bu + "</td>" +
+                     "<td>" + value.bv + "</td>" +
+                     "<td>" + value.bw + "</td>" +
+                     "<td>" + value.bx + "</td>" +
+                     "</tr>");
+
+               });
+
+            }
+
+         }
+      });
+   }
+
+
+
+   //page load fetch all data for last 15 Days Pageload
+   function last15Dayspageload() {
+
+      $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-for-last-15-days.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+
+               // console.log(data);
+
+               $.each(data, function (key, value) {
+                  $("#id-table").append("<tr>" +
+                     "<td>" + value.date + "<td>" +
+                     "<td class='date'>" + value.opdno + "<td>" +
+                     "<td>" + value["CBC"] + "</td>" +
+                     "<td>" + value["E.S.R"] + "</td>" +
+                     "<td>" + value["MALARIAL PARASITES - MP"] + "</td>" +
+                     "<td>" + value["BLEEDING AND CLOTTING TIME"] + "</td>" +
+                     "<td>" + value["BLOOD GROUP"] + "</td>" +
+                     "<td>" + value["UREA"] + "</td>" +
+                     "<td>" + value["S.CREATININE"] + "</td>" +
+                     "<td>" + value["S.BILIRUBIN"] + "</td>" +
+                     "<td>" + value["TOTAL PROTEIN"] + "</td>" +
+                     "<td>" + value["ALBUMIN"] + "</td>" +
+                     "<td>" + value["S.CALCIUM"] + "</td>" +
+                     "<td>" + value["S.CHOLESTEROL"] + "</td>" +
+                     "<td>" + value["TRIGLYCERIDES"] + "</td>" +
+                     "<td>" + value["HDL CHOLESTEROL"] + "</td>" +
+                     "<td>" + value["S.G.P.T"] + "</td>" +
+                     "<td>" + value["S.G.O.T"] + "</td>" +
+                     "<td>" + value["URIC ACID"] + "</td>" +
+                     "<td>" + value["BLOOD SUGAR RANDOM - RBS"] + "</td>" +
+                     "<td>" + value["FASTING SUGAR - FBS"] + "</td>" +
+                     "<td>" + value["PP2BS"] + "</td>" +
+                     "<td>" + value["LIPID PROFILE"] + "</td>" +
+                     "<td>" + value["C REACTIVE PROTEIN"] + "</td>" +
+                     "<td>" + value["RA"] + "</td>" +
+                     "<td>" + value["WIDAL"] + "</td>" +
+                     "<td>" + value["V.D.R.L"] + "</td>" +
+                     "<td>" + value["DENGUE IGG IGM"] + "</td>" +
+                     "<td>" + value["CHIKUNGUNYA IGM"] + "</td>" +
+                     "<td>" + value["URINE ROUTINE"] + "</td>" +
+                     "<td>" + value["PREGNANCY TEST"] + "</td>" +
+                     "<td>" + value["25 VITAMIN D"] + "</td>" +
+                     "<td>" + value["VITAMIN B12"] + "</td>" +
+                     "<td>" + value["HBA1C"] + "</td>" +
+                     "<td>" + value["T3 T4 TSH"] + "</td>" +
+                     "<td>" + value["TSH"] + "</td>" +
+                     "<td>" + value["FT3"] + "</td>" +
+                     "<td>" + value["FT4"] + "</td>" +
+                     "<td>" + value["HB ELECTROPHORESIS"] + "</td>" +
+                     "<td>" + value["ANA"] + "</td>" +
+                     "<td>" + value["HCG"] + "</td>" +
+                     "<td>" + value["FSH LH PROLACTINE"] + "</td>" +
+                     "<td>" + value["LIPID PROFILE 2"] + "</td>" +
+                     "<td>" + value["LUTEINIZING HORMONE SERUM"] + "</td>" +
+                     "<td>" + value["TORCH IGG IGM ABS - PARAMETER 8"] + "</td>" +
+                     "<td>" + value["FERRITIN"] + "</td>" +
+                     "<td>" + value["HOMOCYSTEINE"] + "</td>" +
+                     "<td>" + value["ANTI CCP"] + "</td>" +
+                     "<td>" + value["CA 125"] + "</td>" +
+                     "<td>" + value["ALIPOPROTEINS"] + "</td>" +
+                     "<td>" + value["CRP"] + "</td>" +
+                     "<td>" + value["PT"] + "</td>" +
+                     "<td>" + value["ELECTROLYTES"] + "</td>" +
+                     "<td>" + value["G6PD"] + "</td>" +
+                     "<td>" + value["CKP TOTAL SERUM"] + "</td>" +
+                     "<td>" + value["LDH"] + "</td>" +
+                     "<td>" + value["CKMB"] + "</td>" +
+                     "<td>" + value["LIPASE SERUM"] + "</td>" +
+                     "<td>" + value["IRON"] + "</td>" +
+                     "<td>" + value["TIBC"] + "</td>" +
+                     "<td>" + value["C3"] + "</td>" +
+                     "<td>" + value["CA 125 2"] + "</td>" +
+                     "<td>" + value["PSA TOTAL PROSTATE SPECIFIC ANTIGEN"] + "</td>" +
+                     "<td>" + value["AMYLASE ENZYMATIC SERUM"] + "</td>" +
+                     "<td>" + value["PHOSPHORUS INORGANIC SERUM"] + "</td>" +
+                     "<td>" + value["CALCIUM TOTAL SERUM"] + "</td>" +
+                     "<td>" + value["ALKALINE PHOSPHATATE ENZYMATIC"] + "</td>" +
+                     "<td>" + value["DENGUE IGG ANTIBODY"] + "</td>" +
+                     "<td>" + value["DENGUE IGM ANTIBODY"] + "</td>" +
+                     "<td>" + value["DENGUE NS1 ANTIGEN"] + "</td>" +
+                     "<td>" + value["TYPHI DOT IGG AND IGM"] + "</td>" +
+                     "<td>" + value["AMMONIA BIOCHEMICAL PLASMA"] + "</td>" +
+                     "<td>" + value["RA RHEUMATOID ARTHRITIS SERUM"] + "</td>" +
+                     "<td>" + value["THYROID ANTIBODIES TPO AND ATG"] + "</td>" +
+                     "<td>" + value["ABSOLUTE EOSINOPHILE COUNT"] + "</td>" +
+                     "<td>" + value["SEMEN ANALYSIS"] + "</td>" +
+                     "<td>" + value["ROUTINE EXAMINATION STOOL"] + "</td>" +
+                     "<td>" + value["HIV"] + "</td>" +
+                     "<td>" + value["HBSAG"] + "</td>" +
+                     "<td>" + value["D DIMER"] + "</td>" +
+                     "<td>" + value["HCV"] + "</td>" +
+                     "</tr>");
+
+
+               });
+
+
+            }
+
+         }
+      });
+   }
+
+   //page load fetch all count sum of data for last 28 Days Pageload
+   function last15DayCountSum() {
+
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-for-last-15-days-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+
+                     "<td>" + value.a + "</td>" +
+                     "<td>" + value.b + "</td>" +
+                     "<td>" + value.c + "</td>" +
+                     "<td>" + value.d + "</td>" +
+                     "<td>" + value.e + "</td>" +
+                     "<td>" + value.f + "</td>" +
+                     "<td>" + value.g + "</td>" +
+                     "<td>" + value.h + "</td>" +
+                     "<td>" + value.i + "</td>" +
+                     "<td>" + value.j + "</td>" +
+                     "<td>" + value.k + "</td>" +
+                     "<td>" + value.l + "</td>" +
+                     "<td>" + value.m + "</td>" +
+                     "<td>" + value.n + "</td>" +
+                     "<td>" + value.o + "</td>" +
+                     "<td>" + value.p + "</td>" +
+                     "<td>" + value.q + "</td>" +
+                     "<td>" + value.r + "</td>" +
+                     "<td>" + value.s + "</td>" +
+                     "<td>" + value.t + "</td>" +
+                     "<td>" + value.u + "</td>" +
+                     "<td>" + value.v + "</td>" +
+                     "<td>" + value.w + "</td>" +
+                     "<td>" + value.x + "</td>" +
+                     "<td>" + value.y + "</td>" +
+                     "<td>" + value.z + "</td>" +
+                     "<td>" + value.aa + "</td>" +
+                     "<td>" + value.ab + "</td>" +
+                     "<td>" + value.ac + "</td>" +
+                     "<td>" + value.ad + "</td>" +
+                     "<td>" + value.ae + "</td>" +
+                     "<td>" + value.af + "</td>" +
+                     "<td>" + value.ag + "</td>" +
+                     "<td>" + value.ah + "</td>" +
+                     "<td>" + value.ai + "</td>" +
+                     "<td>" + value.aj + "</td>" +
+                     "<td>" + value.ak + "</td>" +
+                     "<td>" + value.al + "</td>" +
+                     "<td>" + value.am + "</td>" +
+                     "<td>" + value.an + "</td>" +
+                     "<td>" + value.ao + "</td>" +
+                     "<td>" + value.ap + "</td>" +
+                     "<td>" + value.aq + "</td>" +
+                     "<td>" + value.ar + "</td>" +
+                     "<td>" + value.as1 + "</td>" +
+                     "<td>" + value.at1 + "</td>" +
+                     "<td>" + value.au + "</td>" +
+                     "<td>" + value.av + "</td>" +
+                     "<td>" + value.aw + "</td>" +
+                     "<td>" + value.ax + "</td>" +
+                     "<td>" + value.ay + "</td>" +
+                     "<td>" + value.az + "</td>" +
+                     "<td>" + value.ba + "</td>" +
+                     "<td>" + value.bb + "</td>" +
+                     "<td>" + value.bc + "</td>" +
+                     "<td>" + value.bd + "</td>" +
+                     "<td>" + value.be + "</td>" +
+                     "<td>" + value.bf + "</td>" +
+                     "<td>" + value.bg + "</td>" +
+                     "<td>" + value.bh + "</td>" +
+                     "<td>" + value.bi + "</td>" +
+                     "<td>" + value.bj + "</td>" +
+                     "<td>" + value.bk + "</td>" +
+                     "<td>" + value.bl + "</td>" +
+                     "<td>" + value.bm + "</td>" +
+                     "<td>" + value.bn + "</td>" +
+                     "<td>" + value.bo + "</td>" +
+                     "<td>" + value.bp + "</td>" +
+                     "<td>" + value.bq + "</td>" +
+                     "<td>" + value.br + "</td>" +
+                     "<td>" + value.bs + "</td>" +
+                     "<td>" + value.bt + "</td>" +
+                     "<td>" + value.bu + "</td>" +
+                     "<td>" + value.bv + "</td>" +
+                     "<td>" + value.bw + "</td>" +
+                     "<td>" + value.bx + "</td>" +
+                     "</tr>");
+
+               });
+
+
+            }
+
+         }
+      });
+   }
+
+
+
+   //page load fetch all data for last 28 Days Pageload
+   function last28Dayspageload() {
+
+      $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-for-last-28-days.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               // console.log(data);
+           
+
+
+                  $.each(data, function (key, value) {
+                     $("#id-table").append("<tr>" +
+                        "<td>" + value.date + "<td>" +
+                        "<td class='date'>" + value.opdno + "<td>" +
+                        "<td>" + value["CBC"] + "</td>" +
+                        "<td>" + value["E.S.R"] + "</td>" +
+                        "<td>" + value["MALARIAL PARASITES - MP"] + "</td>" +
+                        "<td>" + value["BLEEDING AND CLOTTING TIME"] + "</td>" +
+                        "<td>" + value["BLOOD GROUP"] + "</td>" +
+                        "<td>" + value["UREA"] + "</td>" +
+                        "<td>" + value["S.CREATININE"] + "</td>" +
+                        "<td>" + value["S.BILIRUBIN"] + "</td>" +
+                        "<td>" + value["TOTAL PROTEIN"] + "</td>" +
+                        "<td>" + value["ALBUMIN"] + "</td>" +
+                        "<td>" + value["S.CALCIUM"] + "</td>" +
+                        "<td>" + value["S.CHOLESTEROL"] + "</td>" +
+                        "<td>" + value["TRIGLYCERIDES"] + "</td>" +
+                        "<td>" + value["HDL CHOLESTEROL"] + "</td>" +
+                        "<td>" + value["S.G.P.T"] + "</td>" +
+                        "<td>" + value["S.G.O.T"] + "</td>" +
+                        "<td>" + value["URIC ACID"] + "</td>" +
+                        "<td>" + value["BLOOD SUGAR RANDOM - RBS"] + "</td>" +
+                        "<td>" + value["FASTING SUGAR - FBS"] + "</td>" +
+                        "<td>" + value["PP2BS"] + "</td>" +
+                        "<td>" + value["LIPID PROFILE"] + "</td>" +
+                        "<td>" + value["C REACTIVE PROTEIN"] + "</td>" +
+                        "<td>" + value["RA"] + "</td>" +
+                        "<td>" + value["WIDAL"] + "</td>" +
+                        "<td>" + value["V.D.R.L"] + "</td>" +
+                        "<td>" + value["DENGUE IGG IGM"] + "</td>" +
+                        "<td>" + value["CHIKUNGUNYA IGM"] + "</td>" +
+                        "<td>" + value["URINE ROUTINE"] + "</td>" +
+                        "<td>" + value["PREGNANCY TEST"] + "</td>" +
+                        "<td>" + value["25 VITAMIN D"] + "</td>" +
+                        "<td>" + value["VITAMIN B12"] + "</td>" +
+                        "<td>" + value["HBA1C"] + "</td>" +
+                        "<td>" + value["T3 T4 TSH"] + "</td>" +
+                        "<td>" + value["TSH"] + "</td>" +
+                        "<td>" + value["FT3"] + "</td>" +
+                        "<td>" + value["FT4"] + "</td>" +
+                        "<td>" + value["HB ELECTROPHORESIS"] + "</td>" +
+                        "<td>" + value["ANA"] + "</td>" +
+                        "<td>" + value["HCG"] + "</td>" +
+                        "<td>" + value["FSH LH PROLACTINE"] + "</td>" +
+                        "<td>" + value["LIPID PROFILE 2"] + "</td>" +
+                        "<td>" + value["LUTEINIZING HORMONE SERUM"] + "</td>" +
+                        "<td>" + value["TORCH IGG IGM ABS - PARAMETER 8"] + "</td>" +
+                        "<td>" + value["FERRITIN"] + "</td>" +
+                        "<td>" + value["HOMOCYSTEINE"] + "</td>" +
+                        "<td>" + value["ANTI CCP"] + "</td>" +
+                        "<td>" + value["CA 125"] + "</td>" +
+                        "<td>" + value["ALIPOPROTEINS"] + "</td>" +
+                        "<td>" + value["CRP"] + "</td>" +
+                        "<td>" + value["PT"] + "</td>" +
+                        "<td>" + value["ELECTROLYTES"] + "</td>" +
+                        "<td>" + value["G6PD"] + "</td>" +
+                        "<td>" + value["CKP TOTAL SERUM"] + "</td>" +
+                        "<td>" + value["LDH"] + "</td>" +
+                        "<td>" + value["CKMB"] + "</td>" +
+                        "<td>" + value["LIPASE SERUM"] + "</td>" +
+                        "<td>" + value["IRON"] + "</td>" +
+                        "<td>" + value["TIBC"] + "</td>" +
+                        "<td>" + value["C3"] + "</td>" +
+                        "<td>" + value["CA 125 2"] + "</td>" +
+                        "<td>" + value["PSA TOTAL PROSTATE SPECIFIC ANTIGEN"] + "</td>" +
+                        "<td>" + value["AMYLASE ENZYMATIC SERUM"] + "</td>" +
+                        "<td>" + value["PHOSPHORUS INORGANIC SERUM"] + "</td>" +
+                        "<td>" + value["CALCIUM TOTAL SERUM"] + "</td>" +
+                        "<td>" + value["ALKALINE PHOSPHATATE ENZYMATIC"] + "</td>" +
+                        "<td>" + value["DENGUE IGG ANTIBODY"] + "</td>" +
+                        "<td>" + value["DENGUE IGM ANTIBODY"] + "</td>" +
+                        "<td>" + value["DENGUE NS1 ANTIGEN"] + "</td>" +
+                        "<td>" + value["TYPHI DOT IGG AND IGM"] + "</td>" +
+                        "<td>" + value["AMMONIA BIOCHEMICAL PLASMA"] + "</td>" +
+                        "<td>" + value["RA RHEUMATOID ARTHRITIS SERUM"] + "</td>" +
+                        "<td>" + value["THYROID ANTIBODIES TPO AND ATG"] + "</td>" +
+                        "<td>" + value["ABSOLUTE EOSINOPHILE COUNT"] + "</td>" +
+                        "<td>" + value["SEMEN ANALYSIS"] + "</td>" +
+                        "<td>" + value["ROUTINE EXAMINATION STOOL"] + "</td>" +
+                        "<td>" + value["HIV"] + "</td>" +
+                        "<td>" + value["HBSAG"] + "</td>" +
+                        "<td>" + value["D DIMER"] + "</td>" +
+                        "<td>" + value["HCV"] + "</td>" +
+                        "</tr>");
+
+
+                  });
+
+
+       
+
+            }
+
+         }
+      });
+   }
+
+
+   //page load fetch all count sum of data for last 28 Days Pageload
+   function last28DayCountSum() {
+
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/lab_records_api/api-for-last-28-days-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+
+                     "<td>" + value.a + "</td>" +
+                     "<td>" + value.b + "</td>" +
+                     "<td>" + value.c + "</td>" +
+                     "<td>" + value.d + "</td>" +
+                     "<td>" + value.e + "</td>" +
+                     "<td>" + value.f + "</td>" +
+                     "<td>" + value.g + "</td>" +
+                     "<td>" + value.h + "</td>" +
+                     "<td>" + value.i + "</td>" +
+                     "<td>" + value.j + "</td>" +
+                     "<td>" + value.k + "</td>" +
+                     "<td>" + value.l + "</td>" +
+                     "<td>" + value.m + "</td>" +
+                     "<td>" + value.n + "</td>" +
+                     "<td>" + value.o + "</td>" +
+                     "<td>" + value.p + "</td>" +
+                     "<td>" + value.q + "</td>" +
+                     "<td>" + value.r + "</td>" +
+                     "<td>" + value.s + "</td>" +
+                     "<td>" + value.t + "</td>" +
+                     "<td>" + value.u + "</td>" +
+                     "<td>" + value.v + "</td>" +
+                     "<td>" + value.w + "</td>" +
+                     "<td>" + value.x + "</td>" +
+                     "<td>" + value.y + "</td>" +
+                     "<td>" + value.z + "</td>" +
+                     "<td>" + value.aa + "</td>" +
+                     "<td>" + value.ab + "</td>" +
+                     "<td>" + value.ac + "</td>" +
+                     "<td>" + value.ad + "</td>" +
+                     "<td>" + value.ae + "</td>" +
+                     "<td>" + value.af + "</td>" +
+                     "<td>" + value.ag + "</td>" +
+                     "<td>" + value.ah + "</td>" +
+                     "<td>" + value.ai + "</td>" +
+                     "<td>" + value.aj + "</td>" +
+                     "<td>" + value.ak + "</td>" +
+                     "<td>" + value.al + "</td>" +
+                     "<td>" + value.am + "</td>" +
+                     "<td>" + value.an + "</td>" +
+                     "<td>" + value.ao + "</td>" +
+                     "<td>" + value.ap + "</td>" +
+                     "<td>" + value.aq + "</td>" +
+                     "<td>" + value.ar + "</td>" +
+                     "<td>" + value.as1 + "</td>" +
+                     "<td>" + value.at1 + "</td>" +
+                     "<td>" + value.au + "</td>" +
+                     "<td>" + value.av + "</td>" +
+                     "<td>" + value.aw + "</td>" +
+                     "<td>" + value.ax + "</td>" +
+                     "<td>" + value.ay + "</td>" +
+                     "<td>" + value.az + "</td>" +
+                     "<td>" + value.ba + "</td>" +
+                     "<td>" + value.bb + "</td>" +
+                     "<td>" + value.bc + "</td>" +
+                     "<td>" + value.bd + "</td>" +
+                     "<td>" + value.be + "</td>" +
+                     "<td>" + value.bf + "</td>" +
+                     "<td>" + value.bg + "</td>" +
+                     "<td>" + value.bh + "</td>" +
+                     "<td>" + value.bi + "</td>" +
+                     "<td>" + value.bj + "</td>" +
+                     "<td>" + value.bk + "</td>" +
+                     "<td>" + value.bl + "</td>" +
+                     "<td>" + value.bm + "</td>" +
+                     "<td>" + value.bn + "</td>" +
+                     "<td>" + value.bo + "</td>" +
+                     "<td>" + value.bp + "</td>" +
+                     "<td>" + value.bq + "</td>" +
+                     "<td>" + value.br + "</td>" +
+                     "<td>" + value.bs + "</td>" +
+                     "<td>" + value.bt + "</td>" +
+                     "<td>" + value.bu + "</td>" +
+                     "<td>" + value.bv + "</td>" +
+                     "<td>" + value.bw + "</td>" +
+                     "<td>" + value.bx + "</td>" +
+                     "</tr>");
+
+               });
+
+            }
+
+         }
+      });
+   }
+
+
+   function tableToExcel(){
+   $("#id-table").table2excel({
+      filename:"excel.xls",
+      name:"worksheet"
+   })
+}
+
+
+</script>
+
+<body>
+   <form>
+
+      <select id="browsers" onchange="preferedBrowser()">
+         <option value="all">All</option>
+         <option value="last7days">last 7 days</option>
+         <option value="last15days">last 15 days</option>
+         <option value="last28days">last 28 days</option>
+      </select>
+   </form>
+
+   <section class="container-fluid select-data">
+      <div class="container">
+         <h2 class="text-center">Recordes</h2>
+         <table class="table text-center" id="id-fullTable">
+            <thead class="text-center">
+               <tr>
+                  <!-- <td>PATIENTNO</td> -->
+                  <td>DATE</td>
+                  <td></td>
+                  <td>OPD NO</td>
+                  <td></td>
+                  <td> CBC</td>
+                  <td>E.S.R</td>
+                  <td>MALARIAL PARASITES - MP</td>
+                  <td>BLEEDING AND CLOTTING TIME</td>
+                  <td>BLOOD GROUP</td>
+                  <td>UREA</td>
+                  <td>S.CREATININE</td>
+                  <td>S.BILIRUBIN</td>
+                  <td>TOTAL PROTEIN</td>
+                  <td>ALBUMIN</td>
+                  <td>S.CALCIUM</td>
+                  <td>S.CHOLESTEROL</td>
+                  <td>TRIGLYCERIDES</td>
+                  <td>HDL CHOLESTEROL</td>
+                  <td>S.G.P.T</td>
+                  <td>S.G.O.T</td>
+                  <td>URIC ACID</td>
+                  <td>BLOOD SUGAR RANDOM - RBS</td>
+                  <td>FASTING SUGAR - FBS</td>
+                  <td>PP2BS</td>
+                  <td>LIPID PROFILE</td>
+                  <td>C REACTIVE PROTEIN</td>
+                  <td>RA</td>
+                  <td>WIDAL</td>
+                  <td>V.D.R.L</td>
+                  <td>DENGUE IGG IGM</td>
+                  <td>CHIKUNGUNYA IGM</td>
+                  <td>URINE ROUTINE</td>
+                  <td>PREGNANCY TEST</td>
+                  <td>25 VITAMIN D</td>
+                  <td>VITAMIN B12</td>
+                  <td>HBA1C</td>
+                  <td>T3 T4 TSH</td>
+                  <td>TSH</td>
+                  <td>FT3</td>
+                  <td>FT4</td>
+                  <td>HB ELECTROPHORESIS</td>
+                  <td>ANA</td>
+                  <td>HCG</td>
+                  <td>FSH LH PROLACTINE</td>
+                  <td>LIPID PROFILE 2</td>
+                  <td>LUTEINIZING HORMONE SERUM</td>
+                  <td>TORCH IGG IGM ABS - PARAMETER 8</td>
+                  <td>FERRITIN</td>
+                  <td>HOMOCYSTEINE</td>
+                  <td>ANTI CCP</td>
+                  <td>CA 125</td>
+                  <td>ALIPOPROTEINS</td>
+                  <td>CRP</td>
+                  <td>PT</td>
+                  <td>ELECTROLYTES</td>
+                  <td>G6PD</td>
+                  <td>CKP TOTAL SERUM</td>
+                  <td>LDH</td>
+                  <td>CKMB</td>
+                  <td>LIPASE SERUM</td>
+                  <td>IRON</td>
+                  <td>TIBC</td>
+                  <td> C3</td>
+                  <td>CA 125 2</td>
+                  <td>PSA TOTAL PROSTATE SPECIFIC ANTIGEN</td>
+                  <td>AMYLASE ENZYMATIC SERUM</td>
+                  <td>PHOSPHORUS INORGANIC SERUM</td>
+                  <td>CALCIUM TOTAL SERUM</td>
+                  <td>ALKALINE PHOSPHATATE ENZYMATIC</td>
+                  <td>DENGUE IGG ANTIBODY</td>
+                  <td>DENGUE IGM ANTIBODY</td>
+                  <td>DENGUE NS1 ANTIGEN</td>
+                  <td>TYPHI DOT IGG AND IGM</td>
+                  <td>AMMONIA BIOCHEMICAL PLASMA</td>
+                  <td>RA RHEUMATOID ARTHRITIS SERUM</td>
+                  <td>THYROID ANTIBODIES TPO AND ATG</td>
+                  <td>ABSOLUTE EOSINOPHILE COUNT</td>
+                  <td>SEMEN ANALYSIS</td>
+                  <td>ROUTINE EXAMINATION STOOL</td>
+                  <td>HIV</td>
+                  <td>HBSAG</td>
+                  <td>D DIMER</td>
+                  <td>HCV</td>
+                  
+               </tr>
+            <tbody id="id-table" class="text-center"></tbody>
+            </thead>
+         </table>
+
+      </div>
+   </section>
+   <!-- 
+   No of patient:
+   <span id="id-noOfpatient" value="Count Rows"> </span>
+
+   Sum of lab:
+   <span id="id-noOfmedicne" value="Count Rows"> </span>
+
+   Sum of lab:
+   <span id="id-noOflab" value="Count Rows"> </span>
+
+   Sum of Total:
+   <span id="id-noOftotal" value="Count Rows"> </span> -->
+
+<center>
+
+   <button onclick="tableToExcel()">Convert To Excel</button>
+</center>
+
+</body>
+
+</html>

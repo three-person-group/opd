@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Reg_Charges_recordes</title>
+
+
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+   <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
+   <style>
+      form {
+         margin-left: 1500px;
+      }
+   </style>
+
+</head>
+
+<script>
+
+
+   $(document).ready(function () {
+      pageload();
+      pageloadCountSum();
+
+      function tableToExcel() {
+         $("#id-fullTable").table2excel({
+            filename: "excel.xls",
+            name: "worksheet"
+         })
+      }
+
+   });
+   function preferedBrowser() {
+      prefer = document.forms[0].browsers.value;
+      // alert("You prefer browsing internet with " + prefer);
+      if (prefer == "last7days") {
+         last7DaysPageload();
+         last7DayCountSum();
+      }
+      else if (prefer == "all") {
+         pageload();
+         pageloadCountSum();
+      }
+      else if (prefer == "last15days") {
+         last15Dayspageload();
+         last15DayCountSum();
+      }
+      else if (prefer == "last28days") {
+         last28Dayspageload();
+         last28DayCountSum();
+      }
+   }
+
+   //page load fetch all data
+   function pageload() {
+
+      $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-fetch-all.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + value.date + "<td>" +
+                     "<td class='date'>" + value.opdno + "<td>" +
+                     "<td>" + value.REG_CHARGE + "</td>" +
+
+                     "</tr>");
+
+               });
+
+
+            }
+
+         }
+      });
+
+   }
+
+   //page load fetch all count sum of data for last all Days Pageload
+   function pageloadCountSum() {
+
+      // $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-fetch-all-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+                     "<td>" + value.regch + "</td>" +
+                     
+
+                     "</tr>");
+
+               });
+
+            }
+
+         }
+      });
+   }
+
+
+
+   //page load fetch all data for last 7 Days Pageload
+   function last7DaysPageload() {
+
+      // $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-for-last-7-days.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + value.date + "<td>" +
+                     "<td class='date'>" + value.opdno + "<td>" +
+                     "<td>" + value.REG_CHARGE + "</td>" +
+
+                     "</tr>");
+
+               });
+
+
+            }
+
+         }
+      });
+   }
+
+   //page load fetch all count sum of data for last 7 Days Pageload
+   function last7DayCountSum() {
+      $("#id-table").html("");
+
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-for-last-7-days-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+                     "<td>" + value.regch + "</td>" +
+                     
+
+                     "</tr>");
+
+               });
+            }
+
+         }
+      });
+   }
+
+
+
+   //page load fetch all data for last 15 Days Pageload
+   function last15Dayspageload() {
+
+      $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-for-last-15-days.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + value.date + "<td>" +
+                     "<td class='date'>" + value.opdno + "<td>" +
+                     "<td>" + value.REG_CHARGE + "</td>" +
+
+                     "</tr>");
+
+               });
+               // console.log(data);
+            }
+
+         }
+      });
+   }
+
+   //page load fetch all count sum of data for last 28 Days Pageload
+   function last15DayCountSum() {
+
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-for-last-15-days-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+                     "<td>" + value.regch + "</td>" +
+                     
+
+                     "</tr>");
+
+               });
+            }
+
+         }
+      });
+   }
+
+
+
+   //page load fetch all data for last 28 Days Pageload
+   function last28Dayspageload() {
+
+      $("#id-table").html("");
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-for-last-28-days.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + value.date + "<td>" +
+                     "<td class='date'>" + value.opdno + "<td>" +
+                     "<td>" + value.REG_CHARGE + "</td>" +
+
+                     "</tr>");
+
+               });
+
+            }
+
+         }
+      });
+   }
+
+
+   //page load fetch all count sum of data for last 28 Days Pageload
+   function last28DayCountSum() {
+
+      $.ajax({
+         url: 'http://localhost:3000/html/homoeopathic/reg_ch_records_api/api-for-last-28-days-count-total.php',
+         type: "GET",
+         dataType: "json",
+         success: function (data) {
+
+            if (data.status == false) {
+               $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+            }
+            else {
+               // console.log(data);
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + "Total" + "<td>" +
+                     "<td class='date'>" + value.no + "<td>" +
+                     "<td>" + value.regch + "</td>" +
+                     
+
+                     "</tr>");
+
+               });
+            }
+
+         }
+      });
+   }
+
+
+   function tableToExcel() {
+      $("#id-table").table2excel({
+         filename: "excel.xls",
+         name: "worksheet"
+      })
+   }
+
+
+</script>
+
+<body>
+   <form>
+
+      <select id="browsers" onchange="preferedBrowser()">
+         <option value="all">All</option>
+         <option value="last7days">last 7 days</option>
+         <option value="last15days">last 15 days</option>
+         <option value="last28days">last 28 days</option>
+      </select>
+   </form>
+
+   <section class="container-fluid select-data">
+      <div class="container">
+         <h2 class="text-center">Recordes</h2>
+         <table class="table text-center" id="id-fullTable">
+            <thead class="text-center">
+               <tr>
+                  <!-- <td>PATIENTNO</td> -->
+                  <td>DATE</td>
+                  <td></td>
+                  <td>OPD NO</td>
+                  <td></td>
+                  <td>REGISTRATION CHARGES</td>
+               </tr>
+            <tbody id="id-table" class="text-center"></tbody>
+            </thead>
+         </table>
+
+      </div>
+   </section>
+   <!-- 
+   No of patient:
+   <span id="id-noOfpatient" value="Count Rows"> </span>
+
+   Sum of other:
+   <span id="id-noOfmedicne" value="Count Rows"> </span>
+
+   Sum of lab:
+   <span id="id-noOflab" value="Count Rows"> </span>
+
+   Sum of Total:
+   <span id="id-noOftotal" value="Count Rows"> </span> -->
+<center>
+
+   
+   <button onclick="tableToExcel()">Convert To Excel</button>
+</center>
+
+</body>
+
+</html>

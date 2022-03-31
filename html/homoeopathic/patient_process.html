@@ -24,6 +24,13 @@ include '';
         td {
             border: 5px solid bisque;
         } */
+        button{
+            border-radius: 34px;
+            border: none;
+        }
+        .btn-consulting:visited, .btn-consulting:active{
+            background-color: yellow;
+        }
     </style>
 
 </head>
@@ -37,12 +44,16 @@ include '';
                 <thead class="text-center">
                     <tr>
                         <td>PATIENTNO</td>
+                        <td></td>
                         <td>DATE</td>
+                        <td></td>
                         <td>OPD NO</td>
+                        <td></td>
                         <td>NAME</td>
-                        <td>REGISTRATION CHARGES</td>
+                        <td>CONSULTATION</td>
                         <td>MEDICINE</td>
                         <td>LAB</td>
+                        <td>OTHER</td>
                         <td>Bill</td>
                         <td>X</td>
                     </tr>
@@ -69,7 +80,7 @@ include '';
                     success: function (data) {
 
                         if (data.status == false) {
-                            $("#id-table").append("<tr><td colspan='3'><h2>" + data.message + "</h2></td></tr>")
+                            $("#id-table").append("<tr><td colspan='15'><h2>" + data.message + "</h2></td></tr>")
                         }
                         else {
                             // console.log(data);
@@ -80,11 +91,12 @@ include '';
                                     "<td class='date'>" + value.date + "<td>" +
                                     "<td class='opdno'>" + value.opdno + "<td>" +
                                     "<td>" + value.pname + "</td>" +
-                                    "<td>" + value.reg_charge + "</td>" +
-                                    "<td><button class='btn-medicine' id='" + value.opdno + "' type='" + value.date + "'>Medicine</button></td>" +
-                                    "<td><button class='btn-lab' id='" + value.opdno + "' type='" + value.date + "'>Lab</button></td>" +
+                                    "<td><button class='btn-consulting' id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>Consulting</button></td>" +
+                                    "<td><button class='btn-medicine' id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>Medicine</button></td>" +
+                                    "<td><button class='btn-lab' id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>Lab</button></td>" +
+                                    "<td><button class='btn-other' id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>Other</button></td>" +
                                     "<td><button class='btn-bill'  id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>Bill</button></td>" +
-                                    "<td><button class='btn-x' data-x='" + value.opdno + "''>X</button></td>" +
+                                    "<td><button class='btn-x' id='" + value.opdno + "'' type='" + value.date + "'>X</button></td>" +
                                     "</tr>");
 
                             });
@@ -95,6 +107,32 @@ include '';
             }
             pageload();
 
+            // on consulting btn click send opdno and date into local storage  
+            $(document).on("click", ".btn-consulting", function () {
+
+                // $(this).css({'background-color': 'red'})
+                // $("#modal").show();
+                // var name = $(this).attr("data-uname");
+                var opdno = $(this).attr("id");
+                var date1 = $(this).attr("type");
+                var name1 = $(this).attr("name");
+
+                console.log(opdno)
+                console.log(date1)
+                console.log(name)
+                // console.log(date)
+                localStorage.clear()
+
+                localStorage.setItem("opdno", opdno)
+                localStorage.setItem("date", date1)
+                localStorage.setItem("name", name1)
+                console.log(localStorage)
+
+                location.href = 'http://localhost:3000/html/homoeopathic/consulting.html'
+
+
+            });
+
             // on medicine btn click send opdno and date into local storage  
             $(document).on("click", ".btn-medicine", function () {
 
@@ -103,14 +141,17 @@ include '';
 
                 var opdno = $(this).attr("id");
                 var date1 = $(this).attr("type");
+                var name1 = $(this).attr("name");
 
                 console.log(opdno)
                 console.log(date1)
+                console.log(name)
                 // console.log(date)
                 localStorage.clear()
 
                 localStorage.setItem("opdno", opdno)
                 localStorage.setItem("date", date1)
+                localStorage.setItem("name", name1)
                 console.log(localStorage)
 
                 location.href = 'http://localhost:3000/html/homoeopathic/medicine3.html'
@@ -126,17 +167,46 @@ include '';
 
                 var opdno = $(this).attr("id");
                 var date1 = $(this).attr("type");
+                var name1 = $(this).attr("name");
 
                 console.log(opdno)
                 console.log(date1)
+                console.log(name)
                 // console.log(date)
                 localStorage.clear()
 
                 localStorage.setItem("opdno", opdno)
                 localStorage.setItem("date", date1)
+                localStorage.setItem("name", name1)
                 console.log(localStorage)
 
                 location.href = 'http://localhost:3000/html/homoeopathic/lab.html'
+
+
+            });
+
+            // on other btn click send opdno and date into local storage  
+            $(document).on("click", ".btn-other", function () {
+
+                // $("#modal").show();
+                // var name = $(this).attr("data-uname");
+
+                var opdno = $(this).attr("id");
+                var date1 = $(this).attr("type");
+                var name1 = $(this).attr("name");
+
+                console.log(opdno)
+                console.log(date1)
+                console.log(name)
+                // console.log(date)
+                localStorage.clear()
+
+                localStorage.setItem("opdno", opdno)
+                localStorage.setItem("date", date1)
+                localStorage.setItem("name", name1)
+                console.log(localStorage)
+
+                location.href = 'http://localhost:3000/html/homoeopathic/other.html'
 
 
             });
@@ -167,7 +237,45 @@ include '';
 
             });
 
+            // on close btn click clear opdno and date ,name from local storage  
+            $(document).on("click", ".btn-x", function () {
 
+
+                localStorage.clear()
+
+                var opdno = $(this).attr("id");
+                var date1 = $(this).attr("type");
+                // var name1 = $(this).attr("name");
+                var row = this
+                // console.log(priceInArr);
+                var ObjOpdnoDate = { sopdno: opdno, sdate: date1 };
+                var ObjOpdnoDateJson = JSON.stringify(ObjOpdnoDate)
+
+                $.ajax({
+                    url: 'http://localhost:3000/html/homoeopathic/activePatient_api/api-change-status.php',
+                    type: "POST",
+                    data: ObjOpdnoDateJson,
+                    success: function (data) {
+                        console.log(data)
+                        if (data.status == true) {
+                            console.log("notworking");
+                            alert(data.message);
+                        }
+                        else {
+                           
+                            $(row).closest("tr").fadeOut(2000);
+                            // alert(data.message)
+                            pageload();
+
+                        }
+                    }
+
+                })
+
+
+
+
+            });
         });
     </script>
 </body>

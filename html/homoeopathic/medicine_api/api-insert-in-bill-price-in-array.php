@@ -22,3 +22,4 @@ if ($conn->query($sql3)) {
     echo json_encode(array("message" => "data not inserted", "status" => false));
 
 }
+?>

@@ -17,7 +17,7 @@
    }
    else
    {
-      echo json_encode(array("message"=>"data not found","status"=>false));
+      echo json_encode(array("message"=>"Data Not Found","status"=>false));
    }
 
 
