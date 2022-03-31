@@ -6,12 +6,14 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Document</title>
+
+   <link rel="stylesheet" href="opdreg.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
    <h2>OPD REGISTRATION</h2>
-   <form method="post" id="form-body" action="">
+   <!-- <form method="post" id="form-body" action="">
 
       <table>
          <tr>
@@ -147,8 +149,220 @@
       <button type="submit" id="id-btnsub" name="submit">Submit</button>
 
 
-   </form>
+   </form> -->
 
+   <!-- <form method="post" id="form-body" action="">
+
+      <table>
+         <tr>
+            <td>
+               <label>
+                  Date:
+               </label>
+
+            </td>
+            <td>
+
+               <input type="text" name="sdate" id="id-date" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+
+
+               <label>OPD/ID:</label>
+            </td>
+            <td>
+               <input type="text" id="id-opdid" name="sopdno" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label class="txt">Name:</label>
+
+            </td>
+            <td>
+
+               <input type="text" name="spname" placeholder="Enter FullName">
+
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  Age:
+
+               </label>
+            </td>
+            <td>
+               <input type="text" name="sage" placeholder="Enter Your Age">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  Gender:
+
+               </label>
+            </td>
+            <td>
+               <input type="text" name="sgender" placeholder="Enter Your Gender">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+
+      <table>
+         <tr>
+            <td>
+               <label class="txt">Address:</label>
+            </td>
+            <td>
+
+               <input type="textarea" name="saddress">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label class="txt">City:</label>
+            </td>
+            <td>
+               <input type="text" name="scity">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+               <label for="">
+                  ContactNo:
+
+               </label>
+            </td>
+            <td>
+               <input type="text" name="scontact_no" placeholder="Enter 10 Digit Number.">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <table>
+         <tr>
+            <td>
+
+               <label class="txt">Email:</label>
+
+            </td>
+            <td>
+               <input type="text" name="semail" placeholder="Enter Email address">
+               <br><br>
+            </td>
+         </tr>
+      </table>
+
+      <!-- <table>
+         <tr>
+            <td>
+
+               <label for="">
+                  Registration Charges:
+
+               </label>
+            </td>
+            <td>
+
+               <input type="text" id="id-registrationCharges" name="scharges" placeholder="">
+               <br><br>
+            </td>
+         </tr>
+      </table> -->
+
+   <!-- <form method="post" id="form-body" action=""> -->
+   <section class="signup">
+
+      <div class="container">
+         <form method="" id="form-body" class="signup-form">
+            <div class="form-row">
+               <div class="form-group">
+                  <label for="Date">Date</label>
+                  <input type="text" class="form-input" name="sdate" id="id-date" />
+               </div>
+               <div class="form-group">
+                  <label for="no">OPD NO</label>
+                  <input type="number" id="id-opdid" class="form-input" name="sopdno" />
+               </div>
+            </div>
+            <div class="form-row">
+               <div class="form-group form-icon">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-input" name="spname" id="id-pname" placeholder="Enter Your Name" />
+               </div>
+               <div class="form-group">
+                  <label for="no">Age</label>
+                  <input type="number" class="form-input" name="sage" placeholder="Enter Your Age" id="id-age" />
+               </div>
+            </div>
+
+            <div class="form-row">
+               <div class="form-radio">
+                  <label for="gender">Gender</label>
+                  <div class="form-flex">
+                     <input type="radio" name="sgender" value="male" id="male" checked="checked"
+                        onclick="myFunction(this.value)" />
+                     <label for="male">Male</label>
+
+                     <input type="radio" name="sgender" value="female" id="female" onclick="myFunction(this.value)" />
+                     <label for="female">Female</label>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="City">City</label>
+                  <input type="text" class="form-input" name="scity" placeholder="" id="id-city" />
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="Address">Address</label>
+               <input type="textarea" class="form-input" name="saddress" id="id-address" />
+            </div>
+            <div class="form-row">
+               <div class="form-group">
+                  <label for="no">Contact NO</label>
+                  <input type="number" class="form-input" name="scontact_no" id="id-contact_no"
+                     placeholder="phone number" />
+               </div>
+               <div class="form-group">
+                  <label for="Email">Email</label>
+                  <input type="text" class="form-input" name="semail" id="id-email" placeholder="Enter Email Addres" />
+               </div>
+            </div>
+            <div class="form-group">
+               <input type="submit" name="submit" id="id-btnsub" class="form-submit" value="Submit" />
+            </div>
+         </form>
+      </div>
+   </section>
    <script>
       $(document).ready(function () {
 
@@ -162,7 +376,7 @@
          // document.write(today);
          $("#id-date").val(today)
 
-        
+
 
          var opdno = localStorage.getItem('opdno')
          opdno = parseInt(opdno);
@@ -188,7 +402,17 @@
                      $("#id-opdid").val(value.opdno);
                      $("#id-pname").val(value.pname);
                      $("#id-age").val(value.age);
-                     $("#id-gender").val(value.gender);
+
+                     if (value.gender == "male") {
+                        document.getElementById("male").checked = true;
+                     }
+
+                     if (value.gender == "female") {
+
+                        document.getElementById('female').checked = true;
+                     }
+
+                     // $("#id-gender").val(value.gender);
                      $("#id-address").val(value.address);
                      $("#id-city").val(value.city);
                      $("#id-contact_no").val(value.mobileno);
@@ -205,6 +429,56 @@
                }
             }
          })
+
+         btnclick();
+
+         // insert data
+         function btnclick() {
+
+            $(document).on("click", "#id-btnsub", function (e) {
+               e.preventDefault();
+
+
+               var arr = $("#form-body").serializeArray();
+
+               var objArr = {};
+
+               for (let i = 0; i < arr.length; i++) {
+                  if (arr[i].value == "") {
+                     alert("fill all filed");
+                     return false;
+                  }
+                  objArr[arr[i].name] = arr[i].value;
+               }
+
+               var jsonInsertData = JSON.stringify(objArr);
+               console.log(jsonInsertData);
+
+
+               ////send to patient_register for 
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/existing_patient_api/api-insert-in-papatient_reg.php',
+                  type: "post",
+                  data: jsonInsertData,
+                  success: function (data) {
+                     if (data.status == true) {
+                        alert(data.message)
+                        // pageload()
+                        console.log("working");
+                     }
+                     else {
+                        console.log("notworking");
+                        alert(data.message);
+
+                     }
+                  }
+               })
+               
+               location.href="http://localhost:3000/html/homoeopathic/patient_process.html"
+            });
+         }
+
+
 
 
       });

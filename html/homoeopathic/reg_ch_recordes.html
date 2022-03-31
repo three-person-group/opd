@@ -28,18 +28,16 @@
 </head>
 
 <script>
-
-
-   $(document).ready(function () {
-      pageload();
-      pageloadCountSum();
-
-      function tableToExcel() {
+function tableToExcel() {
          $("#id-fullTable").table2excel({
-            filename: "excel.xls",
+            filename: "Reg_Charges_recordes.xls",
             name: "worksheet"
          })
       }
+
+   $(document).ready(function () {
+      pageload();
+      pageloadCountSum();   
 
    });
    function preferedBrowser() {
@@ -331,12 +329,12 @@
    }
 
 
-   function tableToExcel() {
-      $("#id-table").table2excel({
-         filename: "excel.xls",
-         name: "worksheet"
-      })
-   }
+   // function tableToExcel() {
+   //    $("#id-table").table2excel({
+   //       filename: "excel.xls",
+   //       name: "worksheet"
+   //    })
+   // }
 
 
 </script>

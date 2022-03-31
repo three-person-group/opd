@@ -10,7 +10,7 @@ include 'config.php';
 
 $medicine_name = isset($_GET['smedicine_name']) ? $_GET['smedicine_name'] : die();
 
-$sql11="SELECT opdno FROM existing_patients WHERE opdno LIKE '%{$medicine_name}%' LIMIT 5;";
+$sql11="SELECT opdno,pname FROM existing_patients WHERE opdno LIKE '%{$medicine_name}%' OR  pname LIKE '%{$medicine_name}%'  LIMIT 5;";
 
 
 $result=$conn->query($sql11);

@@ -18,9 +18,9 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous"></script> 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
 		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 		crossorigin="anonymous"></script>
@@ -59,7 +59,7 @@
 						<th></th>
 						<th scope="col">PERTICULAR</th>
 						<th scope="col">CHARGES</th>
-						<th scope="col">update</th>
+						<!-- <th scope="col">update</th> -->
 						<th scope="col" id="delete-id">delete</th>
 					</tr>
 				<tbody id="id-table" class="text-center"></tbody>
@@ -84,7 +84,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+					<h5 class="modal-title" id="exampleModalLongTitle">Add</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true" class="close2">&times;</span>
 					</button>
@@ -94,13 +94,13 @@
 
 					SRNO
 					<input type="text" class="form-control" id="SRNO" name="ssrno" aria-describedby="emailHelp"
-						placeholder="Enter name">
+						placeholder="SRNO">
 
 					PERTICULAR
-					<input type="phno" class="form-control" id="PERTICULAR" name="sperticular" placeholder="phno">
+					<input type="phno" class="form-control" id="PERTICULAR" name="sperticular" placeholder="PERTICULAR">
 
 					CHARGES
-					<input type="text" class="form-control" id="CHARGES" name="scharges" placeholder="email">
+					<input type="text" class="form-control" id="CHARGES" name="scharges" placeholder="CHARGES">
 
 
 					<input type="submit" class="btn btn-primary" id="btn-sub-modal">Submit</input>
@@ -143,7 +143,7 @@
 											"<td>" + value.SRNO + "<td>" +
 											"<td>" + value.PERTICULAR + "</td>" +
 											"<td>" + value.CHARGES + "</td>" +
-											"<td><button class='update'  id='" + value.SRNO + "'>update</button></td>" +
+											// "<td><button class='update'  id='" + value.SRNO + "'>update</button></td>" +
 									"<td><button class='delete'  id='" + value.SRNO + "'>delete</button></td>" +
 											"</tr>");
 
@@ -156,22 +156,22 @@
 
 
 			
-					function message(message, status) {
-				if (status == true) {
-					$("#success-message").html(message).slideDown();
-					$("#error-message").slideUp();
-					setTimeout(function () {
-						$("#success-message").slideUp();
-					}, 4000);
+			// 		function message(message, status) {
+			// 	if (status == true) {
+			// 		$("#success-message").html(message).slideDown();
+			// 		$("#error-message").slideUp();
+			// 		setTimeout(function () {
+			// 			$("#success-message").slideUp();
+			// 		}, 4000);
 
-				} else if (status == false) {
-					$("#error-message").html(message).slideDown();
-					$("#success-message").slideUp();
-					setTimeout(function () {
-						$("#error-message").slideUp();
-					}, 4000);
-				}
-			}
+			// 	} else if (status == false) {
+			// 		$("#error-message").html(message).slideDown();
+			// 		$("#success-message").slideUp();
+			// 		setTimeout(function () {
+			// 			$("#error-message").slideUp();
+			// 		}, 4000);
+			// 	}
+			// }
 
 			// insert data
 
@@ -256,106 +256,106 @@
 				}
 			});
 
-			function jsonData(targetForm) {
-				var arr = $(targetForm).serializeArray();
+			// function jsonData(targetForm) {
+			// 	var arr = $(targetForm).serializeArray();
 
-				var obj = {};
-				for (var a = 0; a < arr.length; a++) {
-					if (arr[a].value == "") {
-						return false;
-					}
-					obj[arr[a].name] = arr[a].value;Z
-				}
+			// 	var obj = {};
+			// 	for (var a = 0; a < arr.length; a++) {
+			// 		if (arr[a].value == "") {
+			// 			return false;
+			// 		}
+			// 		obj[arr[a].name] = arr[a].value;Z
+			// 	}
 
-				var json_string = JSON.stringify(obj);
+			// 	var json_string = JSON.stringify(obj);
 
-				return json_string;
+			// 	return json_string;
 
-			}
+			// }
 
-			//Fetch Single Record : Show in Modal Box
-			$(document).on("click", ".update", function () {
-				$("#modal").show();
-				// var studentId = $(this).data("eid");
-				// var obj = { sid: studentId };
-				// var myJSON = JSON.stringify(obj);
+			// //Fetch Single Record : Show in Modal Box
+			// $(document).on("click", ".update", function () {
+			// 	$("#modal").show();
+			// 	// var studentId = $(this).data("eid");
+			// 	// var obj = { sid: studentId };
+			// 	// var myJSON = JSON.stringify(obj);
 
-				var srno = $(this).attr("id");
+			// 	var srno = $(this).attr("id");
 
-				console.log(srno)
-				// console.log(date)
-				localStorage.clear()
+			// 	console.log(srno)
+			// 	// console.log(date)
+			// 	localStorage.clear()
 
-				localStorage.setItem("srno", srno)
-				console.log(localStorage)
+			// 	localStorage.setItem("srno", srno)
+			// 	console.log(localStorage)
 
-				var obj = { ssrno: srno };
-				var myJSON = JSON.stringify(obj)
+			// 	var obj = { ssrno: srno };
+			// 	var myJSON = JSON.stringify(obj)
 
-				$.ajax({
-					url: 'http://localhost:3000/html/homoeopathic/othercharge_details_api/api-fetch-single.php',
-					type: "POST",
-					data: myJSON,
-					success: function (data) {
+			// 	$.ajax({
+			// 		url: 'http://localhost:3000/html/homoeopathic/othercharge_details_api/api-fetch-single.php',
+			// 		type: "POST",
+			// 		data: myJSON,
+			// 		success: function (data) {
 
-						$("#SRNO").val(data[0].SRNO);
-						$("#PERTICULAR").val(data[0].PERTICULAR);
-						$("#CHARGES").val(data[0].CHARGES);
-					}
-				});
-			});
+			// 			$("#SRNO").val(data[0].SRNO);
+			// 			$("#PERTICULAR").val(data[0].PERTICULAR);
+			// 			$("#CHARGES").val(data[0].CHARGES);
+			// 		}
+			// 	});
+			// });
 
 
 
-			//Update Record
-			$(document).on("click", ".update", function (e) {
-				e.preventDefault();
+			// //Update Record
+			// $(document).on("click", ".update", function (e) {
+			// 	e.preventDefault();
 
-				// var jsonObj = jsonData("#modal-body");
+			// 	// var jsonObj = jsonData("#modal-body");
 
-				$("#btn-sub-modal").on("click", function (e) {
-					e.preventDefault();
+			// 	$("#btn-sub-modal").on("click", function (e) {
+			// 		e.preventDefault();
 
-					var arr = $("#modal-body").serializeArray();
+			// 		var arr = $("#modal-body").serializeArray();
 
-					var objArr = {};
+			// 		var objArr = {};
 
-					for (let i = 0; i < arr.length; i++) {
-						if (arr[i].value == "") {
-							alert("fil all filed");
-							return false;
-						}
-						objArr[arr[i].name] = arr[i].value;
-					}
+			// 		for (let i = 0; i < arr.length; i++) {
+			// 			if (arr[i].value == "") {
+			// 				alert("fil all filed");
+			// 				return false;
+			// 			}
+			// 			objArr[arr[i].name] = arr[i].value;
+			// 		}
 
-					var jsonInsertData = JSON.stringify(objArr);
-					console.log(jsonInsertData);
+			// 		var jsonInsertData = JSON.stringify(objArr);
+			// 		console.log(jsonInsertData);
 
 					
-						$.ajax({
-							url: 'http://localhost:3000/html/homoeopathic/othercharge_details_api/api-update.php',
-							type: "POST",
-							data: jsonInsertData,
-							success: function (data) {
-								message(data.message, data.status);
+			// 			$.ajax({
+			// 				url: 'http://localhost:3000/html/homoeopathic/othercharge_details_api/api-update.php',
+			// 				type: "POST",
+			// 				data: jsonInsertData,
+			// 				success: function (data) {
+			// 					message(data.message, data.status);
 
-								if (data.status != false) {
-									$("#modal").hide();
-									// $("#id-table").html("");
-									pageload();
-								}
+			// 					if (data.status != false) {
+			// 						$("#modal").hide();
+			// 						// $("#id-table").html("");
+			// 						pageload();
+			// 					}
 
 
-							}
-						});
+			// 				}
+			// 			});
 					
 
 
-				});
+			// 	});
 
 
 
-			});
+			// });
 
 					
 				});

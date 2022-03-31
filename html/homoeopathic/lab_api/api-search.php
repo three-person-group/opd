@@ -12,7 +12,7 @@ include 'config.php';
 
 $lab_name = isset($_GET['slab_name']) ? $_GET['slab_name'] : die();
 
-$sql11="SELECT TESTNAME FROM homoeopathic_lab WHERE TESTNAME LIKE '%{$lab_name}%' LIMIT 3;";
+$sql11="SELECT TESTNAME FROM homoeopathic_lab WHERE TESTNAME LIKE '%{$lab_name}%' LIMIT 5;";
 
 
 $result=$conn->query($sql11);

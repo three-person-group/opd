@@ -6,7 +6,7 @@
 
    // $name=$data['sname'];
 
-   $sql='SELECT * FROM homoeopathic_dispcharge';
+   $sql='SELECT * FROM homoeopathic_dispcharge ORDER BY `SRNO` ASC';
 
    $result=$conn->query($sql);
 

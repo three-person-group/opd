@@ -14,9 +14,15 @@ $data = json_decode(file_get_contents("php://input"), true);
 $stestname1 = $data['stestname1'];
 $stestname2 = $data['stestname2'];
 $stestname3 = $data['stestname3'];
+$stestname4 = $data['stestname4'];
+$stestname5 = $data['stestname5'];
+$stestname6 = $data['stestname6'];
 $sqty1=$data['sqty1'];
 $sqty2=$data['sqty2'];
 $sqty3=$data['sqty3'];
+$sqty4=$data['sqty4'];
+$sqty5=$data['sqty5'];
+$sqty6=$data['sqty6'];
 
 $sopdno=$data['sopdno'];
 $sdate=$data['sdate'];
@@ -83,6 +89,36 @@ if($stestname3 == ""){}else{
    
    }
 }
+
+if($stestname4 == ""){}else{
+
+    $sql4 = "UPDATE inventory_homoeopathic_lab 
+    SET `{$stestname4}`={$sqty4}
+    WHERE OPDNO={$sopdno} AND DATE='{$sdate}'";
+   
+   if ($conn->query($sql4)) {
+       echo json_encode(array("message" => "data inserted", "status" => true));
+   } else {
+       echo json_encode(array("message" => "data not inserted", "status" => false));
+   
+   }
+}
+
+if($stestname5 == ""){}else{
+
+    $sql5 = "UPDATE inventory_homoeopathic_lab 
+    SET `{$stestname5}`={$sqty5}
+    WHERE OPDNO={$sopdno} AND DATE='{$sdate}'";
+   
+   if ($conn->query($sql5)) {
+       echo json_encode(array("message" => "data inserted", "status" => true));
+   } else {
+       echo json_encode(array("message" => "data not inserted", "status" => false));
+   
+   }
+}
+
+
 }
 
 else
@@ -129,6 +165,7 @@ if($stestname2 == ""){}else{
    }
    
 }
+
 if($stestname3 == ""){}else{
 
     $sql3 = "UPDATE inventory_homoeopathic_lab 
@@ -136,6 +173,45 @@ if($stestname3 == ""){}else{
     WHERE OPDNO={$sopdno} AND DATE='{$sdate}'";
    
    if ($conn->query($sql3)) {
+       echo json_encode(array("message" => "data inserted", "status" => true));
+   } else {
+       echo json_encode(array("message" => "data not inserted", "status" => false));
+   }
+   
+}
+if($stestname4 == ""){}else{
+
+    $sql4 = "UPDATE inventory_homoeopathic_lab 
+    SET `{$stestname4}`={$sqty4}
+    WHERE OPDNO={$sopdno} AND DATE='{$sdate}'";
+   
+   if ($conn->query($sql4)) {
+       echo json_encode(array("message" => "data inserted", "status" => true));
+   } else {
+       echo json_encode(array("message" => "data not inserted", "status" => false));
+   
+   }
+}
+if($stestname5 == ""){}else{
+
+    $sql5 = "UPDATE inventory_homoeopathic_lab 
+    SET `{$stestname5}`={$sqty5}
+    WHERE OPDNO={$sopdno} AND DATE='{$sdate}'";
+   
+   if ($conn->query($sql5)) {
+       echo json_encode(array("message" => "data inserted", "status" => true));
+   } else {
+       echo json_encode(array("message" => "data not inserted", "status" => false));
+   
+   }
+}
+if($stestname6 == ""){}else{
+
+    $sql6 = "UPDATE inventory_homoeopathic_lab 
+    SET `{$stestname6}`={$sqty6}
+    WHERE OPDNO={$sopdno} AND DATE='{$sdate}'";
+   
+   if ($conn->query($sql6)) {
        echo json_encode(array("message" => "data inserted", "status" => true));
    } else {
        echo json_encode(array("message" => "data not inserted", "status" => false));
