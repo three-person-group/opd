@@ -6,7 +6,8 @@
 
    // $name=$data['sname'];
 
-   $sql='SELECT * FROM homoeopathic_othercharge ORDER BY `SRNO` ASC';
+   // SELECT * FROM `patient_register` ORDER BY `patient_register`.`date` ASC
+   $sql="SELECT * FROM `patient_register` WHERE date > now() - INTERVAL 2 day ORDER BY `patient_register`.`patientno` DESC;";
 
    $result=$conn->query($sql);
 
@@ -17,7 +18,7 @@
    }
    else
    {
-      echo json_encode(array("message"=>"data not found","status"=>false));
+      echo json_encode(array("message"=>"Data Not Found","status"=>false));
    }
 
 

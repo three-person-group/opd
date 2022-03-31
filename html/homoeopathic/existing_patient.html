@@ -5,7 +5,9 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="homeo.css">
+   <link rel="stylesheet" type="text/css" href="search.css">
+   <link rel="stylesheet" type="text/css"
+      href="https://stackpath.bootstrapcdn.com/font-awsome/4.7.0/css/font-awsome.min.css">
 
    <title>existing_patient</title>
    <style>
@@ -21,7 +23,7 @@
          font-size: 18px;
          padding: 3px 10px;
          border-radius: 4px;
-         border: 1px solid #e58940;
+         border: none;
          outline: 0;
          box-sizing: border-box;
       }
@@ -58,13 +60,17 @@
 </head>
 
 <body>
-   
-   <div id="autocomplete">
-      <input type="text" id="id-medicine-1" class="medicinename" name="smedicinename1" placeholder="seach here opdno"
-         autocomplete="false" required>
-      <div id="medicinelist1" class="list"></div>
+   <h1>
+      OPD NO:</h1>
+   <div class="box">
+      <i class="fa fa-search"></i>
+      <div id="autocomplete">
+         <input type="text" id="id-medicine-1" class="medicinename" name="smedicinename1" placeholder="seach here opdno"
+            autocomplete="false" required>
+         <div id="medicinelist1" class="list"></div>
+      </div>
    </div>
-   <button id="id-search">search</button>
+   <button class="btn btn2" id="id-search">search</button>
 
    <script>
 
@@ -97,7 +103,7 @@
                         //dropdown  type search
                         $.each(data, function (key, value) {
                            $("#medicinelist1").fadeIn("fast").append("<ul>" +
-                              "<li>" + value.opdno + "</li>" + "</ul>");
+                              "<li>" + value.opdno + " " + value.pname + "</li>" + "</ul>");
                         });
                      }
                   }
@@ -117,8 +123,8 @@
          //  tab to get li value in field
          $(document).on("blur", "#id-medicine-1", function () {
             let c = $("#medicinelist1 ul:first li:nth-child(1)").text();
-            var a=$("#id-medicine-1").val();
-            if(c!=""){
+            var a = $("#id-medicine-1").val();
+            if (c != "") {
 
                $("#id-medicine-1").val(c);
             }
@@ -172,11 +178,11 @@
                   }
                   else {
 
+
                      location.href = 'http://localhost:3000/html/homoeopathic/opd_reg_for_existing_patient.html';
                   }
                }
             });
-
 
 
 

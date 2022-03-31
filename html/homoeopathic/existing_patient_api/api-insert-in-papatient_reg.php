@@ -13,10 +13,11 @@ $city = $data['scity'];
 $mobileno = $data['scontact_no'];
 $email = $data['semail'];
 
-// //
+//
 $date = $data['sdate'];              
 $opdno = $data['sopdno'];
 $pname = $data['spname'];
+     
 
 $sql="SELECT max(patientno) AS pno FROM patient_register;";
 $result=$conn->query($sql);
@@ -33,7 +34,6 @@ $result=$conn->query($sql);
    {
       echo json_encode(array("message"=>"Data Not Found","status"=>false));
    }
-     
 
 $sql3 = "insert into patient_register (patientno,date,opdno,pname,`in_progress(pending/done)`)
     values($pno,'{$date}','{$opdno}','{$pname}','pending');";

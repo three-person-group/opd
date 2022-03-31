@@ -6,7 +6,7 @@
 
    // $name=$data['sname'];
 
-   $sql='SELECT * FROM homoeopathic_othercharge ORDER BY `SRNO` ASC';
+   $sql="SELECT * FROM `patient_register` WHERE `in_progress(pending/done)`='done' AND date > now() - INTERVAL 2 day;";
 
    $result=$conn->query($sql);
 
@@ -17,7 +17,7 @@
    }
    else
    {
-      echo json_encode(array("message"=>"data not found","status"=>false));
+      echo json_encode(array("message"=>"Data Not Found","status"=>false));
    }
 
 

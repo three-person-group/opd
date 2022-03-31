@@ -9,7 +9,7 @@
    <!-- Bootstrap CSS -->
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+   <!-- <link rel="stylesheet" href="opdreg.css"> -->
    <title>Hello, world!</title>
    <!-- <style>
         td,
@@ -29,6 +29,8 @@
             padding-left: 20px;
         }
     </style> -->
+   <link rel="stylesheet" href="opdreg.css">
+
 
 </head>
 
@@ -51,7 +53,7 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
    <h2>OPD REGISTRATION</h2>
-   <form method="post" id="form-body" action="">
+   <!-- <form method="post" id="form-body" action="">
 
       <table>
          <tr>
@@ -199,16 +201,89 @@
          </tr>
       </table> -->
 
+   <!-- <form method="post" id="form-body" action=""> -->
+   <section class="signup">
+
+      <div class="container">
+         <form method="" id="form-body" class="signup-form">
+            <div class="form-row">
+               <div class="form-group">
+                  <label for="Date">Date</label>
+                  <input type="text" class="form-input" name="sdate" id="id-date" />
+               </div>
+               <div class="form-group">
+                  <label for="no">OPD NO</label>
+                  <input type="number" id="id-opdid" class="form-input" name="sopdno" />
+               </div>
+            </div>
+            <div class="form-row">
+               <div class="form-group form-icon">
+                  <label for="name">Name</label>
+                  <input type="text" class="form-input" name="spname" id="first_name" placeholder="Enter Your Name" />
+               </div>
+               <div class="form-group">
+                  <label for="no">Age</label>
+                  <input type="number" class="form-input" name="sage" placeholder="Enter Your Age" />
+               </div>
+            </div>
+
+            <div class="form-row">
+               <div class="form-radio">
+                  <label for="gender">Gender</label>
+                  <div class="form-flex">
+                     <input type="radio" name="sgender" value="male" id="male" checked="checked"
+                        onclick="myFunction(this.value)" />
+                     <label for="male">Male</label>
+
+                     <input type="radio" name="sgender" value="female" id="female" onclick="myFunction(this.value)" />
+                     <label for="female">Female</label>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label for="City">City</label>
+                  <input type="text" class="form-input" name="scity" placeholder="" />
+               </div>
+            </div>
+            <div class="form-group">
+               <label for="Address">Address</label>
+               <input type="textarea" class="form-input" name="saddress" id="phone_number" />
+            </div>
+            <div class="form-row">
+               <div class="form-group">
+                  <label for="no">Contact NO</label>
+                  <input type="number" class="form-input" name="scontact_no" id="phone_number"
+                     placeholder="phone number" />
+               </div>
+               <div class="form-group">
+                  <label for="Email">Email</label>
+                  <input type="text" class="form-input" name="semail" id="email" placeholder="Enter Email Addres" />
+               </div>
+            </div>
+            <div class="form-group">
+               <input type="submit" name="submit" id="id-btnsub" class="form-submit" value="Submit" />
+            </div>
+         </form>
+      </div>
+   </section>
+
+   <!-- </form> -->
 
 
 
 
 
-      <button type="submit" id="id-btnsub" name="submit">Submit</button>
+
+   <!-- <button type="submit" id="id-btnsub" name="submit">Submit</button> -->
 
 
-   </form>
+
+
    <script>
+
+      function myFunction(browser) {
+         var gender = browser;
+         console.log(gender);
+      }
 
       $(document).ready(function () {
 
@@ -223,7 +298,7 @@
          $("#id-date").val(today)
 
 
-     
+
          // //fetch reg chg data
 
          // $("#id-opdid").html("");
@@ -251,8 +326,8 @@
 
 
 
-     
-   //fetch opdno data
+
+         //fetch opdno data
 
          $("#id-opdid").html("");
 
@@ -264,15 +339,15 @@
                var db = (JSON.parse(data));
                console.log(db);
 
-console.log(data.status)
+               console.log(data.status)
                if (db.status == "false") {
                   // $("#id-registrationCharges").val(20);
                   $("#id-opdid").val(1);
                }
                else {
-                  var opdno=db[0].opdno;
-                  console.log(typeof(opdno))
-                  opdno=parseInt(opdno) + 1;
+                  var opdno = db[0].opdno;
+                  console.log(typeof (opdno))
+                  opdno = parseInt(opdno) + 1;
                   $("#id-opdid").val(opdno);
 
                }
@@ -283,14 +358,42 @@ console.log(data.status)
 
 
          // on click on sub button
-         $("#id-btnsub").on("click", btnclick())
+         // $("#id-btnsub").on("click", btnclick())
 
          // insert data
-         function btnclick() {
 
-            $(document).on("click","#id-btnsub", function (e) {
-               e.preventDefault();
+         $(document).on("click", "#id-btnsub", function (e) {
+            e.preventDefault();
 
+            var opdno1 = $("#id-opdid").val();
+            var ObjOpdno = { sopdno: opdno1 };
+            var ObjOpdnoJson = JSON.stringify(ObjOpdno);
+
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-check-opdno-existing-or-not.php',
+               type: "post",
+               data: ObjOpdnoJson,
+               success: function (data) {
+                  var db = JSON.parse(data);
+                  if (db.status == 'false') {
+
+                     console.log("not existes");
+                     // alert("not existes");
+
+                     //
+                     btnclick();
+
+                  }
+                  else {
+
+                     alert("Already opdno existst")
+                     // pageload()
+                     console.log("Already opdno existst");
+                  }
+               }
+            })
+
+            function btnclick() {
 
                var arr = $("#form-body").serializeArray();
 
@@ -324,90 +427,94 @@ console.log(data.status)
                      }
                   }
                })
-//for patient_register
-            $.ajax({
-               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-papatient_reg.php',
-               type: "post",
-               data: jsonInsertData,
-               success: function (data) {
-                  if (data.status == true) {
-                     alert(data.message)
-                     // pageload()
-                     console.log("working");
+
+               //for patient_register
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-papatient_reg.php',
+                  type: "post",
+                  data: jsonInsertData,
+                  success: function (data) {
+                     if (data.status == true) {
+                        alert(data.message)
+                        // pageload()
+                        console.log("working");
+                     }
+                     else {
+                        console.log("notworking");
+                        alert(data.message);
+
+                     }
                   }
-                  else {
-                     console.log("notworking");
-                     alert(data.message);
+               })
 
+               //for homoeopathic_bill
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-bill.php',
+                  type: "post",
+                  data: jsonInsertData,
+                  success: function (data) {
+                     if (data.status == true) {
+                        alert(data.message)
+                        // pageload()
+                        console.log("working");
+                     }
+                     else {
+                        console.log("notworking");
+                        alert(data.message);
+
+                     }
                   }
-               }
-            })
+               })
 
-//for homoeopathic_bill
-            $.ajax({
-               url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-bill.php',
-               type: "post",
-               data: jsonInsertData,
-               success: function (data) {
-                  if (data.status == true) {
-                     alert(data.message)
-                     // pageload()
-                     console.log("working");
-                  }
-                  else {
-                     console.log("notworking");
-                     alert(data.message);
+               // //for inventory_homoeopathic
+               //             $.ajax({
+               //                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-medicine.php',
+               //                type: "post",
+               //                data: jsonInsertData,
+               //                success: function (data) {
+               //                   if (data.status == true) {
+               //                      alert(data.message)
+               //                      // pageload()
+               //                      console.log("working");
+               //                   }
+               //                   else {
+               //                      console.log("notworking");
+               //                      alert(data.message);
 
-                  }
-               }
-            })
+               //                   }
+               //                }
+               //             })
 
-// //for inventory_homoeopathic
-//             $.ajax({
-//                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-medicine.php',
-//                type: "post",
-//                data: jsonInsertData,
-//                success: function (data) {
-//                   if (data.status == true) {
-//                      alert(data.message)
-//                      // pageload()
-//                      console.log("working");
-//                   }
-//                   else {
-//                      console.log("notworking");
-//                      alert(data.message);
+               // //for inventory_homoeopathic_lab
+               //             $.ajax({
+               //                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-lab.php',
+               //                type: "post",
+               //                data: jsonInsertData,
+               //                success: function (data) {
+               //                   if (data.status == true) {
+               //                      alert(data.message)
+               //                      // pageload()
+               //                      console.log("working");
+               //                   }
+               //                   else {
+               //                      console.log("notworking");
+               //                      alert(data.message);
 
-//                   }
-//                }
-//             })
-
-// //for inventory_homoeopathic_lab
-//             $.ajax({
-//                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-lab.php',
-//                type: "post",
-//                data: jsonInsertData,
-//                success: function (data) {
-//                   if (data.status == true) {
-//                      alert(data.message)
-//                      // pageload()
-//                      console.log("working");
-//                   }
-//                   else {
-//                      console.log("notworking");
-//                      alert(data.message);
-
-//                   }
-//                }
-//             })
+               //                   }
+               //                }
+               //             })
 
 
 
-            location.href='http://localhost:3000/html/homoeopathic/patient_process.html'
-//click event
-         })
+               location.href = 'http://localhost:3000/html/homoeopathic/patient_process.html'
+               //click event
+            }
 
-            //function end
-         }
+
+
+         });
+         //function end
+
 
 
 

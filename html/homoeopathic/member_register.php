@@ -97,7 +97,7 @@ if (isset($_POST['submit']))
 
 	<link rel="stylesheet" href="">
 
-	<link rel="stylesheet" type="text/css" href="style_amj	.css">
+	<link rel="stylesheet" type="text/css" href="gk_style2.css">
 
 	<title>MEMBER REGISTERATION:</title>
 </head>

@@ -46,9 +46,9 @@ if (isset($_POST['submit'])) {
 <html>
 <head>
 
-	<link rel="stylesheet" href="">
+<link rel="stylesheet" href="gk_style2.css">
 
-	<link rel="stylesheet" type="text/css" href="style_amj.css">
+<!-- <link rel="stylesheet" type="text/css" href="style1.css"> -->
 
 	<title>MEMBER LOGIN:</title>
 </head>
