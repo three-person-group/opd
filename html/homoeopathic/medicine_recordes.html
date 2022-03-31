@@ -29,17 +29,17 @@
 
 <script>
 
+   function tableToExcel() {
+      $("#id-fullTable").table2excel({
+         filename: "medicine_recordes.xls",
+         name: "worksheet"
+      })
+   }
 
    $(document).ready(function () {
       pageload();
       pageloadCountSum();
 
-      function tableToExcel() {
-         $("#id-fullTable").table2excel({
-            filename: "excel.xls",
-            name: "worksheet"
-         })
-      }
 
    });
    function preferedBrowser() {
@@ -90,7 +90,7 @@
                      "<td>" + value["MOTHER TINCHER 1 WEEK"] + "</td>" +
                      "<td>" + value["MOTHER TINCHER 2 WEEK"] + "</td>" +
                      "<td>" + value["total"] + "</td>" +
-                     
+
                      "</tr>");
 
                });
@@ -130,7 +130,7 @@
                      "<td>" + value.e + "</td>" +
                      "<td>" + value.f + "</td>" +
                      "<td>" + value.total + "</td>" +
-                    
+
                      "</tr>");
 
                });
@@ -170,7 +170,7 @@
                      "<td>" + value["MOTHER TINCHER 1 WEEK"] + "</td>" +
                      "<td>" + value["MOTHER TINCHER 2 WEEK"] + "</td>" +
                      "<td>" + value["total"] + "</td>" +
-                     
+
                      "</tr>");
 
                });
@@ -209,7 +209,7 @@
                      "<td>" + value.e + "</td>" +
                      "<td>" + value.f + "</td>" +
                      "<td>" + value.total + "</td>" +
-                    
+
                      "</tr>");
 
                });
@@ -375,13 +375,6 @@
    }
 
 
-   function tableToExcel() {
-      $("#id-table").table2excel({
-         filename: "excel.xls",
-         name: "worksheet"
-      })
-   }
-
 
 </script>
 
@@ -434,10 +427,10 @@
    Sum of Total:
    <span id="id-noOftotal" value="Count Rows"> </span> -->
 
-<center>
+   <center>
 
-   <button onclick="tableToExcel()">Convert To Excel</button>
-</center>
+      <button onclick="tableToExcel()">Convert To Excel</button>
+   </center>
 
 </body>
 
