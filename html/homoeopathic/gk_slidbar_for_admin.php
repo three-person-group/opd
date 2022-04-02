@@ -39,6 +39,13 @@
                         <span class="title">Admin </span>
                 </li>
                 <li>
+                    <a href="#" id="member_reg">
+                        <span class="icon">
+                            <ion-icon name="people"></ion-icon>
+                        </span>
+                        <span class="title">Member Register</span>
+                </li>
+                <li>
                     <a href="#" id="Report">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
@@ -117,7 +124,7 @@
                         </span>
                         <span class="title">Sign Out </span>
                 </li>
-                <label><br><br><br><br><br><br><br><br><br><br><br><br><br><br></label>
+                <label><br><br><br><br><br><br></label>
                 
 
             </ul>
@@ -136,7 +143,7 @@
                  </div>
 
                 <div id="content" style="    background-color:lightskyblue; position:absolute; height: 100%; width:100%;">Hello
-                    World!!!!</div>
+                    ADMIN!!!</div>
             </div>
 
 
@@ -169,6 +176,11 @@
             list.forEach((item) =>
                 item.addEventListener('mouseover', activeLink));
 
+            document.getElementById("member_reg").onclick = function () { myFunction30() };
+            
+            function myFunction30() {
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/member_register.php"></object>';
+            }
 
 
             document.getElementById("Report").onclick = function () { myFunction1() };
@@ -187,7 +199,7 @@
             document.getElementById("medi_database").onclick = function () { myFunction7() };
             
             function myFunction7() {
-                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/homoeopathic_dispcharge_details.html    "></object>';
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/homoeopathic_dispcharge_details.html"></object>';
             }
 
             document.getElementById("Lab_Charges").onclick = function () { myFunction8() };
