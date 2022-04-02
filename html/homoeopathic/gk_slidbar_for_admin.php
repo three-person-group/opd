@@ -14,10 +14,11 @@
     <title>Slidebar </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
-        .main{
-        margin-block-start: -54px;
+        .main {
+            margin-block-start: -54px;
         }
-        .body{
+
+        .body {
             padding-inline-end: 0px;
             margin-block-start: 0px;
             padding-right: 0px;
@@ -32,7 +33,7 @@
 
             <ul>
                 <li>
-                    <a href="#" >
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="logo-apple"></ion-icon>
                         </span>
@@ -53,6 +54,14 @@
                         <span class="title">Reports</span>
                 </li>
                 <li>
+                    <a href="#" id="patientMangment">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Patient Mangment</span>
+                </li>
+
+                <li>
                     <a href="#" id="regch_database">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
@@ -66,7 +75,7 @@
                         </span>
                         <span class="title">Despencery Charges</span>
                 </li>
-              
+
                 <li>
                     <a href="#" id="other_Charges">
                         <span class="icon">
@@ -81,7 +90,7 @@
                         </span>
                         <span class="title">Lab Charges</span>
                 </li>
-              
+
                 <li>
                     <a href="#" id="Inventory_reg_ch">
                         <span class="icon">
@@ -101,7 +110,7 @@
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Stock Of  Lab</span>
+                        <span class="title">Stock Of Lab</span>
                 </li>
                 <li>
                     <a href="#" id="Inventory_other_ch">
@@ -124,36 +133,44 @@
                         </span>
                         <span class="title">Sign Out </span>
                 </li>
-                <label><br><br><br><br><br><br></label>
-                
+
+                <label><br><br><br><br><br><br><br><br><br><br><br><br><br><br></label>
+
+
 
             </ul>
-            
+
         </div>
-            <div class="main">
-                <div class="topbar">
-                    <div class="toggle">
-                        <ion-icon name="menu-outline"></ion-icon>
-                    </div> 
-                    <!-- <div class="search"><label><input type="text" placeholder="Search Here...">
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <!-- <div class="search"><label><input type="text" placeholder="Search Here...">
                             <ion-icon name="search-outline">
                         </label>
                     </div><br /> -->
 
-                 </div>
 
-                <div id="content" style="    background-color:lightskyblue; position:absolute; height: 100%; width:100%;">Hello
-                    ADMIN!!!</div>
             </div>
 
+            <div id="content" style="    background-color:lightskyblue; position:absolute; height: 100%; width:100%;">
+                Hello
+                World!!!!</div>
+        </div>
 
-        
+
+
     </div>
 
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <!-- https://fontawesome.com -->
-        <script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- https://fontawesome.com -->
+    <script>
+
+        $(document).ready(function () {
+
+            myFunction1();
 
             let toggle = document.querySelector('.toggle');
             let navigation = document.querySelector('.navigation');
@@ -190,32 +207,38 @@
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/recordes.html"></object>';
             }
 
+            document.getElementById("patientMangment").onclick = function () { myFunction21() };
+
+            function myFunction21() {
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/user_managment.html"></object>';
+            }
+
             document.getElementById("regch_database").onclick = function () { myFunction11() };
-            
+
             function myFunction11() {
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/reg_ch_details.html"></object>';
             }
 
             document.getElementById("medi_database").onclick = function () { myFunction7() };
-            
+
             function myFunction7() {
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/homoeopathic_dispcharge_details.html"></object>';
             }
 
             document.getElementById("Lab_Charges").onclick = function () { myFunction8() };
-            
+
             function myFunction8() {
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/homoeopathic_lab_details.html"></object>';
             }
 
             document.getElementById("other_Charges").onclick = function () { myFunction9() };
-            
+
             function myFunction9() {
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/homoeopathic_othercharge_details.html"></object>';
             }
 
             document.getElementById("Inventory_reg_ch").onclick = function () { myFunction2() };
-            
+
             function myFunction2() {
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/reg_ch_recordes.html"></object>';
             }
@@ -236,13 +259,15 @@
             function myFunction6() {
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/recordes.html"></object>';
             }
-            
+
             document.getElementById("log-out-outline").onclick = function () { myFunction20() };
             function myFunction20() {
-            location.href ="http://localhost:3000/html/homoeopathic/member_login.php"
+                location.href = "http://localhost:3000/html/homoeopathic/member_login.php"
             }
 
-        </script>
+
+        });
+    </script>
 
 
 </body>

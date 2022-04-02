@@ -59,7 +59,7 @@
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class="title">Old Patient </span>
+                        <span class="title">Follow Up</span>
                 </li>
                 <li>
                     <a href="#" id="Search_Patient">
@@ -69,19 +69,19 @@
                         <span class="title">Search Patient</span>
                 </li>
                 <li>
-                    <a href="#" id="Active_Patient1">
+                    <a href="#" id="revoke">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
-                        <span class="title">Active Patient</span>
+                        <span class="title">Revoke</span>
                 </li>
-                <!-- <li>
-                    <a href="#" id="Report">
+                 <li>
+                    <a href="#" id="delete">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
-                        <span class="title">Report</span>
-                </li> -->
+                        <span class="title">Remove</span>
+                </li> 
                 <li>
                     <a href="#" id="logOut">
                         <span class="icon">
@@ -168,15 +168,15 @@
             // function myFunction5() {
             //     document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="bill.html"></object>';
             // }
-            // document.getElementById("Report").onclick = function () { myFunction6() };
-            // function myFunction6() {
-            //     document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/recordes.html"></object>';
-            // }
+            document.getElementById("delete").onclick = function () { myFunction21() };
+            function myFunction21() {
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/delete_patient.html"></object>';
+            }
 
             // Active_Patient
-             document.getElementById("Active_Patient1").onclick = function () { myFunction6() };
+             document.getElementById("revoke").onclick = function () { myFunction6() };
             function myFunction6() {
-                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/patient_process.html"></object>';
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/revoke.html"></object>';
             }
 
             document.getElementById("logOut").onclick = function () { myFunction20() };

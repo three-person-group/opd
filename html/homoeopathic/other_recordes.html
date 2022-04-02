@@ -30,16 +30,16 @@
 <script>
 
 
+   function tableToExcel() {
+      $("#id-fullTable").table2excel({
+         filename: "Other_recordes.xls",
+         name: "worksheet"
+      })
+   }
+
    $(document).ready(function () {
       pageload();
       pageloadCountSum();
-
-      function tableToExcel() {
-         $("#id-fullTable").table2excel({
-            filename: "excel.xls",
-            name: "worksheet"
-         })
-      }
 
    });
    function preferedBrowser() {
@@ -378,14 +378,6 @@
    }
 
 
-   function tableToExcel() {
-      $("#id-table").table2excel({
-         filename: "excel.xls",
-         name: "worksheet"
-      })
-   }
-
-
 </script>
 
 <body>
@@ -437,10 +429,10 @@
    Sum of Total:
    <span id="id-noOftotal" value="Count Rows"> </span> -->
 
-<center>
+   <center>
 
-   <button onclick="tableToExcel()">Convert To Excel</button>
-</center>
+      <button onclick="tableToExcel()">Convert To Excel</button>
+   </center>
 
 </body>
 
