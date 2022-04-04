@@ -3,6 +3,6 @@
 session_start();
 session_destroy();
 
-header("Location: member_login.php");
+header("Location: temp_login.php");
 
 ?>
