@@ -39,8 +39,8 @@ $sql3 = "insert into patient_register (patientno,date,opdno,pname,`in_progress(p
     values($pno,'{$date}','{$opdno}','{$pname}','pending');";
 
 if ($conn->query($sql3)) {
-    echo json_encode(array("message" => "data inserted", "status" => true));
+    echo json_encode(array("message" => "data inserted in Patient register", "status" => true));
 } else {
-    echo json_encode(array("message" => "data not inserted", "status" => false));
+    echo json_encode(array("message" => "data not inserted in Patient register", "status" => false));
 
 }

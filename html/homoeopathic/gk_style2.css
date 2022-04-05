@@ -9,20 +9,26 @@
 
 body {
     width: 100%;
-    min-height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(bg.jfif);
+    min-height: 70vh;
+    background:#5821bf;
     background-position: center;
     background-size: cover;
     display: flex;
+    font-weight: 400;
     justify-content: center;
     align-items: center;
 }
 
 .container {
-    width: 400px;
+    width: 700px;
     min-height: 400px;
-    background: white;
+    background: #2d24af;
+    background: url('img/team_clip3.jpg');
+    background-size: cover;
+    background-position: center;
     border-radius: 5px;
+    border: 3px solid black;
+    box-shadow: 0 4rem 4rem -3rem rgba(0, 0, 0, 0.5);
     padding: 40px 30px;
 	margin: 100px 100px 100px 100px;
 }
@@ -30,15 +36,18 @@ body {
 .container .login-text {
     color: black;
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 10rem;
     text-align: center;
     margin-bottom: 20px;
     display: block;
     text-transform: capitalize;
+    margin-bottom: 100px;
 }
 
+
 .container .login-email .input-group {
-    width: 100%;
+    width: 70%;
+    margin-left: 70px;
     height: 50px;
     margin-bottom: 25px;
 }
@@ -64,13 +73,18 @@ input[type="radio" ] {
 .container .login-email .input-group input {
     width: 100%;
     height: 100%;
-    border: 2px solid #e7e7e7;
+    color:black;
+    border: 3px solid black;
     padding: 15px 20px;
     font-size: 1rem;
     border-radius: 30px;
-    background: transparent;
+    background: white;
     outline: none;
     transition: .3s;
+
+}
+.container .login-email .input-group ::placeholder{
+    color:black;
 }
 
 .container .login-email .input-group input:focus, .container .login-email .input-group input:valid {
@@ -83,7 +97,8 @@ input[type="radio" ] {
     padding: 15px 20px;
     text-align: center;
     border: none;
-    background: #a29bfe;
+    background: black;
+    border: 3px solid black;
     outline: none;
     border-radius: 30px;
     font-size: 1.2rem;
@@ -94,7 +109,7 @@ input[type="radio" ] {
 
 .container .login-email .input-group .btn:hover {
     transform: translateY(-5px);
-    background: #6c5ce7;
+    background: #0000ff;
 }
 
 .login-register-text {

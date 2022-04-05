@@ -6,9 +6,6 @@ error_reporting(0);
 
 session_start();
 
-if (isset($_SESSION['username'])) {
-    header("Location: member_login.php");
-}
 
 if (isset($_POST['submit'])) 
 {
@@ -99,12 +96,12 @@ if (isset($_POST['submit']))
 
 	<link rel="stylesheet" type="text/css" href="gk_style2.css">
 
-	<title>MEMBER REGISTERATION:</title>
+	<title>USER REGISTERATION:</title>
 </head>
 <body>
 	<div class="container">
 		<form action="" method="POST" class="login-email">
-            <p class="login-text" style="font-size: 2rem; font-weight: 800;">MEMBER REGISTERATION:</p>
+            <p class="login-text" style="font-size: 2rem; font-weight: 800; margin-top:50px; font-size:2.7rem">USER REGISTERATION:</p>
 			<div class="input-group">
 				<input type="text" placeholder="Name" name="name" value="<?php echo $name; ?>" required>
 			</div>
@@ -122,21 +119,21 @@ if (isset($_POST['submit']))
             		</div>
             <div class="input-group">
 				<input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
-				<label> Please Select Role : </label>
+				<label style="color:black; margin-top:30px; font-weignt:1.5rem;  font-size:20px;" ><b> Please Select Role :</b> </label>
 			</div>
-			<div class="radio-group" style="justify-content: space-between;">
+			<div class="radio-group" style="justify-content: space-between; color:black; margin-top:60px;margin-left:60px; width:400px; font-size:20px;">
 				
 				<input type="radio" id="opd" name="role" value="opd" style="height:25px; width:20px;">
-        			<label for="opd">OPD</label>
+        			<label for="opd"><b>OPD</b></label>
 				<input type="radio" id="medicine" name="role" value="medicine" style="height:25px; width:20px;">
-        			<label for="medicine">MEDICINE</label>
+        			<label for="medicine"><b>MEDICINE</b></label>
         		<input type="radio" id="lab" name="role" value="lab" style="height:25px; width:20px;">
-        			<label for="lab">LAB</label><br><br>
+        			<label for="lab"><b>LAB</b></label><br><br>
 			</div>
 			<div class="input-group">
 				<button name="submit" class="btn">Register</button>
 			</div>
-			<p class="login-register-text">Have an account? <a href="member_login.php">Login As Member</a>.</p>
+			
 		</form>
 	</div>
 </body>

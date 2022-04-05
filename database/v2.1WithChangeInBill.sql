@@ -620,7 +620,8 @@ INSERT INTO `member_register` (`id`, `name`, `email`, `mobileno`, `username`, `p
 (17, 'ram', 'ram13@gmail.com', '234567', '_ram', '123', ''),
 (18, 'abhi', 'abhi@gmail.com', '645313', 'opd_abhi', '111', 'opd'),
 (19, 'gaurav', 'gg@gmail.com', '2345678', 'medicine_gaurav', '111', 'medicine'),
-(20, 'gaurav', 'ggg@gmail.com', '23456787654', 'lab_gaurav', '111', 'lab');
+(20, 'gaurav', 'ggg@gmail.com', '23456787654', 'lab_gaurav', '111', 'lab')
+(NULL, '', '', '', 'admin', 'admin123', 'admin');
 
 -- --------------------------------------------------------
 
