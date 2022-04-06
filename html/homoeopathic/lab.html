@@ -28,6 +28,7 @@
          /* border: 1px solid #e58940; */
          outline: 0;
          box-sizing: border-box;
+         margin-left: -10px;
       }
 
       .list {
@@ -65,13 +66,13 @@
 
    <form class="form" method="post" action="">
 
-      Date:
-      <span for="" id="date"></span>
-      Opdno:
-      <span for="" id="opdno"></span>
-      Name:
-      <span for="" id="name">name</span>
-      <br><br>
+      Date: 
+      <span for="" id="date"></span><br>
+      Opdno: 
+      <span for="" id="opdno"></span><br>
+      Name: 
+      <span for="" id="name">name</span><br>
+      <br>
 
       <div>
          <!-- <label>
@@ -87,7 +88,7 @@
          <input type="number" placeholder="Qty" id="id-qty-1" class="qty" name="sqty1">
 
 
-         <input id="id-charges-1" class="ipt-charges" name="scharges1"></input>
+         <input id="id-charges-1" class="ipt-charges" name="scharges1" placeholder="Price"></input>
          <br>
          <br>
 
@@ -108,7 +109,7 @@
          <input type="number" placeholder="Qty" id="id-qty-2" class="qty" name="sqty2">
 
 
-         <input id="id-charges-2" class="ipt-charges" name="scharges2"></input>
+         <input id="id-charges-2" class="ipt-charges" name="scharges2" placeholder="Price"></input>
          <br>
 
 
@@ -128,11 +129,11 @@
          <input type="number" placeholder="Qty" id="id-qty-3" class="qty" name="sqty3">
 
 
-         <input id="id-charges-3" class="ipt-charges" name="scharges3"></input>
+         <input id="id-charges-3" class="ipt-charges" name="scharges3" placeholder="Price"></input>
          <br>
 
       </div>
-
+      <br>
 
       <div>
          <testel>
@@ -205,7 +206,7 @@
       <input id="total" value="0"></input>
       <br><br>
 
-      <button type="submit" id="id-btnsub" name="Submit">Submit</button>
+      <button class="btn" role="button" type="submit" id="id-btnsub" name="Submit">Submit</button>
 
    </form>
 
