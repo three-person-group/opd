@@ -1,0 +1,97 @@
+body {
+    height: 96.3vh;
+    padding: 0px;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background:  #e3dce1 50%}
+
+
+
+table {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    border-collapse: collapse;
+    width: 1000px;
+    height: 150px;
+    border: 1px solid #bdc3c7;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+tr {
+    transition: all .2s ease-in;
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+th,
+td {
+    padding: 15px;
+    text-align: center;
+}
+
+#header {
+    background-color: #0ee0b5b5;
+    color: #fff;
+}
+
+#browsers
+
+h2{
+    font-weight: 600;
+    text-align: center;
+    background-color: #404948;
+    color: #fff;
+    padding: 10px 0px;
+}
+
+h1{
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold
+}
+
+tr:hover {
+    background-color: #c9e0ef;
+    transform: scale(1.02);
+    box-shadow: 13px 2px 25px rgb(0 0 0 / 20%), -1px -1px 8px rgb(0 0 0 / 20%);
+}
+
+@media only screen and (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+}
+
+.btn{
+    margin-top: 22rem;
+    margin-left: 26rem;
+    background-color: #c2fbd7;
+    border-radius: 100px;
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgb(44, 187, 99, .15)
+    0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgb(44, 187, 99, .15) 0 8px 16px, rgb(44, 187, 99, .15) 0 16px 32px;
+    color: green;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Celebri Sans-Regular, -apple-system, system-ui, Roboto, sans-serif;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 250ms;
+    border: 0;
+    font-size: 17px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.btn:hover{
+    box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset, rgb(44, 187, 99, .15)
+    0 1px 2px, rgba(44, 187, 99, .15) 0 2px 4px, rgba(44, 187, 99, .15) 0 4px 8px, rgb(44, 187, 99, .15) 0 8px 16px, rgb(44, 187, 99, .15) 0 16px 32px;
+    transform: scale(1.05) rotate(-2deg);
+}
