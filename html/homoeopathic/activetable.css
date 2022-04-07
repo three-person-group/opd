@@ -1,0 +1,242 @@
+*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    -webkit-font-smoothing: border-box;
+    background: #876dee;
+}
+
+h2{
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    padding: 30px 0;
+}
+
+tr{
+    transition: all 0.30s ease-in;
+    cursor: pointer;
+}
+.table-wrapper{
+    margin: 10px 70px 70px;
+    box-shadow: 0 30px 28px rgb(0 0 0 / 22%);
+}
+
+.patient-table{
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: normal;
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+    line-height: 22px;
+}
+
+.patient-table td, .patient-table th{
+    text-align: center;
+    padding: 8px;
+}
+
+.patient-table td{
+    border-right: 1px solid #f8f8f8;
+    font-size: 12px;
+}
+
+.patient-table thead td{
+    color: white;
+    background: #375777;
+}
+
+.patient-table thead td:nth-child(odd){
+    color: #ffffff;
+    background: #375777;
+}
+
+.patient-table tr:nth-child(even){
+    background: #f8f8f8;
+}
+
+tr:hover {
+    background-color: #e7f0f6;
+    transform: scale(1.02);
+    box-shadow: 13px 2px 25px rgb(0 0 0 / 20%), -1px -1px 8px rgb(0 0 0 / 20%);
+}
+
+@media only screen and (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+}
+
+.btn-consulting {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: rgb(17, 104, 243);
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 0.6em;
+    color: rgb(254, 254, 254);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+ 
+  }
+
+  .btn-consulting:hover, .btn-consulting:focus{
+      color: rgb(17, 104, 243);
+      outline: 0;
+  }
+
+  .btn-consulting {
+  transition: box-shadow 500ms ease-out, color 500ms ease-in-out;
+ 
+}
+.btn-consulting:hover {
+    box-shadow: 0 0 40px 40px rgb(252, 252, 252) inset;
+  }
+
+  .btn-medicine {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: rgb(12, 228, 163);
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 0.6em;
+    color: rgb(254, 254, 254);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+ 
+  }
+
+  .btn-medicine:hover, .btn-medicine:focus{
+      color: rgb(12, 228, 163);
+      outline: 0;
+  }
+
+  .btn-medicine {
+  transition: box-shadow 500ms ease-out, color 500ms ease-in-out;
+ 
+}
+.btn-medicine:hover {
+    box-shadow: 0 0 40px 40px rgb(252, 252, 252) inset;
+  }
+
+  .btn-lab {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: rgb(17, 104, 243);
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 0.6em;
+    color: rgb(254, 254, 254);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+ 
+  }
+
+  .btn-lab:hover, .btn-lab:focus{
+      color: rgb(17, 104, 243);
+      outline: 0;
+  }
+
+  .btn-lab {
+  transition: box-shadow 500ms ease-out, color 500ms ease-in-out;
+ 
+}
+.btn-lab:hover {
+    box-shadow: 0 0 40px 40px rgb(252, 252, 252) inset;
+  }
+
+  .btn-other {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: rgb(12, 228, 163);
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 0.6em;
+    color: rgb(254, 254, 254);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+ 
+  }
+
+  .btn-other:hover, .btn-other:focus{
+      color: rgb(12, 228, 163);
+      outline: 0;
+      font: bold;
+  }
+
+  .btn-other {
+  transition: box-shadow 500ms ease-out, color 500ms ease-in-out;
+ 
+}
+.btn-other:hover {
+    box-shadow: 0 0 40px 40px rgb(252, 252, 252) inset;
+  }
+
+  .btn-bill {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: rgb(17, 104, 243);
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 0.6em;
+    color: rgb(254, 254, 254);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+ 
+  }
+
+  .btn-bill:hover, .btn-bill:focus{
+      color: rgb(17, 104, 243);
+      outline: 0;
+  }
+
+  .btn-bill {
+  transition: box-shadow 500ms ease-out, color 500ms ease-in-out;
+ 
+}
+.btn-bill:hover {
+    box-shadow: 0 0 40px 40px rgb(252, 252, 252) inset;
+  }
+
+
+  .btn-x {
+    box-sizing: border-box;
+    appearance: none;
+    background-color: rgb(232, 88, 59);
+    border: 0px solid rgb(0, 0, 0);
+    border-radius: 0.6em;
+    color: rgb(254, 254, 254);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+ 
+  }
+
+  .btn-x:hover, .btn-x:focus{
+      color: rgb(232, 88, 59);
+      outline: 0;
+  }
+
+  .btn-x {
+  transition: box-shadow 500ms ease-out, color 500ms ease-in-out;
+ 
+}
+.btn-x:hover {
+    box-shadow: 0 0 40px 40px rgb(252, 252, 252) inset;
+  }
