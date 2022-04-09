@@ -9,7 +9,7 @@ body {
 	background: #f6f5f7;
 	display: flex;
 	justify-content: center;
-	background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(img/long_bg.jpg);
+	background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(long_bg.jpg);
     background-position: center;
     background-size: cover;
 	align-items: center;
