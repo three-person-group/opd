@@ -67,7 +67,7 @@ if (!isset($_SESSION['username'])) {
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class="title">Search Patient 2</span>
+                        <span class="title">Search Patient</span>
                 </li>
                 <li>
                     <a href="#" id="Inventory_dispencery_ch">
@@ -144,7 +144,7 @@ if (!isset($_SESSION['username'])) {
            
             document.getElementById("Active_Patient").onclick = function () { myFunction2() };
             function myFunction2() {
-                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/patient_in_process_med.html"></object>';
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/patient_process_med.html"></object>';
             }
             
             // document.getElementById("Inventory_dispencery_ch").onclick = function () { myFunction3() };
@@ -156,9 +156,9 @@ if (!isset($_SESSION['username'])) {
             function myFunction33() {
                 document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/temp_search.php"></object>';
             }
-            document.getElementById("Inventory_lab_ch").onclick = function () { myFunction4() };
+            document.getElementById("Inventory_dispencery_ch").onclick = function () { myFunction4() };
             function myFunction4() {
-                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/lab_recordes.html"></object>';
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/medicine_recordes.html"></object>';
             }
             document.getElementById("logOut").onclick = function () { myFunction100() };
             function myFunction100() {
