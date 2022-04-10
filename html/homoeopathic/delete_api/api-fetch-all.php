@@ -7,7 +7,7 @@
    // $name=$data['sname'];
 
    // SELECT * FROM `patient_register` ORDER BY `patient_register`.`date` ASC
-   $sql="SELECT * FROM `patient_register` WHERE date > now() - INTERVAL 2 day ORDER BY `patient_register`.`patientno` DESC;";
+   $sql="SELECT * FROM `patient_register` WHERE date > now() - INTERVAL 288 day ORDER BY `patient_register`.`patientno` DESC;";
 
    $result=$conn->query($sql);
 
