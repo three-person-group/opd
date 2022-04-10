@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+
+   <title>Bill</title>
+   <link rel="stylesheet" href="billdes.css">
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <!-- <style>
+      table,
+      td,
+      tr {
+         border: 4px solid black;
+      }
+   </style> -->
+</head>
+
+<body>
+   <div class="container">
+   
+      <div class="form">
+      <div class="header">
+<div class="logo-container">
+	<img src="agrawal.jfif" alt="logo">
+</div>
+  <h1 id="moj">S.S.AGRAWAL</h1>
+  <p><u>AYURVEDIC HOMYOPATHIC AND GENERAL HOSPITAL DEPT.</u></p>
+</div>
+         <div class="text-area" style="text-align: left;font-size:20px;justify-content:space-between;">
+            <b>DATE:</b>
+            <span style="margin-right:30px;"for="" id="date"></span>
+            <b>OPDNO:</b>
+            <span style="margin-right:30px;"for="" id="opdno"></span>
+            <b>NAME:</b>
+            <spanFno"for="" id="name">name</span>
+
+         </div>
+         <table class="table  table-hover  text-nowrap table table-bordered border-success" id="id-fullTable">
+            <thead class="table-info">
+               <tr>
+                  <th>
+                     PERTICULAR
+                  </th>
+                  <th>
+                     Qty
+                  </th>
+                  <th>
+                     price
+                  </th>
+               </tr>
+               <thead>
+               <tbody id="id-table">
+               </tbody>
+
+         </table>
+
+         <b>NO:</b> <span id="id-totalNoOfAll"></span>
+         <b>QTY.:</b> <span id="id-totalQtyOfAll"></span>
+         <b>TOTAL:</b> <span id="id-total"></span>
+      </div>
+
+   </div>
+
+
+
+
+   <input type="button" value="Print" id="printbtn">
+   <script>
+      $(document).ready(function () {
+
+         //for opdno and date
+         var opdno = localStorage.getItem('opdno')  //"107"
+         opdno = parseInt(opdno)
+         var date1 = localStorage.getItem('date')    //"2022-03-04"
+         var name1 = localStorage.getItem('name')    //"2022-03-04"
+
+
+         $("#date").text(date1);
+         $("#opdno").text(opdno);
+         $("#name").text(name1);
+
+
+         var obj1 = { sopdno: opdno, sdate: date1 };
+         console.log(obj1);
+         var JSONobj1 = JSON.stringify(obj1);
+
+
+
+
+         //fetch reg data
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-consulting-paid-or-not.php',
+            type: "post",
+            dataType: "json",
+            data: JSONobj1,
+            success: function (data) {
+               console.log(data);
+               // var db = (JSON.parse(data));
+               // console.log(db);
+
+
+               if (data.status == 'false') {
+                  // $("#id-table").append("<tr>" +
+                  //    "<td>" + 'REGISTRATION CHARGE' + "</td>" +
+                  //    "<td>" + '' + "</td>" +
+                  //    "<td>" + "0" + "</td>" +
+                  //    "</tr>");
+               }
+               else {
+                  // $("#id-table").html("");
+                  console.log(data);
+                  $.each(data, function (key, value) {
+
+                     $("#id-table").append("<tr>" +
+                        "<td>" + 'REGISTRATION CHARGE' + "</td>" +
+                        "<td>" + '1' + "</td>" +
+                        "<td>" + value.REG_CHARGE + "</td>" +
+                        "</tr>");
+                  });
+
+
+               }
+            }
+
+         });
+
+
+
+         //for madicine list in html table
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-fetch-medicine-list.php',
+            type: "post",
+            dataType: "json",
+            data: JSONobj1,
+            success: function (data) {
+               console.log(data);
+               // var db = (JSON.parse(data));
+               // console.log(db);
+
+
+               if (data.status == false) {
+                  // $("#id-registrationCharges").val(20);
+               }
+               else {
+                  // console.log(data);
+                  $.each(data, function (key, value) {
+
+                     var jsonMedicine = JSON.parse(value.medicine_name)
+                     var jsonQty = JSON.parse(value.medicine_qty)
+                     var jsonCharges = JSON.parse(value.medicine_charges)
+
+
+                     var arrayOne = jsonMedicine;
+                     var arrayTwo = jsonQty;
+                     var arrayThree = jsonCharges;
+
+                     var maxSize = Math.max(arrayOne.length, arrayTwo.length, arrayThree.length);
+
+                     for (let i = 0; i < maxSize; i++) {
+                        let row = $('<tr>');
+                        row.append($('<td>').html(arrayOne[i]));
+                        row.append($('<td>').html(arrayTwo[i]));
+                        row.append($('<td>').html(arrayThree[i]));
+                        $('#id-table').append(row);
+                     }
+                  });
+
+               }
+            }
+
+         });
+
+         //for lab list in html table
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-fetch-lab-list.php',
+            type: "post",
+            dataType: "json",
+            data: JSONobj1,
+            success: function (data) {
+               console.log(data);
+               // var db = (JSON.parse(data));
+               // console.log(db);
+
+
+               if (data.status == false) {
+                  // $("#id-registrationCharges").val(20);
+               }
+               else {
+                  // console.log(data);
+                  $.each(data, function (key, value) {
+
+                     var jsonMedicine = JSON.parse(value.test_name)
+                     var jsonQty = JSON.parse(value.test_qty)
+                     var jsonCharges = JSON.parse(value.test_charges)
+
+
+                     var arrayOne = jsonMedicine;
+                     var arrayTwo = jsonQty;
+                     var arrayThree = jsonCharges;
+
+                     var maxSize = Math.max(arrayOne.length, arrayTwo.length, arrayThree.length);
+
+                     for (let i = 0; i < maxSize; i++) {
+                        let row = $('<tr>');
+                        row.append($('<td>').html(arrayOne[i]));
+                        row.append($('<td>').html(arrayTwo[i]));
+                        row.append($('<td>').html(arrayThree[i]));
+                        $('#id-table').append(row);
+                     }
+                  });
+
+               }
+            }
+
+         });
+
+         //for other list in html table
+
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-fetch-other-list.php',
+            type: "post",
+            dataType: "json",
+            data: JSONobj1,
+            success: function (data) {
+               console.log(data);
+               // var db = (JSON.parse(data));
+               // console.log(db);
+
+
+               if (data.status == false) {
+                  // $("#id-registrationCharges").val(20);
+               }
+               else {
+                  // console.log(data);
+                  $.each(data, function (key, value) {
+
+                     var jsonMedicine = JSON.parse(value.other_name)
+                     var jsonQty = JSON.parse(value.other_qty)
+                     var jsonCharges = JSON.parse(value.other_charges)
+
+
+                     var arrayOne = jsonMedicine;
+                     var arrayTwo = jsonQty;
+                     var arrayThree = jsonCharges;
+
+                     var maxSize = Math.max(arrayOne.length, arrayTwo.length, arrayThree.length);
+
+                     for (let i = 0; i < maxSize; i++) {
+                        let row = $('<tr>');
+                        row.append($('<td>').html(arrayOne[i]));
+                        row.append($('<td>').html(arrayTwo[i]));
+                        row.append($('<td>').html(arrayThree[i]));
+                        $('#id-table').append(row);
+                     }
+                  });
+
+               }
+            }
+
+         });
+
+
+
+         //for total get from sum of medicine total and lab
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/bill_api/api-get-total.php',
+            type: "POST",
+            data: JSONobj1,
+            success: function (data) {
+               console.log(data)
+               if (data.status == false) {
+
+
+               }
+               else {
+                  console.log(data);
+                  var db = JSON.parse(data)
+
+                  var reg_charge = parseInt(db[0].reg_charge);
+                  var medicine_total = parseInt(db[0].medicine_total);
+                  var test_total = parseInt(db[0].test_total);
+                  var other_total = parseInt(db[0].other_total);
+
+                  if (reg_charge != "") {
+                     var no_of_reg_charge = 1;
+                     var qty_of_reg_charge = 1;
+                  }
+                  else {
+                     var no_of_reg_charge = 0;
+                     var qty_of_reg_charge = 0;
+
+                  }
+
+                  var no_of_medicine = parseInt(db[0].no_of_medicine);
+                  var no_of_test = parseInt(db[0].no_of_test);
+                  var no_of_other = parseInt(db[0].no_of_other);
+
+                  let totalNoOfAll = no_of_reg_charge + no_of_medicine + no_of_test + no_of_other;
+
+
+                  var qty_of_medicine = parseInt(db[0].qty_of_medicine);
+                  var qty_of_test = parseInt(db[0].qty_of_test);
+                  var qty_of_other = parseInt(db[0].qty_of_other);
+
+
+                  let totalQtyOfAll = qty_of_reg_charge + qty_of_medicine + qty_of_test + qty_of_other
+
+                  console.log(reg_charge + medicine_total + test_total + other_total);
+
+                  $("#id-total").text("abc");
+
+
+                  let totalOfAll = reg_charge + medicine_total + test_total + other_total;
+
+                  $("#id-totalNoOfAll").text(totalNoOfAll);
+                  $("#id-totalQtyOfAll").text(totalQtyOfAll);
+                  $("#id-total").text(totalOfAll);
+                  pushTotal();
+               }
+
+
+            }
+         });
+
+
+         function pushTotal() {
+
+            var totalNoAll = $("#id-totalNoOfAll").text();
+            var totalQtyAll = $("#id-totalQtyOfAll").text();
+            var totalOfAllCharges = $("#id-total").text();
+
+            var total = { stotal: totalOfAllCharges, sNoTotal: totalNoAll, sQtyTotal: totalQtyAll };
+            console.log(obj1);
+
+            var finalResultObj = Object.assign(total, obj1);
+            var finalResultmedicineJson = JSON.stringify(finalResultObj)
+            console.log(finalResultmedicineJson)
+
+            //inserting  total into bill data base
+            $.ajax({
+               url: 'http://localhost:3000/html/homoeopathic/bill_api/api-push-total.php',
+               type: "POST",
+               data: finalResultmedicineJson,
+               success: function (data) {
+                  console.log(data)
+                  // alert("data.message");
+
+                  if (data.status == true) {
+                     // alert(data.message);
+                  }
+                  else {
+                     alert(data.message);
+
+                  }
+
+
+               }
+            });
+
+         }
+
+         // $(document).on("click", "#printbtn", printData);
+         // function printData() {
+         //    var divToPrint = document.getElementById("id-fullTable");
+         //    newWin = window.open("");
+         //    newWin.document.write(divToPrint.outerHTML);
+         //    newWin.print();
+         //    newWin.close();
+         // }
+
+         function printData() {
+            var el = document.getElementById("id-fullTable");
+            el.setAttribute('border', '1px');
+            el.setAttribute('cellpadding', '5');
+            newPrint = window.open("");
+            newPrint.document.write(el.outerHTML);
+            newPrint.print();
+            newPrint.close();
+         }
+
+      });
+
+   </script>
+</body>
+
+</html>
