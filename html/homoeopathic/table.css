@@ -10,7 +10,7 @@ body {
 table {
     position: absolute;
     left: 50%;
-    top: 30%;
+    top: 35%;
     transform: translate(-50%, -50%);
     border-collapse: collapse;
     width: 1000px;

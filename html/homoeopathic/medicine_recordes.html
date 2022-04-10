@@ -4,15 +4,15 @@
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
    <title>medicine_recordes</title>
 
-
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="table.css">
+  <!---- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
-
+  -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 
@@ -20,9 +20,7 @@
    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
    <style>
-      form {
-         margin-left: 1500px;
-      }
+     
    </style>
 
 </head>
@@ -389,12 +387,10 @@
       </select>
    </form>
 
-   <section class="container-fluid select-data">
-      <div class="container">
-         <h2 class="text-center">Recordes</h2>
-         <table class="table text-center" id="id-fullTable">
-            <thead class="text-center">
-               <tr>
+   <table id="id-fullTable">
+            <h1>Recordes</h1>
+            
+               <tr id="header">
                   <!-- <td>PATIENTNO</td> -->
                   <td>DATE</td>
                   <td></td>
@@ -408,12 +404,12 @@
                   <td>MOTHER TINCHER 2 WEEK</td>
                   <td>Total</td>
                </tr>
-            <tbody id="id-table" class="text-center"></tbody>
-            </thead>
-         </table>
-
-      </div>
-   </section>
+               <tbody id="id-table"></tbody>
+               
+            </table>
+            <button class="btn" onclick="tableToExcel()">Convert To Excel</button>
+            
+   
    <!-- 
    No of patient:
    <span id="id-noOfpatient" value="Count Rows"> </span>
@@ -427,10 +423,9 @@
    Sum of Total:
    <span id="id-noOftotal" value="Count Rows"> </span> -->
 
-   <center>
+  
 
-      <button onclick="tableToExcel()">Convert To Excel</button>
-   </center>
+   
 
 </body>
 

@@ -10,7 +10,8 @@
 body {
     width: 100%;
     min-height: 70vh;
-    background:#5821bf;
+    background:#ffffff;
+    background: url('img/team_clip3.jpg');
     background-position: center;
     background-size: cover;
     display: flex;
@@ -23,7 +24,7 @@ body {
     width: 700px;
     min-height: 400px;
     background: #2d24af;
-    background: url('img/team_clip3.jpg');
+   
     background-size: cover;
     background-position: center;
     border-radius: 5px;

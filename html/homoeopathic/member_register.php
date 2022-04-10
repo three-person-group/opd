@@ -119,7 +119,7 @@ if (isset($_POST['submit']))
             		</div>
             <div class="input-group">
 				<input type="password" placeholder="Confirm Password" name="cpassword" value="<?php echo $_POST['cpassword']; ?>" required>
-				<label style="color:black; margin-top:30px; font-weignt:1.5rem;  font-size:20px;" ><b> Please Select Role :</b> </label>
+				<label style="color:black; margin-top:30px; font-weight:1.5rem;  font-size:20px;" ><b> Please Select Role :</b> </label>
 			</div>
 			<div class="radio-group" style="justify-content: space-between; color:black; margin-top:60px;margin-left:60px; width:400px; font-size:20px;">
 				

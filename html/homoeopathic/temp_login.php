@@ -30,7 +30,12 @@ if (isset($_POST['submit'])) {
 		elseif($_SESSION['role']=="lab")
 		{
 
-			header("Location: http://localhost:3000/html/homoeopathic/lab_man.html");
+			header("Location: http://localhost:3000/html/homoeopathic/gk_slidbar_for_labuser.php");
+		}
+		elseif($_SESSION['role']=="medicine")
+		{
+
+			header("Location: http://localhost:3000/html/homoeopathic/gk_slidbar_for_meduser.php");
 		}
 		elseif($_SESSION['role']=="admin")
 		{
@@ -41,7 +46,6 @@ if (isset($_POST['submit'])) {
 		echo "<script>alert('Woops! Email or Password is Wrong.')</script>";
 	}
 
-	// session_destroy();
 }
 
 
@@ -64,12 +68,6 @@ if (isset($_POST['submit'])) {
 	<div class="form-container sign-up-container">
 	<form action="" method="POST" class="login-email">
 			<h1>Login As ADMIN</h1><br><br>
-			<!-- <div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div> 
-			<span>or use your email for registration</span>-->
 			<div class="input-group">
 			<input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
 			<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required><br><br>
@@ -80,16 +78,9 @@ if (isset($_POST['submit'])) {
 	<div class="form-container sign-in-container">
 	<form action="" method="POST" class="login-email">
 			<h1>Login As USER</h1><br><br>
-			<!-- <div class="social-container">
-				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-			</div>
-			<span>or use your account</span> -->
 			<div class="input-group">
 			<input type="text" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
 			<input type="password" placeholder="Password" name="password" value="<?php echo $_POST['password']; ?>" required><br><br>
-			<!-- <a href="#">Forgot your password?</a> -->
 			</div>
 			<button name="submit" class="btn">Login</button>
 		</form>
@@ -108,7 +99,7 @@ if (isset($_POST['submit'])) {
 			</div>
 		</div>
 	</div>
-</div>
+</div><p style="color:white; font-size:20px;"><b>Are You Patient?</b> <a style="color:blue;font-size:20px;" href="patient_login.html"><b><u> Login As Patient</u></b></a></p>
 <script>
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
@@ -122,13 +113,5 @@ signInButton.addEventListener('click', () => {
 	container.classList.remove("right-panel-active");
 });
 </script>
-<!-- <footer>
-	<p>
-		Created with <i class="fa fa-heart"></i> by
-		<a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-		- Read how I created this and how you can join the challenge
-		<a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-	</p>
-</footer> -->
 </body>
 </html>
