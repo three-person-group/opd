@@ -4,11 +4,11 @@
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   
+
    <title>medicine_recordes</title>
 
    <link rel="stylesheet" href="table.css">
-  <!---- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+   <!---- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -20,7 +20,15 @@
    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
    <style>
-     
+      button {
+         cursor: pointer;
+         border-radius: 15px;
+         border: none;
+         background: #5555d2;
+         color: white;
+         margin-block-start: 12px;
+         font-size: 21px;
+      }
    </style>
 
 </head>
@@ -388,28 +396,28 @@
    </form>
 
    <table id="id-fullTable">
-            <h1>Recordes</h1>
-            
-               <tr id="header">
-                  <!-- <td>PATIENTNO</td> -->
-                  <td>DATE</td>
-                  <td></td>
-                  <td>OPD NO</td>
-                  <td></td>
-                  <td>1 WEEK DISPENSARY CHARGES</td>
-                  <td>2 WEEK DISPENSARY CHARGES</td>
-                  <td>BIO CHEMIC 1 WEEK</td>
-                  <td>BIO CHEMIC 2 WEEK</td>
-                  <td>MOTHER TINCHER 1 WEEK</td>
-                  <td>MOTHER TINCHER 2 WEEK</td>
-                  <td>Total</td>
-               </tr>
-               <tbody id="id-table"></tbody>
-               
-            </table>
-            <button class="btn" onclick="tableToExcel()">Convert To Excel</button>
-            
-   
+      <h1>Recordes</h1>
+
+      <tr id="header">
+         <!-- <td>PATIENTNO</td> -->
+         <td>DATE</td>
+         <td></td>
+         <td>OPD NO</td>
+         <td></td>
+         <td>1 WEEK DISPENSARY CHARGES</td>
+         <td>2 WEEK DISPENSARY CHARGES</td>
+         <td>BIO CHEMIC 1 WEEK</td>
+         <td>BIO CHEMIC 2 WEEK</td>
+         <td>MOTHER TINCHER 1 WEEK</td>
+         <td>MOTHER TINCHER 2 WEEK</td>
+         <td>Total</td>
+      </tr>
+      <tbody id="id-table"></tbody>
+
+   </table>
+   <button class="btn" onclick="tableToExcel()">Convert To Excel</button>
+
+
    <!-- 
    No of patient:
    <span id="id-noOfpatient" value="Count Rows"> </span>
@@ -423,9 +431,9 @@
    Sum of Total:
    <span id="id-noOftotal" value="Count Rows"> </span> -->
 
-  
 
-   
+
+
 
 </body>
 
