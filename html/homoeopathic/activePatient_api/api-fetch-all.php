@@ -6,7 +6,7 @@
 
    // $name=$data['sname'];
 
-   $sql="SELECT * FROM `patient_register` WHERE `in_progress(pending/done)`='pending';";
+   $sql="SELECT * FROM `patient_register` WHERE `in_progress(pending/done)`='pending' ORDER BY `patient_register`.`patientno` DESC ;";
 
    $result=$conn->query($sql);
 

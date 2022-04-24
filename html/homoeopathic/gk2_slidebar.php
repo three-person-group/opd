@@ -22,6 +22,8 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="style9.css">
     <title>Slidebar </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+
     <style>
         .main{
          margin-block-start: -54px;
@@ -32,6 +34,18 @@ if (!isset($_SESSION['username'])) {
             margin-block-start: 0px;
             padding-right: 0px;
         }
+        .topbar{
+            background: #876dee;
+        }
+        h2 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: -42.33px;
+    margin-block-end: -0.33em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
     </style>
 </head>
 
@@ -44,7 +58,7 @@ if (!isset($_SESSION['username'])) {
                 <li>
                     <a href="#" >
                         <span class="icon">
-                            <ion-icon name="logo-apple"></ion-icon>
+                        <span class="iconify" data-icon="cil:medical-cross" style="font-size: 28px;"></span>
                         </span>
                         <span class="title">OPD user </span>
                 </li>
@@ -61,40 +75,41 @@ if (!isset($_SESSION['username'])) {
                             <ion-icon name="people"></ion-icon>
                         </span>
                         <span class="title">Patient Registeration</span>
-                </li>
               
                 <li>
                     <a href="#" id="Old_Patient">
                         <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
+                        <span class="iconify" data-icon="akar-icons:search" style="font-size: 28px;"></span>
+                            <!-- <ion-icon name="settings-outline"></ion-icon> -->
                         </span>
                         <span class="title">Follow Up</span>
                 </li>
                 <li>
                     <a href="#" id="Search_Patient">
                         <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
+                        <span class="iconify" data-icon="ri:user-search-line" style="font-size: 28px;"></span>                            <!-- <ion-icon name="settings-outline"></ion-icon> -->
                         </span>
                         <span class="title">Search Patient</span>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#" id="Search_Patient2">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
                         <span class="title">Search Patient 2</span>
-                </li>
+                </li> -->
                 <li>
                     <a href="#" id="revoke">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        <span class="iconify" data-icon="fluent:document-table-16-regular" style="font-size: 28px;"></span>
+                            <!-- <ion-icon name="chatbubble-outline"></ion-icon> -->
                         </span>
                         <span class="title">Revoke</span>
                 </li>
                  <li>
                     <a href="#" id="delete">
                         <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
+                        <span class="iconify" data-icon="heroicons-outline:document-remove" style="font-size: 28px;"></span>                            <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
                         </span>
                         <span class="title">Remove</span>
                 </li> 
@@ -122,8 +137,7 @@ if (!isset($_SESSION['username'])) {
 
                  </div>
 
-                <div id="content" style="background-color:lightskyblue; position:absolute; height: 100%; width:100%;">Hello
-                    World!!!!</div>
+                <div id="content" style="background-color:#9980fa ; position:absolute; height: 100%; width:100%;"></div>
             </div>
 
 
@@ -179,12 +193,12 @@ if (!isset($_SESSION['username'])) {
             }
             document.getElementById("Search_Patient").onclick = function () { myFunction4() };
             function myFunction4() {
-                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/existing_patient.html"></object>';
+                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/histryOfPatient,html.html"></object>';
             }
-            document.getElementById("Search_Patient2").onclick = function () { myFunction33() };
-            function myFunction33() {
-                document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/temp_search.php"></object>';
-            }
+            // document.getElementById("Search_Patient2").onclick = function () { myFunction33() };
+            // function myFunction33() {
+            //     document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="http://localhost:3000/html/homoeopathic/temp_search.php"></object>';
+            // }
             // document.getElementById("bill").onclick = function () { myFunction5() };
             // function myFunction5() {
             //     document.getElementById("content").innerHTML = '<object type="text/html/php" style="height:100%; width:100%;" data="bill.html"></object>';

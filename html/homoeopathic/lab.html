@@ -3,7 +3,7 @@
 <html>
 
 <head>
-   <h2>lab</h2>
+   <!-- <h2>lab</h2> -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <!-- <link rel="stylesheet" href="bill.lab.css"> -->
 
@@ -37,6 +37,7 @@
          border: 1px solid #4d6e87;
          display: none;
          background-color: #4d6e87;
+         margin-inline-start: -9px;
       }
 
       .list ul {
@@ -65,21 +66,41 @@
 <body>
 
    <form class="form" method="post" action="">
+      <strong>
 
-      Date: 
+         <div style="font-size: 17px; margin-bottom: 9px;font-weight: 100px;">
+
+            <span style="margin-left: 0px;">
+               Date:
+            </span>
+            <span for="" id="date"></span>
+
+            <span style="margin-left: 133px;">
+               Opdno:
+            </span>
+            <span for="" id="opdno"></span>
+
+            <span style="margin-left: 59px;">
+               Name:
+            </span>
+            <span for="" id="name">name</span>
+
+         </div>
+      </strong>
+      <!-- Date: 
       <span for="" id="date"></span><br>
       Opdno: 
       <span for="" id="opdno"></span><br>
       Name: 
       <span for="" id="name">name</span><br>
-      <br>
+      <br> -->
 
       <div>
          <!-- <label>
             lab Name:
          </label> -->
          <div id="autocomplete">
-            <input type="text" name="stestname1" id="id-lab-1" class="testname" placeholder="lab Name"
+            <input type="text" name="stestname1" id="id-lab-1" class="testname" placeholder="test Name"
                autocomplete="false">
             <div id="testlist1" class="list" style="z-index: 1"></div>
          </div>
@@ -100,7 +121,7 @@
             lab Name:
          </label> -->
          <div id="autocomplete">
-            <input type="text" name="stestname2" id="id-lab-2" class="testname" placeholder="lab Name"
+            <input type="text" name="stestname2" id="id-lab-2" class="testname" placeholder="test Name"
                autocomplete="false">
             <div id="testlist2" class="list" style="z-index: 1"></div>
          </div>
@@ -120,7 +141,7 @@
             lab Name:
          </label> -->
          <div id="autocomplete">
-            <input type="text" name="stestname3" id="id-lab-3" class="testname" placeholder="lab Name"
+            <input type="text" name="stestname3" id="id-lab-3" class="testname" placeholder="test Name"
                autocomplete="false">
             <div id="testlist3" class="list" style="z-index: 1"></div>
          </div>
@@ -194,7 +215,21 @@
 
 
    
-      <br>
+      <div>
+         <!-- <span id="">No: -->
+         </span>
+         <input id="totalno" value="0" style="margin-left: -8px; width: 220px;"></input>
+         <!-- <br> -->
+         <!-- <span id="" style="padding-left: 65px;">qty: -->
+         </span>
+         <input id="totalqty" value="0" style="margin-left: 25px;"></input>
+         <!-- <br> -->
+         <!-- <span id="">Total: -->
+         </span>
+         <input id="total" value="0"></input>
+         <br><br>
+      </div>
+      <!-- <br>
       <span id="">no :
       </span>
       <input id="totalno" value="0"></input>
@@ -204,7 +239,7 @@
       <span id="">Total :
       </span>
       <input id="total" value="0"></input>
-      <br><br>
+      <br><br> -->
 
       <button class="btn" role="button" type="submit" id="id-btnsub" name="Submit">Submit</button>
 
@@ -213,6 +248,11 @@
    <script>
 
       $(document).ready(function () {
+
+         const input1 = document.querySelector("#id-lab-1");
+
+// use the focus method
+input1.focus();
 
          //for opdno and date
          var opdno = localStorage.getItem('opdno')  //"107"

@@ -22,6 +22,7 @@ if (!isset($_SESSION['username'])) {
     <link rel="stylesheet" href="style9.css">
     <title>Slidebar </title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     <style>
         .main {
             margin-block-start: -54px;
@@ -44,7 +45,8 @@ if (!isset($_SESSION['username'])) {
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="logo-apple"></ion-icon>
+                        <span class="iconify" data-icon="cil:medical-cross" style="font-size: 28px;"></span>
+                             <!-- <ion-icon name="medical-cross"></ion-icon>  -->
                         </span>
                         <span class="title">Admin </span>
                 </li>
@@ -66,7 +68,8 @@ if (!isset($_SESSION['username'])) {
                 <li>
                     <a href="#" id="userMangment">
                         <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
+                            <!-- <ion-icon name="home-outline"></ion-icon> -->
+                            <span class="iconify" data-icon="ant-design:user-outlined" style="font-size: 28px;"></span>
                         </span>
                         <span class="title">User Mangment</span>
                 </li>
@@ -74,58 +77,65 @@ if (!isset($_SESSION['username'])) {
                 <li>
                     <a href="#" id="regch_database">
                         <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
+                            <!-- <ion-icon name="home-outline"></ion-icon> -->
+                            <span class="iconify" data-icon="medical-icon:i-registration" style="font-size: 28px;"></span>
                         </span>
                         <span class="title">Regtration Charges</span>
                 </li>
                 <li>
                     <a href="#" id="medi_database">
                         <span class="icon">
-                            <ion-icon name="people"></ion-icon>
-                        </span>
+                            <!-- <ion-icon name="people"></ion-icon> -->
+                            <span class="iconify" data-icon="icon-park-outline:medicine-bottle" style="font-size: 28px;"></span>                        </span>
                         <span class="title">Despencery Charges</span>
-                </li>
-
-                <li>
-                    <a href="#" id="other_Charges">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                        <span class="title">Other Charges</span>
                 </li>
                 <li>
                     <a href="#" id="Lab_Charges">
                         <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
+                        <span class="iconify" data-icon="medical-icon:i-laboratory" style="font-size: 28px;"></span>
+                            <!-- <ion-icon name="settings-outline"></ion-icon> -->
                         </span>
                         <span class="title">Lab Charges</span>
-                </li>
+                    </li>
+                    
+                                    <li>
+                                        <a href="#" id="other_Charges">
+                                            <span class="icon">
+                                                <!-- <ion-icon name="settings-outline"></ion-icon> -->
+                                                <span class="iconify" data-icon="fluent:briefcase-medical-16-regular" style="font-size: 28px;"></span>
+                                            </span>
+                                            <span class="title">Other Charges</span>
+                                    </li>
 
                 <li>
                     <a href="#" id="Inventory_reg_ch">
                         <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
+                        <span class="iconify" data-icon="arcticons:stockswidget" style="font-size: 28px;"></span>
+                            <!-- <ion-icon name="settings-outline"></ion-icon> -->
                         </span>
                         <span class="title">Stock Of Regtration Charge</span>
                 </li>
                 <li>
                     <a href="#" id="Inventory_dispencery_ch">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        <span class="iconify" data-icon="arcticons:stockswidget" style="font-size: 28px;"></span>
+                            <!-- <ion-icon name="chatbubble-outline"></ion-icon> -->
                         </span>
                         <span class="title">Stock Of Dispencery</span>
                 </li>
                 <li>
                     <a href="#" id="Inventory_lab_ch">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        <span class="iconify" data-icon="arcticons:stockswidget" style="font-size: 28px;"></span>
+                            <!-- <ion-icon name="chatbubble-outline"></ion-icon> -->
                         </span>
                         <span class="title">Stock Of Lab</span>
                 </li>
                 <li>
                     <a href="#" id="Inventory_other_ch">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <!-- <ion-icon name="chatbubble-outline"></ion-icon> -->
+                            <span class="iconify" data-icon="arcticons:stockswidget" style="font-size: 28px;"></span>
                         </span>
                         <span class="title">Stock Of Other</span>
                 </li>
@@ -161,9 +171,8 @@ if (!isset($_SESSION['username'])) {
 
             </div>
 
-            <div id="content" style="    background-color:lightskyblue; position:absolute; height: 100%; width:100%;">
-                Hello
-                World!!!!</div>
+            <div id="content" style="    background-color:white; position:absolute; height: 100%; width:100%;">
+               </div>
         </div>
 
 

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <link rel="stylesheet" href="opdreg.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+   <h2>OPD REGISTRATION</h2>
+
+   <section class="container-fluid select-data">
+      <div class="container">
+         <h2 class="text-center">Patient Details</h2>
+         <table class="table text-center" id="">
+            <thead class="text-center">
+               <tr>
+                  <th scope="col">Date</th>
+                  <th></th>
+                  <th scope="col">Opdno</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Detail</th>
+               </tr>
+            <tbody id="id-table" class="text-center"></tbody>
+            </thead>
+            </thead>
+            <tbody>
+
+
+         </table>
+      </div>
+   </section>
+   <script>
+      $(document).ready(function () {
+
+      
+
+
+
+        
+         // insert opdno into existing patients in anventory and get patient in form
+         $.ajax({
+            url: 'http://localhost:3000/html/homoeopathic/existing_patient_api/api-patient-all-data.php',
+            type: "POST",
+            data: jsonnameOpdno,
+            success: function (data) {
+               console.log(data)
+               if (data.status == 'false') {
+               console.log("w");
+               console.log("nw");
+
+
+
+            }
+            else {
+               
+               $.each(data, function (key, value) {
+
+                  $("#id-table").append("<tr>" +
+                     "<td>" + value.date + "<td>" +
+                     "<td>" + value.opdno + "</td>" +
+                     "<td>" + value.pname + "</td>" +
+                     "<td><button class='detail' id='" + value.opdno + "' type='" + value.date + "' name='" + value.pname + "'>Detail</button></td>" +
+                     "</tr>");
+
+               });
+
+            }
+               // if (data.status != false) {
+               //    // var db = (JSON.parse(data));
+               //    // console.log(db);
+
+               //    // $.each(data, function (key, value) {
+
+               //    //    $("#id-opdid").val(value.opdno);
+               //    //    $("#id-pname").val(value.pname);
+               //    //    $("#id-age").val(value.age);
+
+               //    //    if (value.gender == "male") {
+               //    //       document.getElementById("male").checked = true;
+               //    //    }
+
+               //    //    if (value.gender == "female") {
+
+               //    //       document.getElementById('female').checked = true;
+               //    //    }
+
+               //    //    // $("#id-gender").val(value.gender);
+               //    //    $("#id-address").val(value.address);
+               //    //    $("#id-city").val(value.city);
+               //    //    $("#id-contact_no").val(value.mobileno);
+               //    //    $("#id-email").val(value.email);
+               //    //    // alert("dataInserted")
+               //    // });
+
+
+               // }
+               // else {
+               //    console.log("notworking");
+               //    alert(data.message);
+
+               // }
+            }
+         })
+
+         btnclick();
+
+         // insert data
+         function btnclick() {
+
+            $(document).on("click", "#id-btnsub", function (e) {
+               e.preventDefault();
+
+
+               var arr = $("#form-body").serializeArray();
+
+               var objArr = {};
+
+               for (let i = 0; i < arr.length; i++) {
+                  if (arr[i].value == "") {
+                     alert("fill all filed");
+                     return false;
+                  }
+                  objArr[arr[i].name] = arr[i].value;
+               }
+
+               var jsonInsertData = JSON.stringify(objArr);
+               console.log(jsonInsertData);
+
+
+               ////send to patient_register for 
+               $.ajax({
+                  url: 'http://localhost:3000/html/homoeopathic/existing_patient_api/api-insert-in-papatient_reg.php',
+                  type: "post",
+                  data: jsonInsertData,
+                  success: function (data) {
+                     if (data.status == true) {
+                        alert(data.message)
+                        // pageload()
+                        console.log("working");
+                     }
+                     else {
+                        console.log("notworking");
+                        alert(data.message);
+
+                     }
+                  }
+               })
+               
+               location.href="http://localhost:3000/html/homoeopathic/patient_process.html"
+            });
+         }
+
+
+
+
+      });
+   </script>
+</body>
+
+</html>

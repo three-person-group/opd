@@ -6,6 +6,7 @@
 
    $opdno=$data['sopdno'];
 
+   
    $sql2="SELECT date,opdno,pname  FROM patient_register where opdno='{$opdno}'";
    if($conn->query($sql2))
    {

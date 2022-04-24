@@ -11,8 +11,8 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
    <!-- <link rel="stylesheet" href="opdreg.css"> -->
    <title>Hello, world!</title>
-   <!-- <style>
-        td,
+   <style>
+      /* td,
         tr,
         table {
             border: solid black 10px;
@@ -27,8 +27,11 @@
 
             margin-inline-start: 10px;
             padding-left: 20px;
-        }
-    </style> -->
+        } */
+      body {
+         background-color: #876dee;
+      }
+   </style>
    <link rel="stylesheet" href="opdreg.css">
 
 
@@ -52,154 +55,8 @@
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-   <h2 style="font-size:30px; color:white; font-family:verdana; text-shadow:2px 2px 2px black; margin-bottom:20px;">OPD REGISTRATION</h2>
-   <!-- <form method="post" id="form-body" action="">
-
-      <table>
-         <tr>
-            <td>
-               <label>
-                  Date:
-               </label>
-
-            </td>
-            <td>
-
-               <input type="text" name="sdate" id="id-date" placeholder="">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-      <table>
-         <tr>
-            <td>
-
-
-               <label>OPD/ID:</label>
-            </td>
-            <td>
-               <input type="text" id="id-opdid" name="sopdno" placeholder="">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-      <table>
-         <tr>
-            <td>
-               <label class="txt">Name:</label>
-
-            </td>
-            <td>
-
-               <input type="text" name="spname" placeholder="Enter FullName">
-
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-      <table>
-         <tr>
-            <td>
-               <label for="">
-                  Age:
-
-               </label>
-            </td>
-            <td>
-               <input type="text" name="sage" placeholder="Enter Your Age">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-      <table>
-         <tr>
-            <td>
-               <label for="">
-                  Gender:
-
-               </label>
-            </td>
-            <td>
-               <input type="text" name="sgender" placeholder="Enter Your Gender">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-
-      <table>
-         <tr>
-            <td>
-               <label class="txt">Address:</label>
-            </td>
-            <td>
-
-               <input type="textarea" name="saddress">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-      <table>
-         <tr>
-            <td>
-               <label class="txt">City:</label>
-            </td>
-            <td>
-               <input type="text" name="scity">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-      <table>
-         <tr>
-            <td>
-               <label for="">
-                  ContactNo:
-
-               </label>
-            </td>
-            <td>
-               <input type="text" name="scontact_no" placeholder="Enter 10 Digit Number.">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-      <table>
-         <tr>
-            <td>
-
-               <label class="txt">Email:</label>
-
-            </td>
-            <td>
-               <input type="text" name="semail" placeholder="Enter Email address">
-               <br><br>
-            </td>
-         </tr>
-      </table>
-
-      <!-- <table>
-         <tr>
-            <td>
-
-               <label for="">
-                  Registration Charges:
-
-               </label>
-            </td>
-            <td>
-
-               <input type="text" id="id-registrationCharges" name="scharges" placeholder="">
-               <br><br>
-            </td>
-         </tr>
-      </table> -->
+   <h2>OPD
+      REGISTRATION</h2>
 
    <!-- <form method="post" id="form-body" action=""> -->
    <section class="signup">
@@ -209,30 +66,32 @@
             <div class="form-row">
                <div class="form-group">
                   <label for="Date">Date</label>
-                  <input type="text" class="form-input" name="sdate" id="id-date" />
+                  <input type="text" class="form-input" name="sdate" id="id-date" required>
+
                </div>
                <div class="form-group">
                   <label for="no">OPD NO</label>
-                  <input type="number" id="id-opdid" class="form-input" name="sopdno" />
+                  <input type="number" id="id-opdid" class="form-input" name="sopdno" required>
                </div>
             </div>
             <div class="form-row">
                <div class="form-group form-icon">
                   <label for="name">Name</label>
-                  <input type="text" class="form-input" name="spname" id="first_name" placeholder="Enter Your Name" />
+                  <input type="text" class="form-input" name="spname" id="first_name" placeholder="Enter Your Name"
+                     required>
                </div>
                <div class="form-group">
                   <label for="no">Age</label>
-                  <input type="number" class="form-input" name="sage" placeholder="Enter Your Age" />
+                  <input type="number" class="form-input" name="sage" placeholder="Enter Your Age" required>
                </div>
             </div>
-            
+
             <div class="form-row">
                <div class="form-radio">
                   <label for="gender">Gender</label>
                   <div class="form-flex">
                      <input type="radio" name="sgender" value="male" id="male" checked="checked"
-                        onclick="myFunction(this.value)" />
+                        onclick="myFunction(this.value)">
                      <label for="male" style="padding:20px;">Male</label>
 
                      <input type="radio" name="sgender" value="female" id="female" onclick="myFunction(this.value)" />
@@ -241,27 +100,33 @@
                </div>
                <div class="form-group">
                   <label for="City">City</label>
-                  <input type="text" class="form-input" name="scity" placeholder="Enter City " />
+                  <input type="text" class="form-input" name="scity" placeholder="Enter City " required>
                </div>
             </div>
             <div class="form-group">
                <label for="Address">Address</label>
-               <input type="textarea" class="form-input" name="saddress" id="phone_number" placeholder="Enter Address"/>
+               <input type="textarea" class="form-input" name="saddress" id="phone_number" placeholder="Enter Address"
+                  required>
             </div>
+
             <div class="form-row">
                <div class="form-group">
                   <label for="no">Contact NO</label>
                   <input type="number" class="form-input" name="scontact_no" id="phone_number"
-                     placeholder="phone number" />
+                     placeholder="phone number" pattern="^\d{10}$" required>
                </div>
+
                <div class="form-group">
                   <label for="Email">Email</label>
-                  <input type="text" class="form-input" name="semail" id="email" placeholder="Enter Email Addres" />
+                  <input type="text" class="form-input" name="semail" id="email" placeholder="Enter Email Addres">
                </div>
+
             </div>
+
             <div class="form-group">
-               <input type="submit" name="submit" id="id-btnsub" class="form-submit" value="Submit" />
+               <input type="submit" name="submit" id="id-btnsub" class="form-submit" value="Submit">
             </div>
+
          </form>
       </div>
    </section>
@@ -287,6 +152,10 @@
 
       $(document).ready(function () {
 
+         const input1 = document.querySelector("#first_name");
+
+         // use the focus method
+         input1.focus();
          //DATE CREATION
          var today = new Date();
          var dd = String(today.getDate()).padStart(2, '0');
@@ -466,45 +335,6 @@
                   }
                })
 
-               // //for inventory_homoeopathic
-               //             $.ajax({
-               //                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-medicine.php',
-               //                type: "post",
-               //                data: jsonInsertData,
-               //                success: function (data) {
-               //                   if (data.status == true) {
-               //                      alert(data.message)
-               //                      // pageload()
-               //                      console.log("working");
-               //                   }
-               //                   else {
-               //                      console.log("notworking");
-               //                      alert(data.message);
-
-               //                   }
-               //                }
-               //             })
-
-               // //for inventory_homoeopathic_lab
-               //             $.ajax({
-               //                url: 'http://localhost:3000/html/homoeopathic/opd_api/api-insert-in-inventory-homo-lab.php',
-               //                type: "post",
-               //                data: jsonInsertData,
-               //                success: function (data) {
-               //                   if (data.status == true) {
-               //                      alert(data.message)
-               //                      // pageload()
-               //                      console.log("working");
-               //                   }
-               //                   else {
-               //                      console.log("notworking");
-               //                      alert(data.message);
-
-               //                   }
-               //                }
-               //             })
-
-
 
                location.href = 'http://localhost:3000/html/homoeopathic/patient_process.html'
                //click event
@@ -529,15 +359,3 @@
 </body>
 
 </html>
-
-<!-- 
- {'sdate': '02/28/2022'
-'sopdno': 'kjhkj'
-'spname': 'hkjh'
-'sage': 'kjh'
-'sgender': 'kjh'
-'saddress': 'kj'
-'scity': 'hkj'
-'scontact_no': 'hkj'
-'semail': 'hkjhkj'
-'scharges': '20'} -->

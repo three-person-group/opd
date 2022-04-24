@@ -27,7 +27,9 @@ tr{
     margin: 10px 70px 70px;
     box-shadow: 0 30px 28px rgb(0 0 0 / 22%);
 }
-
+.thead1{
+    /* border-radius: 200px; */
+}
 .patient-table{
     border-radius: 5px;
     font-size: 12px;

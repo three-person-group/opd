@@ -6,8 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" type="text/css" href="search.css">
-   <link rel="stylesheet" type="text/css"
-      href="https://stackpath.bootstrapcdn.com/font-awsome/4.7.0/css/font-awsome.min.css">
+   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awsome/4.7.0/css/font-awsome.min.css">
 
    <title>existing_patient</title>
    <style>
@@ -60,7 +59,7 @@
 </head>
 
 <body>
-   <h1> Follow up</h1>
+   <h1>Search Patient</h1>
    <div class="box">
       <i class="fa fa-search"></i>
       <div id="autocomplete">
@@ -74,12 +73,11 @@
    <script>
 
       $(document).ready(function () {
+
          const input1 = document.querySelector("#id-medicine-1");
 
 // use the focus method
 input1.focus();
-
-
          // for id1 medicine name auto seach click and blur event
          $("#id-medicine-1").on("keyup", medicinename1);
 
@@ -182,7 +180,7 @@ input1.focus();
                   else {
 
 
-                     location.href = 'http://localhost:3000/html/homoeopathic/opd_reg_for_existing_patient.html';
+                     location.href = 'http://localhost:3000/html/homoeopathic/patient_home.html';
                   }
                }
             });

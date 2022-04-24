@@ -16,19 +16,34 @@
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-   <!-- <style>
-      table,
+   <style>
+       /* table,
       td,
       tr {
          border: 4px solid black;
-      }
-   </style> -->
+      }  */
+   
+#printbtn {
+    margin-inline-start: 584px;
+    width: 150px;
+    height: 47px;
+    border-radius: 43px;
+    border: none;
+    background: #6da5ee;
+    color: balck;
+    font-size: 20px;
+}
+#printbtn:hover{
+   background: #29466d;
+   color: white;
+}
+   </style> 
 </head>
 
 <body>
    <div class="container">
    
-      <div class="form">
+      <div class="form" style="margin-top: 59px;margin-bottom: 80px;">
       <div class="header">
 <div class="logo-container">
 	<img src="agrawal.jfif" alt="logo">
@@ -71,10 +86,10 @@
 
    </div>
 
+   <input type="button" value="Print" id="printbtn"  onclick = "window.print()">
 
 
 
-   <input type="button" value="Print" id="printbtn">
    <script>
       $(document).ready(function () {
 

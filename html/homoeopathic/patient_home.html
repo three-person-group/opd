@@ -2,31 +2,56 @@
 <html lang="en">
 
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-	<title>Hello, world!</title>
+   <title>Hello, world!</title>
+   <link rel="stylesheet" href="table.css">
+   <style>
+      .btn-revoke {
+         background-color: #876dee;
+         height: 26px;
+         width: 60px;
+         color: white;
+         border-radius: 12px;
+      }
+
+      h1 {
+         margin-left: 38%;
+         margin-top: 47px;
+         /* color: white; */
+      }
+
+      .detail {
+         background-color: rgba(27, 59, 202, 0.801);
+         height: 26px;
+         width: auto;
+         color: white;
+         border-radius: 12px;
+         border: none;
+      }
+   </style>
 </head>
 
 <body>
-	<!-- <h1>Hello, world!</h1> -->
+   <!-- <h1>Hello, world!</h1> -->
 
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
 </body>
 
 </html>
@@ -50,16 +75,16 @@
          <h2 class="text-center">Patient Details</h2>
          <table class="table text-center" id="">
             <thead class="text-center">
-               <tr>
+               <tr id="header">
                   <th scope="col">Date</th>
                   <th></th>
                   <th scope="col">Opdno</th>
                   <th scope="col">Name</th>
                   <th scope="col">Detail</th>
+                  
                </tr>
+            </thead>
             <tbody id="id-table" class="text-center"></tbody>
-            </thead>
-            </thead>
             <tbody>
 
 
@@ -70,6 +95,7 @@
 
    <script>
       //for opdno and phno
+      // localStorage.clear()
       var opdno = localStorage.getItem('opdno')  //"107"
       opdno = parseInt(opdno)
 
@@ -82,7 +108,7 @@
       $.ajax({
          url: 'http://localhost:3000/html/homoeopathic/patient_login_api/api-fetch-patient-data.php',
          type: "POST",
-         dataType:"json",
+         dataType: "json",
          data: jsonname,
          success: function (data) {
 
@@ -95,7 +121,7 @@
 
             }
             else {
-               
+
                $.each(data, function (key, value) {
 
                   $("#id-table").append("<tr>" +
@@ -111,27 +137,27 @@
          }
       });
 
-      $(document).on("click",".detail",function(){
+      $(document).on("click", ".detail", function () {
 
          // date
          // name
 
          var opdno = $(this).attr("id");
-                var date1 = $(this).attr("type");
-                var name1 = $(this).attr("name");
+         var date1 = $(this).attr("type");
+         var name1 = $(this).attr("name");
 
-                console.log(opdno)
-                console.log(date1)
-                console.log(name)
-                // console.log(date)
-                localStorage.clear()
+         console.log(opdno)
+         console.log(date1)
+         console.log(name)
+         // console.log(date)
+         localStorage.clear()
 
-                localStorage.setItem("opdno", opdno)
-                localStorage.setItem("date", date1)
-                localStorage.setItem("name", name1)
-                console.log(localStorage)
+         localStorage.setItem("opdno", opdno)
+         localStorage.setItem("date", date1)
+         localStorage.setItem("name", name1)
+         console.log(localStorage)
 
-                location.href = 'http://localhost:3000/html/homoeopathic/bill.html'
+         location.href = 'http://localhost:3000/html/homoeopathic/bill.html'
 
       });
 
